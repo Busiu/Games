@@ -7,7 +7,9 @@
 
 enum States{
     EXIT_STATE = 0,
-    MENU_STATE
+    MENU_STATE,
+    OPTIONS_STATE,
+    CURRENT_STATE
 };
 
 #endif //GAMES_STATES_H

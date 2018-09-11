@@ -2,6 +2,7 @@
 // Created by Busiu on 09.09.2018.
 //
 
+#include <iostream>
 #include "Window.h"
 
 bool Window::init()
@@ -59,6 +60,12 @@ void Window::run()
             case MENU_STATE:
             {
                 currentState = new MenuState(renderer);
+                break;
+            }
+            case OPTIONS_STATE:
+            {
+                currentState = new OptionState(renderer);
+                break;
             }
             default:
             {

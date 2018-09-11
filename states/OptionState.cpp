@@ -1,18 +1,18 @@
 //
-// Created by Busiu on 09.09.2018.
+// Created by Busiu on 11.09.2018.
 //
 
 #include <iostream>
-#include "MenuState.h"
+#include "OptionState.h"
 
-MenuState::MenuState(SDL_Renderer* renderer)
+OptionState::OptionState(SDL_Renderer* renderer)
 {
     this->renderer = renderer;
 }
 
 
 
-void MenuState::load()
+void OptionState::load()
 {
     loadFonts();
     loadTextures();
@@ -20,7 +20,7 @@ void MenuState::load()
     initialState();
 }
 
-void MenuState::loadFonts()
+void OptionState::loadFonts()
 {
     font = TTF_OpenFont("../assets/fonts/Racing Hoodlums.ttf", 30);
     if(font == nullptr)
@@ -29,41 +29,36 @@ void MenuState::loadFonts()
     }
 }
 
-void MenuState::loadTextures()
+void OptionState::loadTextures()
 {
     TextTexture* textTexture = nullptr;
     textures = new Texture*[TOTAL_TEXT];
 
     //Buttons:
-    //START
+    //RESOLUTION
     textTexture = new TextTexture();
-    textTexture->load(renderer, "START", {0x00, 0xFF, 0x00, 0xFF}, font);
-    textures[START_TEXT] = textTexture;
+    textTexture->load(renderer, "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textures[RESOLUTION_TEXT] = textTexture;
 
-    //OPTIONS
+    //VOLUME
     textTexture = new TextTexture();
-    textTexture->load(renderer, "OPTIONS", {0x00, 0xFF, 0x00, 0xFF}, font);
-    textures[OPTIONS_TEXT] = textTexture;
-
-    //EXIT
-    textTexture = new TextTexture();
-    textTexture->load(renderer, "EXIT", {0x00, 0xFF, 0x00, 0xFF}, font);
-    textures[EXIT_TEXT] = textTexture;
+    textTexture->load(renderer, "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textures[VOLUME_TEXT] = textTexture;
 }
 
-void MenuState::loadBackground()
+void OptionState::loadBackground()
 {
 
 }
 
-void MenuState::initialState()
+void OptionState::initialState()
 {
-    textures[START_TEXT]->setColor(0xFF, 0, 0);
+    textures[RESOLUTION_TEXT]->setColor(0xFF, 0, 0);
 }
 
 
 
-int MenuState::run()
+int OptionState::run()
 {
     while(true)
     {
@@ -79,7 +74,7 @@ int MenuState::run()
     }
 }
 
-int MenuState::handleEvents()
+int OptionState::handleEvents()
 {
     while (SDL_PollEvent(&event) != 0)
     {
@@ -99,9 +94,9 @@ int MenuState::handleEvents()
         {
             moveDown();
         }
-        else if(currentKeyStates[SDL_SCANCODE_RETURN])
+        else if(currentKeyStates[SDL_SCANCODE_ESCAPE])
         {
-            return pressEnter();
+            return MENU_STATE;
         }
     }
 
@@ -109,45 +104,27 @@ int MenuState::handleEvents()
     return CURRENT_STATE;
 }
 
-void MenuState::moveDown()
+void OptionState::moveDown()
 {
     textures[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
     highlightedText = (highlightedText + 1) % TOTAL_TEXT;
     textures[highlightedText]->setColor(0xFF, 0x00, 0x00);
 }
 
-void MenuState::moveUp()
+void OptionState::moveUp()
 {
     textures[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
     highlightedText = (highlightedText + TOTAL_TEXT - 1) % TOTAL_TEXT;
     textures[highlightedText]->setColor(0xFF, 0x00, 0x00);
 }
 
-int MenuState::pressEnter()
-{
-    switch(highlightedText)
-    {
-        case OPTIONS_TEXT:
-        {
-            return OPTIONS_STATE;
-        }
-        case EXIT_TEXT:
-        {
-            return EXIT_STATE;
-        }
-        default: {}
-    }
-
-    return CURRENT_STATE;
-}
-
-void MenuState::clear()
+void OptionState::clear()
 {
     SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(renderer);
 }
 
-void MenuState::render()
+void OptionState::render()
 {
     for(int i = 0; i < TOTAL_TEXT; i++)
     {
@@ -155,14 +132,14 @@ void MenuState::render()
     }
 }
 
-void MenuState::update()
+void OptionState::update()
 {
     SDL_RenderPresent(renderer);
 }
 
 
 
-void MenuState::close()
+void OptionState::close()
 {
     //Forgetting font
     TTF_CloseFont(font);

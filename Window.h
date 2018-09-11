@@ -8,6 +8,7 @@
 #include "Libraries.h"
 
 #include "states/MenuState.h"
+#include "states/OptionState.h"
 #include "states/State.h"
 #include "states/States.h"
 
