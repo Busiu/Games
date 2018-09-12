@@ -29,7 +29,7 @@ bool Window::initOptionContainer()
 bool Window::initWindow()
 {
     window = SDL_CreateWindow("GAMES", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                              optionContainer->getWindowHeight(), optionContainer->getWindowWidth(), SDL_WINDOW_SHOWN);
+                              optionContainer->getWindowWidth(), optionContainer->getWindowHeight(), SDL_WINDOW_SHOWN);
     if(window == nullptr)
     {
         return false;
@@ -55,7 +55,7 @@ bool Window::initRenderer()
 
 void Window::run()
 {
-    currentState = new MenuState(optionContainer->getRenderer());
+    currentState = new MenuState(optionContainer);
     int whichState = MENU_STATE;
 
     while(whichState)
