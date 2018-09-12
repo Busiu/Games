@@ -8,17 +8,28 @@
 bool Window::init()
 {
     bool success = true;
+    success &= initOptionContainer();
     success &= initWindow();
     success &= initRenderer();
 
     return success;
 }
 
+bool Window::initOptionContainer()
+{
+    optionContainer = new OptionContainer();
+    if(optionContainer == nullptr)
+    {
+        return false;
+    }
+
+    return true;
+}
+
 bool Window::initWindow()
 {
     window = SDL_CreateWindow("GAMES", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                              width, height, SDL_WINDOW_SHOWN);
-
+                              optionContainer->getWindowHeight(), optionContainer->getWindowWidth(), SDL_WINDOW_SHOWN);
     if(window == nullptr)
     {
         return false;
@@ -29,12 +40,13 @@ bool Window::initWindow()
 
 bool Window::initRenderer()
 {
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if(renderer == nullptr)
     {
         return false;
     }
+
+    optionContainer->setRenderer(renderer);
 
     return true;
 }
@@ -43,13 +55,13 @@ bool Window::initRenderer()
 
 void Window::run()
 {
-    currentState = new MenuState(renderer);
+    currentState = new MenuState(optionContainer->getRenderer());
     int whichState = MENU_STATE;
 
     while(whichState)
     {
         whichState = currentState->start();
-        delete(currentState);
+        delete currentState;
 
         switch(whichState)
         {
@@ -59,12 +71,12 @@ void Window::run()
             }
             case MENU_STATE:
             {
-                currentState = new MenuState(renderer);
+                currentState = new MenuState(optionContainer);
                 break;
             }
             case OPTIONS_STATE:
             {
-                currentState = new OptionState(renderer);
+                currentState = new OptionState(optionContainer);
                 break;
             }
             default:
@@ -80,7 +92,7 @@ void Window::run()
 void Window::free()
 {
     destroyWindow();
-    destroyRenderer();
+    destroyOptionContainer();
 }
 
 void Window::destroyWindow()
@@ -88,7 +100,8 @@ void Window::destroyWindow()
     SDL_DestroyWindow(window);
 }
 
-void Window::destroyRenderer()
+void Window::destroyOptionContainer()
 {
-    SDL_DestroyRenderer(renderer);
+    SDL_DestroyRenderer(optionContainer->getRenderer());
+    delete optionContainer;
 }

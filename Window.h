@@ -7,6 +7,8 @@
 
 #include "Libraries.h"
 
+#include "containers/OptionContainer.h"
+
 #include "states/MenuState.h"
 #include "states/OptionState.h"
 #include "states/State.h"
@@ -16,12 +18,10 @@
 class Window {
 private:
     SDL_Window* window;
-    SDL_Renderer* renderer;
 
     State* currentState;
 
-    int width = 640;
-    int height = 480;
+    OptionContainer* optionContainer;
 
 public:
     bool init();
@@ -30,12 +30,13 @@ public:
 
 private:
     //Init
+    bool initOptionContainer();
     bool initWindow();
     bool initRenderer();
 
     //Free
     void destroyWindow();
-    void destroyRenderer();
+    void destroyOptionContainer();
 };
 
 

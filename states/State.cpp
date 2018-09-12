@@ -7,7 +7,6 @@
 int State::start()
 {
     int nextState;
-
     load();
     nextState = run();
     close();

@@ -29,7 +29,7 @@ private:
     };
 
 public:
-    MenuState(SDL_Renderer* renderer);
+    MenuState(OptionContainer* optionContainer);
 
 private:
     void load() override;

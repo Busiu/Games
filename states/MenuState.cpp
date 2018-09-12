@@ -5,9 +5,9 @@
 #include <iostream>
 #include "MenuState.h"
 
-MenuState::MenuState(SDL_Renderer* renderer)
+MenuState::MenuState(OptionContainer* optionContainer)
 {
-    this->renderer = renderer;
+    this->optionContainer = optionContainer;
 }
 
 
@@ -37,17 +37,17 @@ void MenuState::loadTextures()
     //Buttons:
     //START
     textTexture = new TextTexture();
-    textTexture->load(renderer, "START", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture->load(optionContainer->getRenderer(), "START", {0x00, 0xFF, 0x00, 0xFF}, font);
     textures[START_TEXT] = textTexture;
 
     //OPTIONS
     textTexture = new TextTexture();
-    textTexture->load(renderer, "OPTIONS", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture->load(optionContainer->getRenderer(), "OPTIONS", {0x00, 0xFF, 0x00, 0xFF}, font);
     textures[OPTIONS_TEXT] = textTexture;
 
     //EXIT
     textTexture = new TextTexture();
-    textTexture->load(renderer, "EXIT", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture->load(optionContainer->getRenderer(), "EXIT", {0x00, 0xFF, 0x00, 0xFF}, font);
     textures[EXIT_TEXT] = textTexture;
 }
 
@@ -143,21 +143,23 @@ int MenuState::pressEnter()
 
 void MenuState::clear()
 {
-    SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(optionContainer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(optionContainer->getRenderer());
 }
 
 void MenuState::render()
 {
     for(int i = 0; i < TOTAL_TEXT; i++)
     {
-        textures[i]->render(renderer, (640 - textures[i]->getWidth()) / 2 , 480 * i/ TOTAL_TEXT);
+        textures[i]->render(optionContainer->getRenderer(),
+                            (optionContainer->getWindowWidth() - textures[i]->getWidth()) / 2 ,
+                            optionContainer->getWindowHeight() * i/ TOTAL_TEXT);
     }
 }
 
 void MenuState::update()
 {
-    SDL_RenderPresent(renderer);
+    SDL_RenderPresent(optionContainer->getRenderer());
 }
 
 

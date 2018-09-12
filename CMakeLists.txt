@@ -15,6 +15,8 @@ find_package(SDL_TTF REQUIRED)
 include_directories(${SDL2TTF_INCLUDE_DIR})
 
 add_executable(Games main.cpp Application.cpp Exception.cpp Window.cpp
-        states/State.cpp states/MenuState.cpp states/OptionState.cpp textures/Texture.cpp textures/TextTexture.cpp)
+        states/State.cpp states/MenuState.cpp states/OptionState.cpp
+        textures/Texture.cpp textures/TextTexture.cpp
+        containers/OptionContainer.cpp)
 
 target_link_libraries(Games ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf)

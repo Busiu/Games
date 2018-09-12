@@ -5,9 +5,9 @@
 #include <iostream>
 #include "OptionState.h"
 
-OptionState::OptionState(SDL_Renderer* renderer)
+OptionState::OptionState(OptionContainer* optionContainer)
 {
-    this->renderer = renderer;
+    this->optionContainer = optionContainer;
 }
 
 
@@ -37,12 +37,12 @@ void OptionState::loadTextures()
     //Buttons:
     //RESOLUTION
     textTexture = new TextTexture();
-    textTexture->load(renderer, "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture->load(optionContainer->getRenderer(), "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
     textures[RESOLUTION_TEXT] = textTexture;
 
     //VOLUME
     textTexture = new TextTexture();
-    textTexture->load(renderer, "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture->load(optionContainer->getRenderer(), "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
     textures[VOLUME_TEXT] = textTexture;
 }
 
@@ -120,21 +120,23 @@ void OptionState::moveUp()
 
 void OptionState::clear()
 {
-    SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(optionContainer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(optionContainer->getRenderer());
 }
 
 void OptionState::render()
 {
     for(int i = 0; i < TOTAL_TEXT; i++)
     {
-        textures[i]->render(renderer, (640 - textures[i]->getWidth()) / 2 , 480 * i/ TOTAL_TEXT);
+        textures[i]->render(optionContainer->getRenderer(),
+                            (optionContainer->getWindowWidth() - textures[i]->getWidth()) / 2 ,
+                            optionContainer->getWindowHeight() * i/ TOTAL_TEXT);
     }
 }
 
 void OptionState::update()
 {
-    SDL_RenderPresent(renderer);
+    SDL_RenderPresent(optionContainer->getRenderer());
 }
 
 

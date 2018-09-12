@@ -28,7 +28,7 @@ private:
     };
 
 public:
-    OptionState(SDL_Renderer* renderer);
+    OptionState(OptionContainer* optionContainer);
 
 private:
     void load() override;

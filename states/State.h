@@ -6,13 +6,17 @@
 #define GAMES_STATE_H
 
 #include "../Libraries.h"
+
+#include "../containers/OptionContainer.h"
+
 #include "States.h"
 
 
 class State {
 protected:
-    SDL_Renderer* renderer;
     SDL_Event event;
+
+    OptionContainer* optionContainer;
 
 public:
     int start();
