@@ -11,6 +11,8 @@ class OptionContainer {
 private:
     SDL_Renderer* renderer;
 
+
+
     int WINDOW_HEIGHT = 480;
     int WINDOW_WIDTH = 640;
 
