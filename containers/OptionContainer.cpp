@@ -6,7 +6,7 @@
 
 OptionContainer::OptionContainer()
 {
-    resolutions = new Pair*[9];
+    resolutions = new Pair*[noResolutions];
     resolutions[0] = new Pair(320, 240);
     resolutions[1] = new Pair(640, 480);
     resolutions[2] = new Pair(960, 720);
@@ -20,11 +20,21 @@ OptionContainer::OptionContainer()
 
 OptionContainer::~OptionContainer()
 {
-    for(int i = 0; i < 9; i++)
+    for(int i = 0; i < noResolutions; i++)
     {
         delete resolutions[i];
     }
     delete [] resolutions;
+}
+
+Pair** OptionContainer::getResolutions()
+{
+    return resolutions;
+}
+
+int OptionContainer::getNoResolutions()
+{
+    return noResolutions;
 }
 
 int OptionContainer::getWindowHeight()

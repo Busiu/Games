@@ -13,6 +13,7 @@ private:
     SDL_Renderer* renderer;
 
     Pair** resolutions;
+    int noResolutions = 9;
 
     int WINDOW_HEIGHT = 480;
     int WINDOW_WIDTH = 640;
@@ -22,6 +23,8 @@ public:
     ~OptionContainer();
 
     SDL_Renderer* getRenderer();
+    Pair** getResolutions();
+    int getNoResolutions();
     int getWindowHeight();
     int getWindowWidth();
 

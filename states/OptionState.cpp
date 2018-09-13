@@ -94,6 +94,14 @@ int OptionState::handleEvents()
         {
             moveDown();
         }
+        else if(currentKeyStates[SDL_SCANCODE_RIGHT])
+        {
+            moveRight();
+        }
+        else if(currentKeyStates[SDL_SCANCODE_LEFT])
+        {
+            moveLeft();
+        }
         else if(currentKeyStates[SDL_SCANCODE_ESCAPE])
         {
             return MENU_STATE;
@@ -104,6 +112,13 @@ int OptionState::handleEvents()
     return CURRENT_STATE;
 }
 
+void OptionState::moveUp()
+{
+    textures[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
+    highlightedText = (highlightedText + TOTAL_TEXT - 1) % TOTAL_TEXT;
+    textures[highlightedText]->setColor(0xFF, 0x00, 0x00);
+}
+
 void OptionState::moveDown()
 {
     textures[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
@@ -111,11 +126,14 @@ void OptionState::moveDown()
     textures[highlightedText]->setColor(0xFF, 0x00, 0x00);
 }
 
-void OptionState::moveUp()
+void OptionState::moveRight()
 {
-    textures[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
-    highlightedText = (highlightedText + TOTAL_TEXT - 1) % TOTAL_TEXT;
-    textures[highlightedText]->setColor(0xFF, 0x00, 0x00);
+    currentResolution = (currentResolution + 1) % optionContainer->getNoResolutions();
+}
+
+void OptionState::moveLeft()
+{
+    currentResolution = (currentResolution - 1 + optionContainer->getNoResolutions()) % optionContainer->getNoResolutions();
 }
 
 void OptionState::clear()
@@ -132,6 +150,20 @@ void OptionState::render()
                             (optionContainer->getWindowWidth() - textures[i]->getWidth()) / 2 ,
                             optionContainer->getWindowHeight() * i/ TOTAL_TEXT);
     }
+
+    //SO suboptimal rendering of current resolution (need to optimize in the future SO BADLY!!!)
+    stringstream resolution;
+    resolution.str("");
+    resolution << optionContainer->getResolutions()[currentResolution]->getX();
+    resolution << "x";
+    resolution << optionContainer->getResolutions()[currentResolution]->getY();
+
+    TextTexture textResolution;
+    textResolution.load(optionContainer->getRenderer(), resolution.str(), {0x00, 0xFF, 0x00, 0xFF}, font);
+    textResolution.render(optionContainer->getRenderer(),
+                          (optionContainer->getWindowWidth() - textures[RESOLUTION_TEXT]->getWidth()) / 2 + 200,
+                          optionContainer->getWindowHeight() * RESOLUTION_TEXT/ TOTAL_TEXT);
+
 }
 
 void OptionState::update()

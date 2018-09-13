@@ -20,6 +20,7 @@ private:
 
     //Current highlighted text
     int highlightedText = RESOLUTION_TEXT;
+    int currentResolution = 1;
 
     enum text{
         RESOLUTION_TEXT = 0,
@@ -43,8 +44,10 @@ private:
 
     //Run
     int handleEvents() override;
-    void moveDown();
     void moveUp();
+    void moveDown();
+    void moveRight();
+    void moveLeft();
     void clear() override;
     void render() override;
     void update() override;
