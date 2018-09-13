@@ -6,17 +6,21 @@
 #define GAMES_OPTIONCONTAINER_H
 
 #include "../Libraries.h"
+#include "../math/Pair.h"
 
 class OptionContainer {
 private:
     SDL_Renderer* renderer;
 
-
+    Pair** resolutions;
 
     int WINDOW_HEIGHT = 480;
     int WINDOW_WIDTH = 640;
 
 public:
+    OptionContainer();
+    ~OptionContainer();
+
     SDL_Renderer* getRenderer();
     int getWindowHeight();
     int getWindowWidth();
