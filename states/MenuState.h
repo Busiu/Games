@@ -10,6 +10,8 @@
 #include "../textures/TextTexture.h"
 #include "State.h"
 
+class State;
+class OptionContainer;
 class MenuState : public State {
 private:
     //Font of menu captions

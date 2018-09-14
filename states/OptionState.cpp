@@ -102,6 +102,10 @@ int OptionState::handleEvents()
         {
             moveLeft();
         }
+        else if(currentKeyStates[SDL_SCANCODE_RETURN])
+        {
+            pressEnter();
+        }
         else if(currentKeyStates[SDL_SCANCODE_ESCAPE])
         {
             return MENU_STATE;
@@ -134,6 +138,14 @@ void OptionState::moveRight()
 void OptionState::moveLeft()
 {
     currentResolution = (currentResolution - 1 + optionContainer->getNoResolutions()) % optionContainer->getNoResolutions();
+}
+
+void OptionState::pressEnter()
+{
+    if(highlightedText == RESOLUTION_TEXT)
+    {
+        optionContainer->setResolution(optionContainer->getResolutions()[currentResolution]);
+    }
 }
 
 void OptionState::clear()

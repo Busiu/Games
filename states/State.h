@@ -9,8 +9,7 @@
 
 #include "../containers/OptionContainer.h"
 
-#include "States.h"
-
+class OptionContainer;
 
 class State {
 protected:

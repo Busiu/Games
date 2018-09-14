@@ -6,6 +6,7 @@
 #define GAMES_TEXTTEXTURE_H
 
 #include "../Libraries.h"
+#include "../Exception.h"
 
 #include "Texture.h"
 

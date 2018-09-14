@@ -1,7 +1,12 @@
 #include <iostream>
 
+#include "Libraries.h"
+
 #include "Application.h"
 #include "Exception.h"
+
+#include "states/State.h"
+class State;
 
 using namespace std;
 

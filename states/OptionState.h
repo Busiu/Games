@@ -6,10 +6,13 @@
 #define GAMES_OPTIONSTATE_H
 
 #include "../libraries.h"
+
 #include "../textures/Texture.h"
 #include "../textures/TextTexture.h"
 #include "State.h"
 
+class State;
+class OptionContainer;
 class OptionState : public State {
 private:
     //Font of option captions
@@ -48,6 +51,7 @@ private:
     void moveDown();
     void moveRight();
     void moveLeft();
+    void pressEnter();
     void clear() override;
     void render() override;
     void update() override;

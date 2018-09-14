@@ -14,8 +14,6 @@
 #include <string>
 #include <vector>
 
-#include "Exception.h"
-
 using namespace std;
 
 #endif //GAMES_LIBRARIES_H

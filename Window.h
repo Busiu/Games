@@ -14,6 +14,11 @@
 #include "states/State.h"
 #include "states/States.h"
 
+class OptionContainer;
+class State;
+class OptionState;
+class MenuState;
+
 
 class Window {
 private:
@@ -27,6 +32,7 @@ public:
     bool init();
     void run();
     void free();
+    void setResolution();
 
 private:
     //Init

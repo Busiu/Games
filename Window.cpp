@@ -17,7 +17,7 @@ bool Window::init()
 
 bool Window::initOptionContainer()
 {
-    optionContainer = new OptionContainer();
+    optionContainer = new OptionContainer(this);
     if(optionContainer == nullptr)
     {
         return false;
@@ -104,4 +104,9 @@ void Window::destroyOptionContainer()
 {
     SDL_DestroyRenderer(optionContainer->getRenderer());
     delete optionContainer;
+}
+
+void Window::setResolution()
+{
+    SDL_SetWindowSize(window, optionContainer->getWindowWidth(), optionContainer->getWindowHeight());
 }
