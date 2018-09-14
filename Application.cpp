@@ -25,7 +25,7 @@ void Application::load()
     {
         throw Exception("TTF Initialization");
     }
-    if(!initWindow())
+    if(!initStateSupervisor())
     {
         throw Exception("StateSupervisor Creation");
     }
@@ -62,9 +62,9 @@ bool Application::initTTF()
     return true;
 }
 
-bool Application::initWindow()
+bool Application::initStateSupervisor()
 {
-    if(!window.init())
+    if(!stateSupervisor.init())
     {
         return false;
     }
@@ -76,7 +76,7 @@ bool Application::initWindow()
 
 void Application::run()
 {
-    window.run();
+    stateSupervisor.run();
 }
 
 void Application::close()
@@ -87,7 +87,7 @@ void Application::close()
 
 void Application::freeMemory()
 {
-    window.free();
+    stateSupervisor.free();
 }
 
 void Application::quitModules()

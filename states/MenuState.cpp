@@ -5,23 +5,11 @@
 #include <iostream>
 #include "MenuState.h"
 
-/*MenuState::MenuState(OptionContainer* optionContainer, WindowContainer* windowContainer)
-{
-    this->optionContainer = optionContainer;
-    this->windowContainer = windowContainer;
-}*/
-
-
-
 void MenuState::load()
 {
-    cout << "XDD";
     loadFonts();
-    cout << "XDD";
     loadTextures();
-    cout << "XDD";
     loadBackground();
-    cout << "XDD";
     initialState();
 }
 
@@ -39,17 +27,11 @@ void MenuState::loadTextures()
     TextTexture* textTexture = nullptr;
     textures = new Texture*[TOTAL_TEXT];
 
-    cout << "ELOSKI";
-
     //Buttons:
     //START
     textTexture = new TextTexture();
-    cout << "beb";
     textTexture->load(windowContainer->getRenderer(), "START", {0x00, 0xFF, 0x00, 0xFF}, font);
-    cout << "SZLOHH";
     textures[START_TEXT] = textTexture;
-
-    cout << "Kuwz";
 
     //OPTIONS
     textTexture = new TextTexture();
@@ -116,7 +98,7 @@ int MenuState::handleEvents()
         }
     }
 
-    //Returning something else than "EXIT_STATE"
+    //If no action we back to current state
     return CURRENT_STATE;
 }
 

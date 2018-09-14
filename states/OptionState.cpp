@@ -5,14 +5,6 @@
 #include <iostream>
 #include "OptionState.h"
 
-/*OptionState::OptionState(OptionContainer* optionContainer, WindowContainer* windowContainer)
-{
-    this->optionContainer = optionContainer;
-    this->windowContainer = windowContainer;
-}*/
-
-
-
 void OptionState::load()
 {
     loadFonts();
@@ -152,6 +144,7 @@ void OptionState::pressEnter()
     if(highlightedText == RESOLUTION_TEXT)
     {
         windowContainer->setResolution(optionContainer->getResolutions()[currentResolution]);
+        optionContainer->setCurrentResolution(currentResolution);
     }
 }
 

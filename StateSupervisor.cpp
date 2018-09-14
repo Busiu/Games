@@ -46,14 +46,10 @@ void StateSupervisor::run()
         whichState = currentState->start();
         delete currentState;
 
-        cout << "LOL";
-
         switch(whichState)
         {
             case EXIT_STATE:
             {
-                cout << "LOL";
-
                 break;
             }
             case MENU_STATE:
@@ -63,15 +59,11 @@ void StateSupervisor::run()
             }
             case OPTIONS_STATE:
             {
-                cout << "LOL";
-
                 currentState = new OptionState(optionContainer, windowContainer);
                 break;
             }
             default:
             {
-                cout << "LOL";
-
                 break;
             }
         }

@@ -10,12 +10,6 @@ State::State(OptionContainer* optionContainer, WindowContainer* windowContainer)
     this->windowContainer = windowContainer;
 }
 
-State::~State()
-{
-    delete optionContainer;
-    delete windowContainer;
-}
-
 int State::start()
 {
     int nextState;

@@ -12,8 +12,7 @@ class OptionContainer {
 private:
     Pair** resolutions;
     int noResolutions = 9;
-    int WINDOW_HEIGHT = 480;
-    int WINDOW_WIDTH = 640;
+    int currentResolution = 1;
 
 public:
     OptionContainer();
@@ -23,6 +22,8 @@ public:
     int getNoResolutions();
     int getWindowHeight();
     int getWindowWidth();
+
+    void setCurrentResolution(int currentResolution);
 };
 
 

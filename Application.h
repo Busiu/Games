@@ -14,7 +14,7 @@ class Application {
 
 private:
     //Application window
-    StateSupervisor window;
+    StateSupervisor stateSupervisor;
 
 public:
     //Start of application
@@ -32,7 +32,7 @@ private:
     bool initSDL();
     bool initIMG();
     bool initTTF();
-    bool initWindow();
+    bool initStateSupervisor();
 
     //Close
     void freeMemory();

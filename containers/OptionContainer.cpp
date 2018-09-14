@@ -39,10 +39,15 @@ int OptionContainer::getNoResolutions()
 
 int OptionContainer::getWindowHeight()
 {
-    return WINDOW_HEIGHT;
+    return resolutions[currentResolution]->getY();
 }
 
 int OptionContainer::getWindowWidth()
 {
-    return WINDOW_WIDTH;
+    return resolutions[currentResolution]->getX();
+}
+
+void OptionContainer::setCurrentResolution(int currentResolution)
+{
+    this->currentResolution = currentResolution;
 }

@@ -19,7 +19,6 @@ protected:
 
 public:
     State(OptionContainer* optionContainer, WindowContainer* windowContainer);
-    ~State();
 
     int start();
 
