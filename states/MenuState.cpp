@@ -5,18 +5,23 @@
 #include <iostream>
 #include "MenuState.h"
 
-MenuState::MenuState(OptionContainer* optionContainer)
+/*MenuState::MenuState(OptionContainer* optionContainer, WindowContainer* windowContainer)
 {
     this->optionContainer = optionContainer;
-}
+    this->windowContainer = windowContainer;
+}*/
 
 
 
 void MenuState::load()
 {
+    cout << "XDD";
     loadFonts();
+    cout << "XDD";
     loadTextures();
+    cout << "XDD";
     loadBackground();
+    cout << "XDD";
     initialState();
 }
 
@@ -34,20 +39,26 @@ void MenuState::loadTextures()
     TextTexture* textTexture = nullptr;
     textures = new Texture*[TOTAL_TEXT];
 
+    cout << "ELOSKI";
+
     //Buttons:
     //START
     textTexture = new TextTexture();
-    textTexture->load(optionContainer->getRenderer(), "START", {0x00, 0xFF, 0x00, 0xFF}, font);
+    cout << "beb";
+    textTexture->load(windowContainer->getRenderer(), "START", {0x00, 0xFF, 0x00, 0xFF}, font);
+    cout << "SZLOHH";
     textures[START_TEXT] = textTexture;
+
+    cout << "Kuwz";
 
     //OPTIONS
     textTexture = new TextTexture();
-    textTexture->load(optionContainer->getRenderer(), "OPTIONS", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture->load(windowContainer->getRenderer(), "OPTIONS", {0x00, 0xFF, 0x00, 0xFF}, font);
     textures[OPTIONS_TEXT] = textTexture;
 
     //EXIT
     textTexture = new TextTexture();
-    textTexture->load(optionContainer->getRenderer(), "EXIT", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture->load(windowContainer->getRenderer(), "EXIT", {0x00, 0xFF, 0x00, 0xFF}, font);
     textures[EXIT_TEXT] = textTexture;
 }
 
@@ -143,15 +154,15 @@ int MenuState::pressEnter()
 
 void MenuState::clear()
 {
-    SDL_SetRenderDrawColor(optionContainer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(optionContainer->getRenderer());
+    SDL_SetRenderDrawColor(windowContainer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(windowContainer->getRenderer());
 }
 
 void MenuState::render()
 {
     for(int i = 0; i < TOTAL_TEXT; i++)
     {
-        textures[i]->render(optionContainer->getRenderer(),
+        textures[i]->render(windowContainer->getRenderer(),
                             (optionContainer->getWindowWidth() - textures[i]->getWidth()) / 2 ,
                             optionContainer->getWindowHeight() * i/ TOTAL_TEXT);
     }
@@ -159,7 +170,7 @@ void MenuState::render()
 
 void MenuState::update()
 {
-    SDL_RenderPresent(optionContainer->getRenderer());
+    SDL_RenderPresent(windowContainer->getRenderer());
 }
 
 

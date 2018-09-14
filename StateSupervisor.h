@@ -2,48 +2,40 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#ifndef GAMES_WINDOW_H
-#define GAMES_WINDOW_H
+#ifndef GAMES_STATESUPERVISOR_H
+#define GAMES_STATESUPERVISOR_H
 
 #include "Libraries.h"
 
 #include "containers/OptionContainer.h"
+#include "containers/WindowContainer.h"
 
 #include "states/MenuState.h"
 #include "states/OptionState.h"
 #include "states/State.h"
 #include "states/States.h"
 
-class OptionContainer;
-class State;
-class OptionState;
-class MenuState;
-
-
-class Window {
+class StateSupervisor {
 private:
-    SDL_Window* window;
-
     State* currentState;
 
     OptionContainer* optionContainer;
+    WindowContainer* windowContainer;
 
 public:
     bool init();
     void run();
     void free();
-    void setResolution();
 
 private:
     //Init
     bool initOptionContainer();
-    bool initWindow();
-    bool initRenderer();
+    bool initWindowContainer();
 
     //Free
-    void destroyWindow();
     void destroyOptionContainer();
+    void destroyWindowContainer();
 };
 
 
-#endif //GAMES_WINDOW_H
+#endif //GAMES_STATESUPERVISOR_H

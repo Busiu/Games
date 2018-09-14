@@ -14,9 +14,10 @@ include_directories(${SDL2_IMAGE_INCLUDE_DIR})
 find_package(SDL_TTF REQUIRED)
 include_directories(${SDL2TTF_INCLUDE_DIR})
 
-add_executable(Games main.cpp Application.cpp Exception.cpp Window.cpp
-        containers/OptionContainer.cpp
+add_executable(Games main.cpp Application.cpp Exception.cpp StateSupervisor.cpp
+        containers/OptionContainer.cpp containers/WindowContainer.cpp
         math/Pair.cpp
+#        states/State.h states/MenuState.h states/OptionState.h
         states/State.cpp states/MenuState.cpp states/OptionState.cpp
         textures/Texture.cpp textures/TextTexture.cpp)
 

@@ -5,10 +5,11 @@
 #include <iostream>
 #include "OptionState.h"
 
-OptionState::OptionState(OptionContainer* optionContainer)
+/*OptionState::OptionState(OptionContainer* optionContainer, WindowContainer* windowContainer)
 {
     this->optionContainer = optionContainer;
-}
+    this->windowContainer = windowContainer;
+}*/
 
 
 
@@ -37,12 +38,12 @@ void OptionState::loadTextures()
     //Buttons:
     //RESOLUTION
     textTexture = new TextTexture();
-    textTexture->load(optionContainer->getRenderer(), "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture->load(windowContainer->getRenderer(), "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
     textures[RESOLUTION_TEXT] = textTexture;
 
     //VOLUME
     textTexture = new TextTexture();
-    textTexture->load(optionContainer->getRenderer(), "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture->load(windowContainer->getRenderer(), "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
     textures[VOLUME_TEXT] = textTexture;
 }
 
@@ -132,33 +133,39 @@ void OptionState::moveDown()
 
 void OptionState::moveRight()
 {
-    currentResolution = (currentResolution + 1) % optionContainer->getNoResolutions();
+    if(highlightedText == RESOLUTION_TEXT)
+    {
+        currentResolution = (currentResolution + 1) % optionContainer->getNoResolutions();
+    }
 }
 
 void OptionState::moveLeft()
 {
-    currentResolution = (currentResolution - 1 + optionContainer->getNoResolutions()) % optionContainer->getNoResolutions();
+    if(highlightedText == RESOLUTION_TEXT)
+    {
+        currentResolution = (currentResolution - 1 + optionContainer->getNoResolutions()) % optionContainer->getNoResolutions();
+    }
 }
 
 void OptionState::pressEnter()
 {
     if(highlightedText == RESOLUTION_TEXT)
     {
-        optionContainer->setResolution(optionContainer->getResolutions()[currentResolution]);
+        windowContainer->setResolution(optionContainer->getResolutions()[currentResolution]);
     }
 }
 
 void OptionState::clear()
 {
-    SDL_SetRenderDrawColor(optionContainer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(optionContainer->getRenderer());
+    SDL_SetRenderDrawColor(windowContainer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(windowContainer->getRenderer());
 }
 
 void OptionState::render()
 {
     for(int i = 0; i < TOTAL_TEXT; i++)
     {
-        textures[i]->render(optionContainer->getRenderer(),
+        textures[i]->render(windowContainer->getRenderer(),
                             (optionContainer->getWindowWidth() - textures[i]->getWidth()) / 2 ,
                             optionContainer->getWindowHeight() * i/ TOTAL_TEXT);
     }
@@ -171,8 +178,8 @@ void OptionState::render()
     resolution << optionContainer->getResolutions()[currentResolution]->getY();
 
     TextTexture textResolution;
-    textResolution.load(optionContainer->getRenderer(), resolution.str(), {0x00, 0xFF, 0x00, 0xFF}, font);
-    textResolution.render(optionContainer->getRenderer(),
+    textResolution.load(windowContainer->getRenderer(), resolution.str(), {0x00, 0xFF, 0x00, 0xFF}, font);
+    textResolution.render(windowContainer->getRenderer(),
                           (optionContainer->getWindowWidth() - textures[RESOLUTION_TEXT]->getWidth()) / 2 + 200,
                           optionContainer->getWindowHeight() * RESOLUTION_TEXT/ TOTAL_TEXT);
 
@@ -180,7 +187,7 @@ void OptionState::render()
 
 void OptionState::update()
 {
-    SDL_RenderPresent(optionContainer->getRenderer());
+    SDL_RenderPresent(windowContainer->getRenderer());
 }
 
 

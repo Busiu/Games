@@ -8,13 +8,13 @@
 #include "Libraries.h"
 
 #include "Exception.h"
-#include "Window.h"
+#include "StateSupervisor.h"
 
 class Application {
 
 private:
     //Application window
-    Window window;
+    StateSupervisor window;
 
 public:
     //Start of application

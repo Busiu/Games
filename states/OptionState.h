@@ -9,10 +9,10 @@
 
 #include "../textures/Texture.h"
 #include "../textures/TextTexture.h"
-#include "State.h"
 
-class State;
-class OptionContainer;
+#include "State.h"
+#include "States.h"
+
 class OptionState : public State {
 private:
     //Font of option captions
@@ -32,7 +32,8 @@ private:
     };
 
 public:
-    OptionState(OptionContainer* optionContainer);
+    OptionState(OptionContainer* optionContainer, WindowContainer* windowContainer) :
+            State(optionContainer, windowContainer){}
 
 private:
     void load() override;

@@ -4,10 +4,8 @@
 
 #include "OptionContainer.h"
 
-OptionContainer::OptionContainer(Window* window)
+OptionContainer::OptionContainer()
 {
-    this->window = window;
-
     resolutions = new Pair*[noResolutions];
     resolutions[0] = new Pair(320, 240);
     resolutions[1] = new Pair(640, 480);
@@ -47,22 +45,4 @@ int OptionContainer::getWindowHeight()
 int OptionContainer::getWindowWidth()
 {
     return WINDOW_WIDTH;
-}
-
-SDL_Renderer* OptionContainer::getRenderer()
-{
-    return renderer;
-}
-
-void OptionContainer::setRenderer(SDL_Renderer* renderer)
-{
-    this->renderer = renderer;
-}
-
-void OptionContainer::setResolution(Pair* resolution)
-{
-    this->WINDOW_WIDTH = resolution->getX();
-    this->WINDOW_HEIGHT = resolution->getY();
-
-    window->setResolution();
 }

@@ -8,16 +8,19 @@
 #include "../Libraries.h"
 
 #include "../containers/OptionContainer.h"
-
-class OptionContainer;
+#include "../containers/WindowContainer.h"
 
 class State {
 protected:
     SDL_Event event;
 
     OptionContainer* optionContainer;
+    WindowContainer* windowContainer;
 
 public:
+    State(OptionContainer* optionContainer, WindowContainer* windowContainer);
+    ~State();
+
     int start();
 
 protected:

@@ -4,6 +4,18 @@
 
 #include "State.h"
 
+State::State(OptionContainer* optionContainer, WindowContainer* windowContainer)
+{
+    this->optionContainer = optionContainer;
+    this->windowContainer = windowContainer;
+}
+
+State::~State()
+{
+    delete optionContainer;
+    delete windowContainer;
+}
+
 int State::start()
 {
     int nextState;

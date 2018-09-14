@@ -6,12 +6,13 @@
 #define GAMES_MENUSTATE_H
 
 #include "../libraries.h"
+
 #include "../textures/Texture.h"
 #include "../textures/TextTexture.h"
-#include "State.h"
 
-class State;
-class OptionContainer;
+#include "State.h"
+#include "States.h"
+
 class MenuState : public State {
 private:
     //Font of menu captions
@@ -31,7 +32,8 @@ private:
     };
 
 public:
-    MenuState(OptionContainer* optionContainer);
+    MenuState(OptionContainer* optionContainer, WindowContainer* windowContainer) :
+            State(optionContainer, windowContainer){}
 
 private:
     void load() override;

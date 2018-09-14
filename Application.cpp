@@ -27,7 +27,7 @@ void Application::load()
     }
     if(!initWindow())
     {
-        throw Exception("Window Creation");
+        throw Exception("StateSupervisor Creation");
     }
 }
 
