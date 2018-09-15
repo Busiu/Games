@@ -2,11 +2,11 @@
 // Created by Busiu on 12.09.2018.
 //
 
-#ifndef GAMES_OPTIONCONTAINER_H
-#define GAMES_OPTIONCONTAINER_H
+#ifndef GAMES_OPTIONCONTAINER_HPP
+#define GAMES_OPTIONCONTAINER_HPP
 
-#include "../Libraries.h"
-#include "../math/Pair.h"
+#include "../Libraries.hpp"
+#include "../math/Pair.hpp"
 
 class OptionContainer {
 private:
@@ -27,4 +27,4 @@ public:
 };
 
 
-#endif //GAMES_OPTIONCONTAINER_H
+#endif //GAMES_OPTIONCONTAINER_HPP

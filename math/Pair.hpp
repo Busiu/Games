@@ -2,10 +2,10 @@
 // Created by Busiu on 13.09.2018.
 //
 
-#ifndef GAMES_PAIR_H
-#define GAMES_PAIR_H
+#ifndef GAMES_PAIR_HPP
+#define GAMES_PAIR_HPP
 
-#include "../Libraries.h"
+#include "../Libraries.hpp"
 
 class Pair {
 private:
@@ -20,4 +20,4 @@ public:
 };
 
 
-#endif //GAMES_PAIR_H
+#endif //GAMES_PAIR_HPP

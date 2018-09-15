@@ -2,13 +2,13 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#ifndef GAMES_APPLICATION_H
-#define GAMES_APPLICATION_H
+#ifndef GAMES_APPLICATION_HPP
+#define GAMES_APPLICATION_HPP
 
-#include "Libraries.h"
+#include "Libraries.hpp"
 
-#include "Exception.h"
-#include "StateSupervisor.h"
+#include "Exception.hpp"
+#include "StateSupervisor.hpp"
 
 class Application {
 
@@ -40,4 +40,4 @@ private:
 };
 
 
-#endif //GAMES_APPLICATION_H
+#endif //GAMES_APPLICATION_HPP

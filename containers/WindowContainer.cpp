@@ -2,7 +2,7 @@
 // Created by Busiu on 14.09.2018.
 //
 
-#include "WindowContainer.h"
+#include "WindowContainer.hpp"
 
 WindowContainer::WindowContainer(int WINDOW_WIDTH, int WINDOW_HEIGHT)
 {

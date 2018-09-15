@@ -2,7 +2,7 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#include "Exception.h"
+#include "Exception.hpp"
 
 Exception::Exception(std::string name)
 {

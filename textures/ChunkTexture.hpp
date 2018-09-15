@@ -5,10 +5,10 @@
 #ifndef GAMES_CHUNKTEXTURE_HPP
 #define GAMES_CHUNKTEXTURE_HPP
 
-#include "../Libraries.h"
-#include "../Exception.h"
+#include "../Libraries.hpp"
+#include "../Exception.hpp"
 
-#include "Texture.h"
+#include "Texture.hpp"
 
 class ChunkTexture : public Texture{
 private:

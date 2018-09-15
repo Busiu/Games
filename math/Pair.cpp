@@ -2,7 +2,7 @@
 // Created by Busiu on 13.09.2018.
 //
 
-#include "Pair.h"
+#include "Pair.hpp"
 
 Pair::Pair(int x, int y)
 {

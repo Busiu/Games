@@ -2,16 +2,16 @@
 // Created by Busiu on 11.09.2018.
 //
 
-#ifndef GAMES_OPTIONSTATE_H
-#define GAMES_OPTIONSTATE_H
+#ifndef GAMES_OPTIONSTATE_HPP
+#define GAMES_OPTIONSTATE_HPP
 
-#include "../libraries.h"
+#include "../Libraries.hpp"
 
-#include "../textures/Texture.h"
-#include "../textures/TextTexture.h"
+#include "../textures/Texture.hpp"
+#include "../textures/TextTexture.hpp"
 
-#include "State.h"
-#include "States.h"
+#include "State.hpp"
+#include "States.hpp"
 
 class OptionState : public State {
 private:
@@ -59,4 +59,4 @@ private:
 };
 
 
-#endif //GAMES_OPTIONSTATE_H
+#endif //GAMES_OPTIONSTATE_HPP

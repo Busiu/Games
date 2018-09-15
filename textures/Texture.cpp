@@ -2,7 +2,7 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#include "Texture.h"
+#include "Texture.hpp"
 
 void Texture::free()
 {

@@ -2,8 +2,8 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#ifndef GAMES_LIBRARIES_H
-#define GAMES_LIBRARIES_H
+#ifndef GAMES_LIBRARIES_HPP
+#define GAMES_LIBRARIES_HPP
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -16,4 +16,4 @@
 #include <array>
 #include <vector>
 
-#endif //GAMES_LIBRARIES_H
+#endif //GAMES_LIBRARIES_HPP

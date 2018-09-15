@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "Libraries.h"
+#include "Libraries.hpp"
 
-#include "Application.h"
-#include "Exception.h"
+#include "Application.hpp"
+#include "Exception.hpp"
 
-#include "states/State.h"
+#include "states/State.hpp"
 
 int main(int argc, char ** argv)
 {

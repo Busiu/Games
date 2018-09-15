@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "MenuState.h"
+#include "MenuState.hpp"
 
 void MenuState::load()
 {

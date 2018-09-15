@@ -2,10 +2,10 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#ifndef GAMES_EXCEPTION_H
-#define GAMES_EXCEPTION_H
+#ifndef GAMES_EXCEPTION_HPP
+#define GAMES_EXCEPTION_HPP
 
-#include "Libraries.h"
+#include "Libraries.hpp"
 
 class Exception : public std::exception {
 private:
@@ -18,4 +18,4 @@ public:
 };
 
 
-#endif //GAMES_EXCEPTION_H
+#endif //GAMES_EXCEPTION_HPP

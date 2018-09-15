@@ -2,10 +2,10 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#ifndef GAMES_TEXTURE_H
-#define GAMES_TEXTURE_H
+#ifndef GAMES_TEXTURE_HPP
+#define GAMES_TEXTURE_HPP
 
-#include "../Libraries.h"
+#include "../Libraries.hpp"
 
 class Texture {
 protected:
@@ -25,4 +25,4 @@ public:
 };
 
 
-#endif //GAMES_TEXTURE_H
+#endif //GAMES_TEXTURE_HPP

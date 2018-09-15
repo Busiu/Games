@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "OptionState.h"
+#include "OptionState.hpp"
 
 void OptionState::load()
 {

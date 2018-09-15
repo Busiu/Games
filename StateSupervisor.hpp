@@ -2,19 +2,19 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#ifndef GAMES_STATESUPERVISOR_H
-#define GAMES_STATESUPERVISOR_H
+#ifndef GAMES_STATESUPERVISOR_HPP
+#define GAMES_STATESUPERVISOR_HPP
 
-#include "Libraries.h"
+#include "Libraries.hpp"
 
-#include "containers/OptionContainer.h"
-#include "containers/WindowContainer.h"
+#include "containers/OptionContainer.hpp"
+#include "containers/WindowContainer.hpp"
 
 #include "snake/SnakeState.hpp"
-#include "states/MenuState.h"
-#include "states/OptionState.h"
-#include "states/State.h"
-#include "states/States.h"
+#include "states/MenuState.hpp"
+#include "states/OptionState.hpp"
+#include "states/State.hpp"
+#include "states/States.hpp"
 
 class StateSupervisor {
 private:
@@ -39,4 +39,4 @@ private:
 };
 
 
-#endif //GAMES_STATESUPERVISOR_H
+#endif //GAMES_STATESUPERVISOR_HPP

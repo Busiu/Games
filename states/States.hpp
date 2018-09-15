@@ -2,8 +2,8 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#ifndef GAMES_STATES_H
-#define GAMES_STATES_H
+#ifndef GAMES_STATES_HPP
+#define GAMES_STATES_HPP
 
 enum States{
     EXIT_STATE = 0,
@@ -13,4 +13,4 @@ enum States{
     CURRENT_STATE
 };
 
-#endif //GAMES_STATES_H
+#endif //GAMES_STATES_HPP

@@ -2,7 +2,7 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#include "State.h"
+#include "State.hpp"
 
 State::State(OptionContainer* optionContainer, WindowContainer* windowContainer)
 {

@@ -2,16 +2,16 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#ifndef GAMES_MENUSTATE_H
-#define GAMES_MENUSTATE_H
+#ifndef GAMES_MENUSTATE_HPP
+#define GAMES_MENUSTATE_HPP
 
-#include "../libraries.h"
+#include "../Libraries.hpp"
 
-#include "../textures/Texture.h"
-#include "../textures/TextTexture.h"
+#include "../textures/Texture.hpp"
+#include "../textures/TextTexture.hpp"
 
-#include "State.h"
-#include "States.h"
+#include "State.hpp"
+#include "States.hpp"
 
 class MenuState : public State {
 private:
@@ -57,4 +57,4 @@ private:
 };
 
 
-#endif //GAMES_MENUSTATE_H
+#endif //GAMES_MENUSTATE_HPP

@@ -2,13 +2,13 @@
 // Created by Busiu on 14.09.2018.
 //
 
-#ifndef GAMES_WINDOWCONTAINER_H
-#define GAMES_WINDOWCONTAINER_H
+#ifndef GAMES_WINDOWCONTAINER_HPP
+#define GAMES_WINDOWCONTAINER_HPP
 
-#include "../Libraries.h"
-#include "../Exception.h"
+#include "../Libraries.hpp"
+#include "../Exception.hpp"
 
-#include "../math/Pair.h"
+#include "../math/Pair.hpp"
 
 class WindowContainer {
 private:
@@ -37,4 +37,4 @@ private:
 };
 
 
-#endif //GAMES_WINDOWCONTAINER_H
+#endif //GAMES_WINDOWCONTAINER_HPP

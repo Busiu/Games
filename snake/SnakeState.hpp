@@ -5,13 +5,13 @@
 #ifndef GAMES_SNAKESTATE_HPP
 #define GAMES_SNAKESTATE_HPP
 
-#include "../libraries.h"
+#include "../Libraries.hpp"
 
-#include "../textures/Texture.h"
-#include "../textures/TextTexture.h"
+#include "../textures/Texture.hpp"
+#include "../textures/TextTexture.hpp"
 
-#include "../states/State.h"
-#include "../states/States.h"
+#include "../states/State.hpp"
+#include "../states/States.hpp"
 
 #include "Map.hpp"
 

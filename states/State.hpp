@@ -2,13 +2,13 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#ifndef GAMES_STATE_H
-#define GAMES_STATE_H
+#ifndef GAMES_STATE_HPP
+#define GAMES_STATE_HPP
 
-#include "../Libraries.h"
+#include "../Libraries.hpp"
 
-#include "../containers/OptionContainer.h"
-#include "../containers/WindowContainer.h"
+#include "../containers/OptionContainer.hpp"
+#include "../containers/WindowContainer.hpp"
 
 class State {
 protected:
@@ -34,4 +34,4 @@ protected:
 };
 
 
-#endif //GAMES_STATE_H
+#endif //GAMES_STATE_HPP

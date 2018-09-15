@@ -2,13 +2,13 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#ifndef GAMES_TEXTTEXTURE_H
-#define GAMES_TEXTTEXTURE_H
+#ifndef GAMES_TEXTTEXTURE_HPP
+#define GAMES_TEXTTEXTURE_HPP
 
-#include "../Libraries.h"
-#include "../Exception.h"
+#include "../Libraries.hpp"
+#include "../Exception.hpp"
 
-#include "Texture.h"
+#include "Texture.hpp"
 
 
 class TextTexture : public Texture {
@@ -23,4 +23,4 @@ private:
 };
 
 
-#endif //GAMES_TEXTTEXTURE_H
+#endif //GAMES_TEXTTEXTURE_HPP

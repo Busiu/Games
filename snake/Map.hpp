@@ -5,9 +5,9 @@
 #ifndef GAMES_MAP_HPP
 #define GAMES_MAP_HPP
 
-#include "../libraries.h"
+#include "../Libraries.hpp"
 
-#include "../math/Pair.h"
+#include "../math/Pair.hpp"
 
 #include "../textures/ChunkTexture.hpp"
 

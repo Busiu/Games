@@ -2,7 +2,7 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#include "TextTexture.h"
+#include "TextTexture.hpp"
 
 void TextTexture::load(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, TTF_Font* textureFont)
 {
