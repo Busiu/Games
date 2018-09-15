@@ -12,7 +12,7 @@ class OptionContainer {
 private:
     const static int noResolutions = 9;
     int currentResolution = 1;
-    array<Pair*, noResolutions> resolutions;
+    std::array<Pair*, noResolutions> resolutions;
 
 public:
     OptionContainer();

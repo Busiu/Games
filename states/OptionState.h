@@ -10,8 +10,6 @@
 #include "../textures/Texture.h"
 #include "../textures/TextTexture.h"
 
-#include "../math/Pair.h"
-
 #include "State.h"
 #include "States.h"
 
@@ -27,7 +25,7 @@ private:
     TTF_Font* font;
 
     //All textures of option captions
-    array<Texture*, TOTAL_TEXT> textures;
+    std::array<Texture*, TOTAL_TEXT> textures;
 
     //Current highlighted text
     int highlightedText = RESOLUTION_TEXT;

@@ -7,16 +7,14 @@
 
 #include "Libraries.h"
 
-using namespace std;
-
-class Exception : public exception {
+class Exception : public std::exception {
 private:
-    string name;
+    std::string name;
 
 public:
-    Exception(string name);
+    Exception(std::string name);
 
-    string getMessage();
+    std::string getMessage();
 };
 
 

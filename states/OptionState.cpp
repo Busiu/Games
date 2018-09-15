@@ -163,7 +163,7 @@ void OptionState::render()
     }
 
     //SO suboptimal rendering of current resolution (need to optimize in the future SO BADLY!!!)
-    stringstream resolution;
+    std::stringstream resolution;
     resolution.str("");
     resolution << optionContainer->getResolution(currentResolution)->getX();
     resolution << "x";

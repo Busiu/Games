@@ -4,7 +4,7 @@
 
 #include "TextTexture.h"
 
-void TextTexture::load(SDL_Renderer* renderer, string textureText, SDL_Color textureColor, TTF_Font* textureFont)
+void TextTexture::load(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, TTF_Font* textureFont)
 {
     free();
 

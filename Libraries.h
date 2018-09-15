@@ -16,6 +16,4 @@
 #include <array>
 #include <vector>
 
-using namespace std;
-
 #endif //GAMES_LIBRARIES_H

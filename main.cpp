@@ -7,8 +7,6 @@
 
 #include "states/State.h"
 
-using namespace std;
-
 int main(int argc, char ** argv)
 {
     Application app;
@@ -19,7 +17,7 @@ int main(int argc, char ** argv)
     }
     catch(Exception &e)
     {
-        cout << e.getMessage() << endl;
+        std::cout << e.getMessage() << std::endl;
     }
 
     return 0;

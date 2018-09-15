@@ -4,14 +4,14 @@
 
 #include "Exception.h"
 
-Exception::Exception(string name)
+Exception::Exception(std::string name)
 {
     this->name = name;
 }
 
-string Exception::getMessage()
+std::string Exception::getMessage()
 {
-    stringstream message;
+    std::stringstream message;
 
     message.str("");
     message << "An exception ";

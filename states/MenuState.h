@@ -26,7 +26,7 @@ private:
     TTF_Font* font;
 
     //All textures of menu captions
-    array<Texture*, TOTAL_TEXT> textures;
+    std::array<Texture*, TOTAL_TEXT> textures;
 
     //Current higlighted text
     int highlightedText = START_TEXT;
