@@ -119,6 +119,10 @@ int MenuState::pressEnter()
 {
     switch(highlightedText)
     {
+        case START_TEXT:
+        {
+            return SNAKE_STATE;
+        }
         case OPTIONS_TEXT:
         {
             return OPTIONS_STATE;

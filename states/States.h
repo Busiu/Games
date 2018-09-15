@@ -9,6 +9,7 @@ enum States{
     EXIT_STATE = 0,
     MENU_STATE,
     OPTIONS_STATE,
+    SNAKE_STATE,
     CURRENT_STATE
 };
 

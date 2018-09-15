@@ -10,6 +10,7 @@
 #include "containers/OptionContainer.h"
 #include "containers/WindowContainer.h"
 
+#include "snake/SnakeState.hpp"
 #include "states/MenuState.h"
 #include "states/OptionState.h"
 #include "states/State.h"

@@ -38,8 +38,8 @@ bool StateSupervisor::initWindowContainer()
 
 void StateSupervisor::run()
 {
-    currentState = new OptionState(optionContainer, windowContainer);
-    int whichState = OPTIONS_STATE;
+    currentState = new MenuState(optionContainer, windowContainer);
+    int whichState = MENU_STATE;
 
     while(whichState)
     {
@@ -61,6 +61,10 @@ void StateSupervisor::run()
             {
                 currentState = new OptionState(optionContainer, windowContainer);
                 break;
+            }
+            case SNAKE_STATE:
+            {
+                currentState = new snake::SnakeState(optionContainer, windowContainer);
             }
             default:
             {

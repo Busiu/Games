@@ -26,9 +26,14 @@ void TextTexture::load(SDL_Renderer* renderer, std::string textureText, SDL_Colo
     SDL_FreeSurface(textSurface);
 }
 
-void TextTexture::render(SDL_Renderer* renderer, int x, int y)
+void TextTexture::render(SDL_Renderer* renderer, int x, int y, SDL_Rect* dstRect)
 {
     SDL_Rect renderQuad = {x, y, width, height};
+    if(dstRect != nullptr)
+    {
+        renderQuad.w = dstRect->w;
+        renderQuad.h = dstRect->h;
+    }
 
     SDL_RenderCopy(renderer, texture, nullptr, &renderQuad);
 }

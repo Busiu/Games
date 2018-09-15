@@ -16,7 +16,7 @@ protected:
 
 public:
     virtual void free();
-    virtual void render(SDL_Renderer* renderer, int x, int y) = 0;
+    virtual void render(SDL_Renderer* renderer, int x, int y, SDL_Rect* dstRect = nullptr) = 0;
 
     void setColor(Uint32 red, Uint32 green, Uint32 blue);
 

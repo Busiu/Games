@@ -16,8 +16,8 @@ private:
 
 public:
     void load(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, TTF_Font* textureFont);
-    void render(SDL_Renderer* renderer, int x, int y);
-    void free();
+    void render(SDL_Renderer* renderer, int x, int y, SDL_Rect* dstRect = nullptr) override;
+    void free() override;
 
 private:
 };
