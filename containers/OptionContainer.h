@@ -10,15 +10,15 @@
 
 class OptionContainer {
 private:
-    Pair** resolutions;
-    int noResolutions = 9;
+    const static int noResolutions = 9;
     int currentResolution = 1;
+    array<Pair*, noResolutions> resolutions;
 
 public:
     OptionContainer();
     ~OptionContainer();
 
-    Pair** getResolutions();
+    Pair* getResolution(int index);
     int getNoResolutions();
     int getWindowHeight();
     int getWindowWidth();

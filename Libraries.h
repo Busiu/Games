@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <sstream>
 #include <string>
+
+#include <array>
 #include <vector>
 
 using namespace std;

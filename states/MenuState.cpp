@@ -25,7 +25,6 @@ void MenuState::loadFonts()
 void MenuState::loadTextures()
 {
     TextTexture* textTexture = nullptr;
-    textures = new Texture*[TOTAL_TEXT];
 
     //Buttons:
     //START
@@ -167,5 +166,4 @@ void MenuState::close()
     {
         textures[i]->free();
     }
-    delete[] textures;
 }

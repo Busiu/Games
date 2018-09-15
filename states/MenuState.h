@@ -15,21 +15,21 @@
 
 class MenuState : public State {
 private:
-    //Font of menu captions
-    TTF_Font* font;
-
-    //All textures of menu captions
-    Texture** textures;
-
-    //Current higlighted text
-    int highlightedText = START_TEXT;
-
-    enum text{
+    enum Text{
         START_TEXT = 0,
         OPTIONS_TEXT,
         EXIT_TEXT,
         TOTAL_TEXT
     };
+
+    //Font of menu captions
+    TTF_Font* font;
+
+    //All textures of menu captions
+    array<Texture*, TOTAL_TEXT> textures;
+
+    //Current higlighted text
+    int highlightedText = START_TEXT;
 
 public:
     MenuState(OptionContainer* optionContainer, WindowContainer* windowContainer) :

@@ -25,7 +25,6 @@ void OptionState::loadFonts()
 void OptionState::loadTextures()
 {
     TextTexture* textTexture = nullptr;
-    textures = new Texture*[TOTAL_TEXT];
 
     //Buttons:
     //RESOLUTION
@@ -143,7 +142,7 @@ void OptionState::pressEnter()
 {
     if(highlightedText == RESOLUTION_TEXT)
     {
-        windowContainer->setResolution(optionContainer->getResolutions()[currentResolution]);
+        windowContainer->setResolution(optionContainer->getResolution(currentResolution));
         optionContainer->setCurrentResolution(currentResolution);
     }
 }
@@ -166,9 +165,9 @@ void OptionState::render()
     //SO suboptimal rendering of current resolution (need to optimize in the future SO BADLY!!!)
     stringstream resolution;
     resolution.str("");
-    resolution << optionContainer->getResolutions()[currentResolution]->getX();
+    resolution << optionContainer->getResolution(currentResolution)->getX();
     resolution << "x";
-    resolution << optionContainer->getResolutions()[currentResolution]->getY();
+    resolution << optionContainer->getResolution(currentResolution)->getY();
 
     TextTexture textResolution;
     textResolution.load(windowContainer->getRenderer(), resolution.str(), {0x00, 0xFF, 0x00, 0xFF}, font);
@@ -195,5 +194,4 @@ void OptionState::close()
     {
         textures[i]->free();
     }
-    delete[] textures;
 }

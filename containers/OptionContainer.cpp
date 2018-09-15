@@ -6,7 +6,6 @@
 
 OptionContainer::OptionContainer()
 {
-    resolutions = new Pair*[noResolutions];
     resolutions[0] = new Pair(320, 240);
     resolutions[1] = new Pair(640, 480);
     resolutions[2] = new Pair(960, 720);
@@ -24,12 +23,11 @@ OptionContainer::~OptionContainer()
     {
         delete resolutions[i];
     }
-    delete [] resolutions;
 }
 
-Pair** OptionContainer::getResolutions()
+Pair* OptionContainer::getResolution(int index)
 {
-    return resolutions;
+    return resolutions[index];
 }
 
 int OptionContainer::getNoResolutions()
