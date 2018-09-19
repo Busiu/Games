@@ -15,9 +15,9 @@ class TextTexture : public Texture {
 private:
 
 public:
+    TextTexture(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, TTF_Font* textureFont);
     ~TextTexture();
 
-    void load(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, TTF_Font* textureFont);
     void free() override;
 
 private:

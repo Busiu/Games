@@ -2,7 +2,6 @@
 // Created by Busiu on 09.09.2018.
 //
 
-#include <iostream>
 #include "MenuState.hpp"
 
 void MenuState::load()
@@ -28,20 +27,17 @@ void MenuState::loadOptions()
     TextTexture* textTexture = nullptr;
 
     //START
-    textTexture = new TextTexture();
-    textTexture->load(renderer->getRenderer(), "START", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture = new TextTexture(renderer->getRenderer(), "START", {0x00, 0xFF, 0x00, 0xFF}, font);
     position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, START_TEXT);
     options[START_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
     //OPTIONS
-    textTexture = new TextTexture();
-    textTexture->load(renderer->getRenderer(), "OPTIONS", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture = new TextTexture(renderer->getRenderer(), "OPTIONS", {0x00, 0xFF, 0x00, 0xFF}, font);
     position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, OPTIONS_TEXT);
     options[OPTIONS_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
     //EXIT
-    textTexture = new TextTexture();
-    textTexture->load(renderer->getRenderer(), "EXIT", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture = new TextTexture(renderer->getRenderer(), "EXIT", {0x00, 0xFF, 0x00, 0xFF}, font);
     position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, EXIT_TEXT);
     options[EXIT_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
@@ -144,8 +140,7 @@ int MenuState::pressEnter()
 
 void MenuState::clear()
 {
-    SDL_SetRenderDrawColor(renderer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(renderer->getRenderer());
+    renderer->clear();
 }
 
 void MenuState::render()
@@ -157,7 +152,7 @@ void MenuState::render()
 
 void MenuState::update()
 {
-    SDL_RenderPresent(renderer->getRenderer());
+    renderer->update();
 }
 
 

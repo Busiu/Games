@@ -30,6 +30,11 @@ Pair* OptionContainer::getCertainResolution(int index)
     return resolutions[index];
 }
 
+int OptionContainer::getCurrentResolution()
+{
+    return currentResolution;
+}
+
 int OptionContainer::getNoResolutions()
 {
     return noResolutions;

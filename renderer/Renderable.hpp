@@ -7,7 +7,7 @@
 
 #include "Renderer.hpp"
 
-#include "../math/Pair.hpp"
+#include "../util/Pair.hpp"
 
 class Renderable
 {

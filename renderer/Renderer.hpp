@@ -10,7 +10,7 @@
 
 #include "Renderable.hpp"
 
-#include "../math/Pair.hpp"
+#include "../util/Pair.hpp"
 
 class Pair;
 class Renderable;
@@ -24,11 +24,11 @@ public:
     Renderer(int WINDOW_WIDTH, int WINDOW_HEIGHT);
     ~Renderer();
 
-    SDL_Window* getWindow();
+    void clear();
+    void update();
+
     SDL_Renderer* getRenderer();
 
-    void setWindow(SDL_Window* window);
-    void setRenderer(SDL_Renderer* renderer);
     void setResolution(Pair* resolution);
 
     void render(Renderable* renderable);

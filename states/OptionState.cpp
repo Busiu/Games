@@ -2,7 +2,6 @@
 // Created by Busiu on 11.09.2018.
 //
 
-#include <iostream>
 #include "OptionState.hpp"
 
 void OptionState::load()
@@ -29,14 +28,12 @@ void OptionState::loadOptions()
     TextTexture* textTexture = nullptr;
 
     //RESOLUTION
-    textTexture = new TextTexture();
-    textTexture->load(renderer->getRenderer(), "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture = new TextTexture(renderer->getRenderer(), "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
     position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
     options[RESOLUTION_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
     //VOLUME
-    textTexture = new TextTexture();
-    textTexture->load(renderer->getRenderer(), "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
+    textTexture = new TextTexture(renderer->getRenderer(), "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
     position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
     options[VOLUME_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
@@ -45,27 +42,23 @@ void OptionState::loadOptions()
 void OptionState::loadOptionValues()
 {
     Pair* position = nullptr;
-    Pair shift(200, 0);
-    std::stringstream resolution;
+    Pair vector(200, 0);
+    std::string value;
     TextTexture* textTexture = nullptr;
 
     //RESOLUTION
-    resolution.str("");
-    resolution << optionContainer->getWindowWidth() << "x" << optionContainer->getWindowHeight();
-    textTexture = new TextTexture();
-    textTexture->load(renderer->getRenderer(), resolution.str(), {0x00, 0xFF, 0x00, 0xFF}, font);
+    value = StringCreator::stringFromResolution(optionContainer->getCertainResolution(currentResolution));
+    textTexture = new TextTexture(renderer->getRenderer(), value, {0x00, 0xFF, 0x00, 0xFF}, font);
     position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
-    position->shift(shift);
     optionValues[RESOLUTION_TEXT] = new Text(textTexture, position, Justification::CENTERED);
+    optionValues[RESOLUTION_TEXT]->shift(vector);
 
     //VOLUME
-    resolution.str("");
-    resolution << 10;
-    textTexture = new TextTexture();
-    textTexture->load(renderer->getRenderer(), resolution.str(), {0x00, 0xFF, 0x00, 0xFF}, font);
+    value = "10";
+    textTexture = new TextTexture(renderer->getRenderer(), value, {0x00, 0xFF, 0x00, 0xFF}, font);
     position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
-    position->shift(shift);
     optionValues[VOLUME_TEXT] = new Text(textTexture, position, Justification::CENTERED);
+    optionValues[VOLUME_TEXT]->shift(vector);
 }
 
 void OptionState::loadBackground()
@@ -175,18 +168,15 @@ void OptionState::changeOptionResolution()
     delete(optionValues[RESOLUTION_TEXT]);
 
     Pair* position = nullptr;
-    Pair shift(200, 0);
-    std::stringstream resolution;
+    Pair vector(200, 0);
+    std::string value;
     TextTexture* textTexture = nullptr;
 
-    resolution.str("");
-    resolution << optionContainer->getCertainResolution(currentResolution)->getX()
-               << "x" << optionContainer->getCertainResolution(currentResolution)->getY();
-    textTexture = new TextTexture();
-    textTexture->load(renderer->getRenderer(), resolution.str(), {0x00, 0xFF, 0x00, 0xFF}, font);
+    value = StringCreator::stringFromResolution(optionContainer->getCertainResolution(currentResolution));
+    textTexture = new TextTexture(renderer->getRenderer(), value, {0x00, 0xFF, 0x00, 0xFF}, font);
     position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
-    position->shift(shift);
     optionValues[RESOLUTION_TEXT] = new Text(textTexture, position, Justification::CENTERED);
+    optionValues[RESOLUTION_TEXT]->shift(vector);
 }
 
 void OptionState::pressEnter()
@@ -211,8 +201,7 @@ void OptionState::pressEnter()
 
 void OptionState::clear()
 {
-    SDL_SetRenderDrawColor(renderer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(renderer->getRenderer());
+    renderer->clear();
 }
 
 void OptionState::render()
@@ -225,7 +214,7 @@ void OptionState::render()
 
 void OptionState::update()
 {
-    SDL_RenderPresent(renderer->getRenderer());
+    renderer->update();
 }
 
 

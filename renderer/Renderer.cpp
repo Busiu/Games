@@ -55,10 +55,15 @@ void Renderer::destroyRenderer()
     SDL_DestroyRenderer(renderer);
 }
 
-
-SDL_Window* Renderer::getWindow()
+void Renderer::clear()
 {
-    return window;
+    SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(renderer);
+}
+
+void Renderer::update()
+{
+    SDL_RenderPresent(renderer);
 }
 
 SDL_Renderer* Renderer::getRenderer()
@@ -66,14 +71,6 @@ SDL_Renderer* Renderer::getRenderer()
     return renderer;
 }
 
-void Renderer::setWindow(SDL_Window* window)
-{
-    this->window = window;
-}
-void Renderer::setRenderer(SDL_Renderer* renderer)
-{
-    this->renderer = renderer;
-}
 void Renderer::setResolution(Pair* resolution)
 {
     SDL_SetWindowSize(window, resolution->getX(), resolution->getY());
@@ -83,4 +80,4 @@ void Renderer::setResolution(Pair* resolution)
 void Renderer::render(Renderable* renderable)
 {
     renderable->render(renderer);
-};
+}

@@ -18,10 +18,10 @@ public:
     Pair(int x, int y);
     Pair(Pair* resolution, int noObjects, int index);
 
-    int getX();
-    int getY();
+    int getX() const;
+    int getY() const;
 
-    void shift(Pair& shift);
+    Pair& operator += (const Pair& pair);
 };
 
 

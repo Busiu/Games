@@ -4,12 +4,7 @@
 
 #include "TextTexture.hpp"
 
-TextTexture::~TextTexture()
-{
-    SDL_DestroyTexture(texture);
-}
-
-void TextTexture::load(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, TTF_Font* textureFont)
+TextTexture::TextTexture(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, TTF_Font* textureFont)
 {
     free();
 
@@ -29,6 +24,11 @@ void TextTexture::load(SDL_Renderer* renderer, std::string textureText, SDL_Colo
     height = textSurface->h;
 
     SDL_FreeSurface(textSurface);
+}
+
+TextTexture::~TextTexture()
+{
+    SDL_DestroyTexture(texture);
 }
 
 void TextTexture::free()

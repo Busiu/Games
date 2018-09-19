@@ -12,6 +12,9 @@
 
 #include "../textures/Texture.hpp"
 
+#include "../util/Pair.hpp"
+#include "../util/StringCreator.hpp"
+
 #include "State.hpp"
 #include "States.hpp"
 
@@ -32,7 +35,7 @@ private:
 
     //Current highlighted text
     int highlightedText = RESOLUTION_TEXT;
-    int currentResolution = 1;
+    int currentResolution = optionContainer->getCurrentResolution();
 
 public:
     OptionState(OptionContainer* optionContainer, Renderer* renderer) :
@@ -60,8 +63,6 @@ private:
     void pressEnter();
     void clear() override;
     void render() override;
-    void createDynamicTexts();
-    void deleteDynamicTexts();
     void update() override;
 };
 

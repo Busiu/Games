@@ -6,7 +6,7 @@
 #define GAMES_OPTIONCONTAINER_HPP
 
 #include "../Libraries.hpp"
-#include "../math/Pair.hpp"
+#include "../util/Pair.hpp"
 
 class OptionContainer {
 private:
@@ -19,6 +19,7 @@ public:
     ~OptionContainer();
 
     Pair* getCertainResolution(int index);
+    int getCurrentResolution();
     int getNoResolutions();
     int getWindowHeight();
     int getWindowWidth();

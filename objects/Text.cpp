@@ -22,7 +22,7 @@ Pair* Text::getPosition()
     return position;
 }
 
-void Text::setPosition(Pair *position)
+void Text::setPosition(Pair* position)
 {
     delete(this->position);
     this->position = position;
@@ -30,7 +30,7 @@ void Text::setPosition(Pair *position)
 
 void Text::shift(Pair& position)
 {
-    this->position->shift(position);
+    *this->position += position;
 }
 
 void Text::render(SDL_Renderer* renderer)

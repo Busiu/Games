@@ -16,18 +16,19 @@ Pair::Pair(Pair* resolution, int noObjects, int index)
     this->y = resolution->getY() * index / noObjects;
 }
 
-int Pair::getX()
+int Pair::getX() const
 {
     return x;
 }
 
-int Pair::getY()
+int Pair::getY() const
 {
     return y;
 }
 
-void Pair::shift(Pair& shift)
+Pair& Pair::operator += (const Pair& pair)
 {
-    this->x += shift.getX();
-    this->y += shift.getY();
+    this->x += pair.getX();
+    this->y += pair.getY();
 }
+
