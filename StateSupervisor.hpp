@@ -8,9 +8,9 @@
 #include "Libraries.hpp"
 
 #include "containers/OptionContainer.hpp"
-#include "containers/WindowContainer.hpp"
+#include "renderer/Renderer.hpp"
 
-#include "snake/SnakeState.hpp"
+//#include "snake/SnakeState.hpp"
 #include "states/MenuState.hpp"
 #include "states/OptionState.hpp"
 #include "states/State.hpp"
@@ -21,7 +21,7 @@ private:
     State* currentState;
 
     OptionContainer* optionContainer;
-    WindowContainer* windowContainer;
+    Renderer* renderer;
 
 public:
     bool init();
@@ -31,11 +31,11 @@ public:
 private:
     //Init
     bool initOptionContainer();
-    bool initWindowContainer();
+    bool initRenderer();
 
     //Free
     void destroyOptionContainer();
-    void destroyWindowContainer();
+    void destroyRenderer();
 };
 
 

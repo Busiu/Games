@@ -4,10 +4,10 @@
 
 #include "State.hpp"
 
-State::State(OptionContainer* optionContainer, WindowContainer* windowContainer)
+State::State(OptionContainer* optionContainer, Renderer* renderer)
 {
     this->optionContainer = optionContainer;
-    this->windowContainer = windowContainer;
+    this->renderer = renderer;
 }
 
 int State::start()

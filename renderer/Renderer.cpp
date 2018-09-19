@@ -2,9 +2,9 @@
 // Created by Busiu on 14.09.2018.
 //
 
-#include "WindowContainer.hpp"
+#include "Renderer.hpp"
 
-WindowContainer::WindowContainer(int WINDOW_WIDTH, int WINDOW_HEIGHT)
+Renderer::Renderer(int WINDOW_WIDTH, int WINDOW_HEIGHT)
 {
     bool success = true;
     success &= initWindow(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -16,7 +16,7 @@ WindowContainer::WindowContainer(int WINDOW_WIDTH, int WINDOW_HEIGHT)
     }
 }
 
-bool WindowContainer::initWindow(int WINDOW_WIDTH, int WINDOW_HEIGHT)
+bool Renderer::initWindow(int WINDOW_WIDTH, int WINDOW_HEIGHT)
 {
     window = SDL_CreateWindow("GAMES", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                               WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
@@ -28,7 +28,7 @@ bool WindowContainer::initWindow(int WINDOW_WIDTH, int WINDOW_HEIGHT)
     return true;
 }
 
-bool WindowContainer::initRenderer()
+bool Renderer::initRenderer()
 {
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if(renderer == nullptr)
@@ -39,43 +39,48 @@ bool WindowContainer::initRenderer()
     return true;
 }
 
-WindowContainer::~WindowContainer()
+Renderer::~Renderer()
 {
     destroyWindow();
     destroyRenderer();
 }
 
-void WindowContainer::destroyWindow()
+void Renderer::destroyWindow()
 {
     SDL_DestroyWindow(window);
 }
 
-void WindowContainer::destroyRenderer()
+void Renderer::destroyRenderer()
 {
     SDL_DestroyRenderer(renderer);
 }
 
 
-SDL_Window* WindowContainer::getWindow()
+SDL_Window* Renderer::getWindow()
 {
     return window;
 }
 
-SDL_Renderer* WindowContainer::getRenderer()
+SDL_Renderer* Renderer::getRenderer()
 {
     return renderer;
 }
 
-void WindowContainer::setWindow(SDL_Window* window)
+void Renderer::setWindow(SDL_Window* window)
 {
     this->window = window;
 }
-void WindowContainer::setRenderer(SDL_Renderer* renderer)
+void Renderer::setRenderer(SDL_Renderer* renderer)
 {
     this->renderer = renderer;
 }
-void WindowContainer::setResolution(Pair* resolution)
+void Renderer::setResolution(Pair* resolution)
 {
     SDL_SetWindowSize(window, resolution->getX(), resolution->getY());
     SDL_RenderSetLogicalSize(renderer, resolution->getX(), resolution->getY());
 }
+
+void Renderer::render(Renderable* renderable)
+{
+    renderable->render(renderer);
+};

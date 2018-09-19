@@ -10,18 +10,19 @@
 
 class OptionContainer {
 private:
-    const static int noResolutions = 9;
     int currentResolution = 1;
+    const static int noResolutions = 9;
     std::array<Pair*, noResolutions> resolutions;
 
 public:
     OptionContainer();
     ~OptionContainer();
 
-    Pair* getResolution(int index);
+    Pair* getCertainResolution(int index);
     int getNoResolutions();
     int getWindowHeight();
     int getWindowWidth();
+    Pair* getWindowResolution();
 
     void setCurrentResolution(int currentResolution);
 };

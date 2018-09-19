@@ -14,8 +14,9 @@ class ChunkTexture : public Texture{
 private:
 
 public:
+    ~ChunkTexture();
+
     void load(SDL_Renderer* renderer, std::string textureText);
-    void render(SDL_Renderer* renderer, int x, int y, SDL_Rect* dstRect = nullptr) override;
     void free() override;
 };
 

@@ -7,8 +7,10 @@
 
 #include "../Libraries.hpp"
 
+#include "../objects/ColorText.hpp"
+#include "../objects/Text.hpp"
+
 #include "../textures/Texture.hpp"
-#include "../textures/TextTexture.hpp"
 
 #include "State.hpp"
 #include "States.hpp"
@@ -25,14 +27,14 @@ private:
     //Font of menu captions
     TTF_Font* font;
 
-    //All textures of menu captions
-    std::array<Texture*, TOTAL_TEXT> textures;
+    //Menu's texts
+    std::array<ColorText*, TOTAL_TEXT> options;
 
     //Current higlighted text
     int highlightedText = START_TEXT;
 
 public:
-    MenuState(OptionContainer* optionContainer, WindowContainer* windowContainer) :
+    MenuState(OptionContainer* optionContainer, Renderer* windowContainer) :
             State(optionContainer, windowContainer){}
 
 private:
@@ -42,7 +44,7 @@ private:
 
     //Load
     void loadFonts();
-    void loadTextures();
+    void loadOptions();
     void loadBackground();
     void initialState();
 

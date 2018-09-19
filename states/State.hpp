@@ -8,17 +8,17 @@
 #include "../Libraries.hpp"
 
 #include "../containers/OptionContainer.hpp"
-#include "../containers/WindowContainer.hpp"
+#include "../renderer/Renderer.hpp"
 
 class State {
 protected:
     SDL_Event event;
 
     OptionContainer* optionContainer;
-    WindowContainer* windowContainer;
+    Renderer* renderer;
 
 public:
-    State(OptionContainer* optionContainer, WindowContainer* windowContainer);
+    State(OptionContainer* optionContainer, Renderer* windowContainer);
 
     int start();
 

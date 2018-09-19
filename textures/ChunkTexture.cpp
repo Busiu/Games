@@ -4,6 +4,11 @@
 
 #include "ChunkTexture.hpp"
 
+ChunkTexture::~ChunkTexture()
+{
+    SDL_DestroyTexture(texture);
+}
+
 void ChunkTexture::load(SDL_Renderer* renderer, std::string textureText)
 {
     free();
@@ -24,18 +29,6 @@ void ChunkTexture::load(SDL_Renderer* renderer, std::string textureText)
     height = chunkSurface->h;
 
     SDL_FreeSurface(chunkSurface);
-}
-
-void ChunkTexture::render(SDL_Renderer* renderer, int x, int y, SDL_Rect* dstRect)
-{
-    SDL_Rect renderQuad = {x, y, width, height};
-    if(dstRect != nullptr)
-    {
-        renderQuad.w = dstRect->w;
-        renderQuad.h = dstRect->h;
-    }
-
-    SDL_RenderCopy(renderer, texture, nullptr, &renderQuad);
 }
 
 void ChunkTexture::free()

@@ -8,7 +8,7 @@
 void MenuState::load()
 {
     loadFonts();
-    loadTextures();
+    loadOptions();
     loadBackground();
     initialState();
 }
@@ -22,25 +22,29 @@ void MenuState::loadFonts()
     }
 }
 
-void MenuState::loadTextures()
+void MenuState::loadOptions()
 {
+    Pair* position = nullptr;
     TextTexture* textTexture = nullptr;
 
-    //Buttons:
     //START
     textTexture = new TextTexture();
-    textTexture->load(windowContainer->getRenderer(), "START", {0x00, 0xFF, 0x00, 0xFF}, font);
-    textures[START_TEXT] = textTexture;
+    textTexture->load(renderer->getRenderer(), "START", {0x00, 0xFF, 0x00, 0xFF}, font);
+    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, START_TEXT);
+    options[START_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
     //OPTIONS
     textTexture = new TextTexture();
-    textTexture->load(windowContainer->getRenderer(), "OPTIONS", {0x00, 0xFF, 0x00, 0xFF}, font);
-    textures[OPTIONS_TEXT] = textTexture;
+    textTexture->load(renderer->getRenderer(), "OPTIONS", {0x00, 0xFF, 0x00, 0xFF}, font);
+    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, OPTIONS_TEXT);
+    options[OPTIONS_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
     //EXIT
     textTexture = new TextTexture();
-    textTexture->load(windowContainer->getRenderer(), "EXIT", {0x00, 0xFF, 0x00, 0xFF}, font);
-    textures[EXIT_TEXT] = textTexture;
+    textTexture->load(renderer->getRenderer(), "EXIT", {0x00, 0xFF, 0x00, 0xFF}, font);
+    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, EXIT_TEXT);
+    options[EXIT_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
+
 }
 
 void MenuState::loadBackground()
@@ -50,7 +54,7 @@ void MenuState::loadBackground()
 
 void MenuState::initialState()
 {
-    textures[START_TEXT]->setColor(0xFF, 0, 0);
+    options[START_TEXT]->setColor(0xFF, 0x00, 0x00);
 }
 
 
@@ -103,16 +107,16 @@ int MenuState::handleEvents()
 
 void MenuState::moveDown()
 {
-    textures[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
+    options[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
     highlightedText = (highlightedText + 1) % TOTAL_TEXT;
-    textures[highlightedText]->setColor(0xFF, 0x00, 0x00);
+    options[highlightedText]->setColor(0xFF, 0x00, 0x00);
 }
 
 void MenuState::moveUp()
 {
-    textures[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
+    options[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
     highlightedText = (highlightedText + TOTAL_TEXT - 1) % TOTAL_TEXT;
-    textures[highlightedText]->setColor(0xFF, 0x00, 0x00);
+    options[highlightedText]->setColor(0xFF, 0x00, 0x00);
 }
 
 int MenuState::pressEnter()
@@ -121,7 +125,8 @@ int MenuState::pressEnter()
     {
         case START_TEXT:
         {
-            return SNAKE_STATE;
+            //return SNAKE_STATE;
+            break;
         }
         case OPTIONS_TEXT:
         {
@@ -139,23 +144,20 @@ int MenuState::pressEnter()
 
 void MenuState::clear()
 {
-    SDL_SetRenderDrawColor(windowContainer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(windowContainer->getRenderer());
+    SDL_SetRenderDrawColor(renderer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(renderer->getRenderer());
 }
 
 void MenuState::render()
 {
-    for(int i = 0; i < TOTAL_TEXT; i++)
-    {
-        textures[i]->render(windowContainer->getRenderer(),
-                            (optionContainer->getWindowWidth() - textures[i]->getWidth()) / 2 ,
-                            optionContainer->getWindowHeight() * i/ TOTAL_TEXT);
-    }
+    renderer->render(options[START_TEXT]);
+    renderer->render(options[OPTIONS_TEXT]);
+    renderer->render(options[EXIT_TEXT]);
 }
 
 void MenuState::update()
 {
-    SDL_RenderPresent(windowContainer->getRenderer());
+    SDL_RenderPresent(renderer->getRenderer());
 }
 
 
@@ -165,9 +167,9 @@ void MenuState::close()
     //Forgetting font
     TTF_CloseFont(font);
 
-    //Forgetting textures
+    //Forgetting texts
     for(int i = 0; i < TOTAL_TEXT; i++)
     {
-        textures[i]->free();
+        delete(options[i]);
     }
 }

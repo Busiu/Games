@@ -9,7 +9,7 @@ bool StateSupervisor::init()
 {
     bool success = true;
     success &= initOptionContainer();
-    success &= initWindowContainer();
+    success &= initRenderer();
 
     return success;
 }
@@ -25,10 +25,10 @@ bool StateSupervisor::initOptionContainer()
     return true;
 }
 
-bool StateSupervisor::initWindowContainer()
+bool StateSupervisor::initRenderer()
 {
-    windowContainer = new WindowContainer(optionContainer->getWindowWidth(), optionContainer->getWindowHeight());
-    if(windowContainer == nullptr)
+    renderer = new Renderer(optionContainer->getWindowWidth(), optionContainer->getWindowHeight());
+    if(renderer == nullptr)
     {
         return false;
     }
@@ -38,7 +38,7 @@ bool StateSupervisor::initWindowContainer()
 
 void StateSupervisor::run()
 {
-    currentState = new MenuState(optionContainer, windowContainer);
+    currentState = new MenuState(optionContainer, renderer);
     int whichState = MENU_STATE;
 
     while(whichState)
@@ -54,17 +54,18 @@ void StateSupervisor::run()
             }
             case MENU_STATE:
             {
-                currentState = new MenuState(optionContainer, windowContainer);
+                currentState = new MenuState(optionContainer, renderer);
                 break;
             }
             case OPTIONS_STATE:
             {
-                currentState = new OptionState(optionContainer, windowContainer);
+                currentState = new OptionState(optionContainer, renderer);
                 break;
             }
             case SNAKE_STATE:
             {
-                currentState = new snake::SnakeState(optionContainer, windowContainer);
+                //currentState = new snake::SnakeState(optionContainer, windowContainer);
+                break;
             }
             default:
             {
@@ -78,13 +79,13 @@ void StateSupervisor::run()
 
 void StateSupervisor::free()
 {
-    destroyWindowContainer();
+    destroyRenderer();
     destroyOptionContainer();
 }
 
-void StateSupervisor::destroyWindowContainer()
+void StateSupervisor::destroyRenderer()
 {
-    delete windowContainer;
+    delete renderer;
 }
 
 void StateSupervisor::destroyOptionContainer()

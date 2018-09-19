@@ -15,9 +15,11 @@ find_package(SDL_TTF REQUIRED)
 include_directories(${SDL2TTF_INCLUDE_DIR})
 
 add_executable(Games main.cpp Application.cpp Exception.cpp StateSupervisor.cpp
-        containers/OptionContainer.cpp containers/WindowContainer.cpp
+        containers/OptionContainer.cpp
         math/Pair.cpp
-        snake/Map.cpp snake/SnakeState.cpp
+        objects/Text.cpp objects/ColorText.cpp
+        renderer/Renderer.cpp
+        #snake/Map.cpp snake/SnakeState.cpp
         states/State.cpp states/MenuState.cpp states/OptionState.cpp
         textures/Texture.cpp textures/ChunkTexture.cpp textures/TextTexture.cpp)
 

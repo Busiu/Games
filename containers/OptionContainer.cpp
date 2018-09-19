@@ -25,7 +25,7 @@ OptionContainer::~OptionContainer()
     }
 }
 
-Pair* OptionContainer::getResolution(int index)
+Pair* OptionContainer::getCertainResolution(int index)
 {
     return resolutions[index];
 }
@@ -43,6 +43,11 @@ int OptionContainer::getWindowHeight()
 int OptionContainer::getWindowWidth()
 {
     return resolutions[currentResolution]->getX();
+}
+
+Pair* OptionContainer::getWindowResolution()
+{
+    return resolutions[currentResolution];
 }
 
 void OptionContainer::setCurrentResolution(int currentResolution)

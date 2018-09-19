@@ -10,6 +10,12 @@ Pair::Pair(int x, int y)
     this->y = y;
 }
 
+Pair::Pair(Pair* resolution, int noObjects, int index)
+{
+    this->x = resolution->getX() / 2;
+    this->y = resolution->getY() * index / noObjects;
+}
+
 int Pair::getX()
 {
     return x;
@@ -18,4 +24,10 @@ int Pair::getX()
 int Pair::getY()
 {
     return y;
+}
+
+void Pair::shift(Pair& shift)
+{
+    this->x += shift.getX();
+    this->y += shift.getY();
 }

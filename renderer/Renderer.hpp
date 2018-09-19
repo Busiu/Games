@@ -2,22 +2,27 @@
 // Created by Busiu on 14.09.2018.
 //
 
-#ifndef GAMES_WINDOWCONTAINER_HPP
-#define GAMES_WINDOWCONTAINER_HPP
+#ifndef GAMES_RENDERER_HPP
+#define GAMES_RENDERER_HPP
 
 #include "../Libraries.hpp"
 #include "../Exception.hpp"
 
+#include "Renderable.hpp"
+
 #include "../math/Pair.hpp"
 
-class WindowContainer {
+class Pair;
+class Renderable;
+
+class Renderer {
 private:
     SDL_Window* window;
     SDL_Renderer* renderer;
 
 public:
-    WindowContainer(int WINDOW_WIDTH, int WINDOW_HEIGHT);
-    ~WindowContainer();
+    Renderer(int WINDOW_WIDTH, int WINDOW_HEIGHT);
+    ~Renderer();
 
     SDL_Window* getWindow();
     SDL_Renderer* getRenderer();
@@ -25,6 +30,8 @@ public:
     void setWindow(SDL_Window* window);
     void setRenderer(SDL_Renderer* renderer);
     void setResolution(Pair* resolution);
+
+    void render(Renderable* renderable);
 
 private:
     //Constructor
@@ -37,4 +44,4 @@ private:
 };
 
 
-#endif //GAMES_WINDOWCONTAINER_HPP
+#endif //GAMES_RENDERER_HPP

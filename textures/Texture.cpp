@@ -4,6 +4,11 @@
 
 #include "Texture.hpp"
 
+Texture::~Texture()
+{
+    SDL_DestroyTexture(texture);
+}
+
 void Texture::free()
 {
     if(texture != nullptr)
@@ -15,9 +20,9 @@ void Texture::free()
     }
 }
 
-void Texture::setColor(Uint32 red, Uint32 green, Uint32 blue)
+SDL_Texture* Texture::getTexture()
 {
-    SDL_SetTextureColorMod(texture, red, green, blue);
+    return texture;
 }
 
 int Texture::getWidth()

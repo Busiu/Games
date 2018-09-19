@@ -7,6 +7,8 @@
 
 #include "../Libraries.hpp"
 
+#include "../renderer/Renderable.hpp"
+
 class Pair {
 private:
     int x;
@@ -14,9 +16,12 @@ private:
 
 public:
     Pair(int x, int y);
+    Pair(Pair* resolution, int noObjects, int index);
 
     int getX();
     int getY();
+
+    void shift(Pair& shift);
 };
 
 

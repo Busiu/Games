@@ -8,7 +8,8 @@
 void OptionState::load()
 {
     loadFonts();
-    loadTextures();
+    loadOptions();
+    loadOptionValues();
     loadBackground();
     initialState();
 }
@@ -22,20 +23,49 @@ void OptionState::loadFonts()
     }
 }
 
-void OptionState::loadTextures()
+void OptionState::loadOptions()
 {
+    Pair* position = nullptr;
     TextTexture* textTexture = nullptr;
 
-    //Buttons:
     //RESOLUTION
     textTexture = new TextTexture();
-    textTexture->load(windowContainer->getRenderer(), "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
-    textures[RESOLUTION_TEXT] = textTexture;
+    textTexture->load(renderer->getRenderer(), "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
+    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
+    options[RESOLUTION_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
     //VOLUME
     textTexture = new TextTexture();
-    textTexture->load(windowContainer->getRenderer(), "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
-    textures[VOLUME_TEXT] = textTexture;
+    textTexture->load(renderer->getRenderer(), "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
+    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
+    options[VOLUME_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
+
+}
+
+void OptionState::loadOptionValues()
+{
+    Pair* position = nullptr;
+    Pair shift(200, 0);
+    std::stringstream resolution;
+    TextTexture* textTexture = nullptr;
+
+    //RESOLUTION
+    resolution.str("");
+    resolution << optionContainer->getWindowWidth() << "x" << optionContainer->getWindowHeight();
+    textTexture = new TextTexture();
+    textTexture->load(renderer->getRenderer(), resolution.str(), {0x00, 0xFF, 0x00, 0xFF}, font);
+    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
+    position->shift(shift);
+    optionValues[RESOLUTION_TEXT] = new Text(textTexture, position, Justification::CENTERED);
+
+    //VOLUME
+    resolution.str("");
+    resolution << 10;
+    textTexture = new TextTexture();
+    textTexture->load(renderer->getRenderer(), resolution.str(), {0x00, 0xFF, 0x00, 0xFF}, font);
+    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
+    position->shift(shift);
+    optionValues[VOLUME_TEXT] = new Text(textTexture, position, Justification::CENTERED);
 }
 
 void OptionState::loadBackground()
@@ -45,7 +75,7 @@ void OptionState::loadBackground()
 
 void OptionState::initialState()
 {
-    textures[RESOLUTION_TEXT]->setColor(0xFF, 0, 0);
+    options[RESOLUTION_TEXT]->setColor(0xFF, 0x00, 0x00);
 }
 
 
@@ -110,16 +140,16 @@ int OptionState::handleEvents()
 
 void OptionState::moveUp()
 {
-    textures[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
+    options[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
     highlightedText = (highlightedText + TOTAL_TEXT - 1) % TOTAL_TEXT;
-    textures[highlightedText]->setColor(0xFF, 0x00, 0x00);
+    options[highlightedText]->setColor(0xFF, 0x00, 0x00);
 }
 
 void OptionState::moveDown()
 {
-    textures[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
+    options[highlightedText]->setColor(0xFF, 0xFF, 0xFF);
     highlightedText = (highlightedText + 1) % TOTAL_TEXT;
-    textures[highlightedText]->setColor(0xFF, 0x00, 0x00);
+    options[highlightedText]->setColor(0xFF, 0x00, 0x00);
 }
 
 void OptionState::moveRight()
@@ -127,6 +157,7 @@ void OptionState::moveRight()
     if(highlightedText == RESOLUTION_TEXT)
     {
         currentResolution = (currentResolution + 1) % optionContainer->getNoResolutions();
+        changeOptionResolution();
     }
 }
 
@@ -135,51 +166,66 @@ void OptionState::moveLeft()
     if(highlightedText == RESOLUTION_TEXT)
     {
         currentResolution = (currentResolution - 1 + optionContainer->getNoResolutions()) % optionContainer->getNoResolutions();
+        changeOptionResolution();
     }
+}
+
+void OptionState::changeOptionResolution()
+{
+    delete(optionValues[RESOLUTION_TEXT]);
+
+    Pair* position = nullptr;
+    Pair shift(200, 0);
+    std::stringstream resolution;
+    TextTexture* textTexture = nullptr;
+
+    resolution.str("");
+    resolution << optionContainer->getCertainResolution(currentResolution)->getX()
+               << "x" << optionContainer->getCertainResolution(currentResolution)->getY();
+    textTexture = new TextTexture();
+    textTexture->load(renderer->getRenderer(), resolution.str(), {0x00, 0xFF, 0x00, 0xFF}, font);
+    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
+    position->shift(shift);
+    optionValues[RESOLUTION_TEXT] = new Text(textTexture, position, Justification::CENTERED);
 }
 
 void OptionState::pressEnter()
 {
+    //Changing resolution
     if(highlightedText == RESOLUTION_TEXT)
     {
-        windowContainer->setResolution(optionContainer->getResolution(currentResolution));
+        renderer->setResolution(optionContainer->getCertainResolution(currentResolution));
         optionContainer->setCurrentResolution(currentResolution);
+
+        //Changing position of option texts
+        for(int i = 0; i < TOTAL_TEXT; i++)
+        {
+            Pair shift(200, 0);
+
+            options[i]->setPosition(new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, i));
+            optionValues[i]->setPosition(new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, i));
+            optionValues[i]->shift(shift);
+        }
     }
 }
 
 void OptionState::clear()
 {
-    SDL_SetRenderDrawColor(windowContainer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-    SDL_RenderClear(windowContainer->getRenderer());
+    SDL_SetRenderDrawColor(renderer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(renderer->getRenderer());
 }
 
 void OptionState::render()
 {
-    for(int i = 0; i < TOTAL_TEXT; i++)
-    {
-        textures[i]->render(windowContainer->getRenderer(),
-                            (optionContainer->getWindowWidth() - textures[i]->getWidth()) / 2 ,
-                            optionContainer->getWindowHeight() * i/ TOTAL_TEXT);
-    }
-
-    //SO suboptimal rendering of current resolution (need to optimize in the future SO BADLY!!!)
-    std::stringstream resolution;
-    resolution.str("");
-    resolution << optionContainer->getResolution(currentResolution)->getX();
-    resolution << "x";
-    resolution << optionContainer->getResolution(currentResolution)->getY();
-
-    TextTexture textResolution;
-    textResolution.load(windowContainer->getRenderer(), resolution.str(), {0x00, 0xFF, 0x00, 0xFF}, font);
-    textResolution.render(windowContainer->getRenderer(),
-                          (optionContainer->getWindowWidth() - textures[RESOLUTION_TEXT]->getWidth()) / 2 + 200,
-                          optionContainer->getWindowHeight() * RESOLUTION_TEXT/ TOTAL_TEXT);
-
+    renderer->render(options[RESOLUTION_TEXT]);
+    renderer->render(options[VOLUME_TEXT]);
+    renderer->render(optionValues[RESOLUTION_TEXT]);
+    renderer->render(optionValues[VOLUME_TEXT]);
 }
 
 void OptionState::update()
 {
-    SDL_RenderPresent(windowContainer->getRenderer());
+    SDL_RenderPresent(renderer->getRenderer());
 }
 
 
@@ -189,9 +235,10 @@ void OptionState::close()
     //Forgetting font
     TTF_CloseFont(font);
 
-    //Forgetting textures
+    //Forgetting texts
     for(int i = 0; i < TOTAL_TEXT; i++)
     {
-        textures[i]->free();
+        delete(options[i]);
+        delete(optionValues[i]);
     }
 }

@@ -15,10 +15,11 @@ protected:
     int height;
 
 public:
-    virtual void free();
-    virtual void render(SDL_Renderer* renderer, int x, int y, SDL_Rect* dstRect = nullptr) = 0;
+    virtual ~Texture();
 
-    void setColor(Uint32 red, Uint32 green, Uint32 blue);
+    virtual void free();
+
+    SDL_Texture* getTexture();
 
     int getWidth();
     int getHeight();

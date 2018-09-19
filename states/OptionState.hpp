@@ -7,15 +7,17 @@
 
 #include "../Libraries.hpp"
 
+#include "../objects/ColorText.hpp"
+#include "../objects/Text.hpp"
+
 #include "../textures/Texture.hpp"
-#include "../textures/TextTexture.hpp"
 
 #include "State.hpp"
 #include "States.hpp"
 
 class OptionState : public State {
 private:
-    enum Text{
+    enum Options{
         RESOLUTION_TEXT = 0,
         VOLUME_TEXT,
         TOTAL_TEXT
@@ -25,15 +27,16 @@ private:
     TTF_Font* font;
 
     //All textures of option captions
-    std::array<Texture*, TOTAL_TEXT> textures;
+    std::array<ColorText*, TOTAL_TEXT> options;
+    std::array<Text*, TOTAL_TEXT> optionValues;
 
     //Current highlighted text
     int highlightedText = RESOLUTION_TEXT;
     int currentResolution = 1;
 
 public:
-    OptionState(OptionContainer* optionContainer, WindowContainer* windowContainer) :
-            State(optionContainer, windowContainer){}
+    OptionState(OptionContainer* optionContainer, Renderer* renderer) :
+            State(optionContainer, renderer){}
 
 private:
     void load() override;
@@ -42,7 +45,8 @@ private:
 
     //Load
     void loadFonts();
-    void loadTextures();
+    void loadOptions();
+    void loadOptionValues();
     void loadBackground();
     void initialState();
 
@@ -52,9 +56,12 @@ private:
     void moveDown();
     void moveRight();
     void moveLeft();
+    void changeOptionResolution();
     void pressEnter();
     void clear() override;
     void render() override;
+    void createDynamicTexts();
+    void deleteDynamicTexts();
     void update() override;
 };
 
