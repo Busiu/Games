@@ -21,6 +21,6 @@ add_executable(Games main.cpp Application.cpp Exception.cpp StateSupervisor.cpp
         snake/Map.cpp snake/SnakeState.cpp snake/TileMap.cpp
         states/State.cpp states/MenuState.cpp states/OptionState.cpp
         textures/Texture.cpp textures/FileTexture.cpp textures/TextTexture.cpp
-        util/Pair.cpp util/StringCreator.cpp)
+        util/Complex.cpp util/Pair.cpp util/StringCreator.cpp)
 
 target_link_libraries(Games ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf)
