@@ -33,8 +33,10 @@ void Text::shift(Pair& position)
     *this->position += position;
 }
 
-void Text::render(SDL_Renderer* renderer)
+std::vector<Renderable*> Text::render(SDL_Renderer* renderer)
 {
+    std::vector<Renderable*> kids;
+
     if(justification == Justification::CENTERED)
     {
         renderCentered(renderer);
@@ -43,6 +45,8 @@ void Text::render(SDL_Renderer* renderer)
     {
         renderFlushedLeft(renderer);
     }
+
+    return kids;
 }
 
 void Text::renderCentered(SDL_Renderer* renderer)

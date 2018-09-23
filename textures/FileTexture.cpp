@@ -2,9 +2,9 @@
 // Created by Busiu on 15.09.2018.
 //
 
-#include "ChunkTexture.hpp"
+#include "FileTexture.hpp"
 
-ChunkTexture::ChunkTexture(SDL_Renderer *renderer, std::string textureText)
+FileTexture::FileTexture(SDL_Renderer *renderer, std::string textureText)
 {
     free();
 
@@ -26,12 +26,12 @@ ChunkTexture::ChunkTexture(SDL_Renderer *renderer, std::string textureText)
     SDL_FreeSurface(chunkSurface);
 }
 
-ChunkTexture::~ChunkTexture()
+FileTexture::~FileTexture()
 {
     SDL_DestroyTexture(texture);
 }
 
-void ChunkTexture::free()
+void FileTexture::free()
 {
     Texture::free();
 }

@@ -7,44 +7,26 @@
 
 #include "../Libraries.hpp"
 
-#include "../math/Pair.hpp"
+#include "../renderer/Renderable.hpp"
 
-#include "../textures/ChunkTexture.hpp"
+#include "TileMap.hpp"
 
 namespace snake
 {
-    enum class MapStyle
-    {
-        STANDARD_MAP
-    };
-
-    class Map
+    class Map : public Renderable
     {
     private:
-        const static int scale = 20;
-        bool** map;
-        Pair* size;
-        ChunkTexture* obstacleTexture;
+        int scale;
+
+        TileMap* tileMap;
 
     public:
-        Map(Pair* size, SDL_Renderer* renderer, MapStyle mapStyle = MapStyle::STANDARD_MAP);
+        Map(int scale, SDL_Renderer* renderer);
         ~Map();
 
-        void render(SDL_Renderer* renderer);
-
     private:
-        //Constructor
-        void createMap(MapStyle mapStyle);
-        void loadTextures(SDL_Renderer* renderer);
-
-        void createStandardMap();
-        void initMap();
-        void emptyMap();
-        void deleteMap();
-
-        //Render
-        void renderMap(SDL_Renderer* renderer);
-
+        //Renderable
+        std::vector<Renderable*> render(SDL_Renderer* renderer) override;
     };
 }
 

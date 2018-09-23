@@ -26,7 +26,7 @@ int Pair::getY() const
     return y;
 }
 
-Pair& Pair::operator += (const Pair& pair)
+void Pair::operator += (const Pair& pair)
 {
     this->x += pair.getX();
     this->y += pair.getY();

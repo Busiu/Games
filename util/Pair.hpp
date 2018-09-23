@@ -21,7 +21,7 @@ public:
     int getX() const;
     int getY() const;
 
-    Pair& operator += (const Pair& pair);
+    void operator += (const Pair& pair);
 };
 
 

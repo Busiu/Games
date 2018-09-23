@@ -23,8 +23,8 @@ namespace snake
         Map* map;
 
     public:
-        SnakeState(OptionContainer* optionContainer, WindowContainer* windowContainer) :
-        State(optionContainer, windowContainer){}
+        SnakeState(OptionContainer* optionContainer, Renderer* renderer) :
+        State(optionContainer, renderer){}
 
     private:
         void load() override;

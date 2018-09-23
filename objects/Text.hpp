@@ -33,7 +33,7 @@ public:
 
 protected:
     //Renderable
-    void render(SDL_Renderer* renderer) override;
+    std::vector<Renderable*> render(SDL_Renderer* renderer) override;
     void renderCentered(SDL_Renderer* renderer);
     void renderFlushedLeft(SDL_Renderer* renderer);
 };

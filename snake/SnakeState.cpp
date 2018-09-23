@@ -13,7 +13,7 @@ namespace snake
 
     void SnakeState::initMap()
     {
-        this->map = new Map(new Pair(30,20), windowContainer->getRenderer());
+        this->map = new Map(20, renderer->getRenderer());
     }
 
 
@@ -58,18 +58,18 @@ namespace snake
 
     void SnakeState::clear()
     {
-        SDL_SetRenderDrawColor(windowContainer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-        SDL_RenderClear(windowContainer->getRenderer());
+        SDL_SetRenderDrawColor(renderer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+        SDL_RenderClear(renderer->getRenderer());
     }
 
     void SnakeState::render()
     {
-        map->render(windowContainer->getRenderer());
+        renderer->render(map);
     }
 
     void SnakeState::update()
     {
-        SDL_RenderPresent(windowContainer->getRenderer());
+        SDL_RenderPresent(renderer->getRenderer());
     }
 
 

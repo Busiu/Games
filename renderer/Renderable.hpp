@@ -14,7 +14,7 @@ class Renderable
     friend class Renderer;
 
 private:
-    virtual void render(SDL_Renderer* renderer) = 0;
+    virtual std::vector<Renderable*> render(SDL_Renderer* renderer) = 0;
 };
 
 #endif //GAMES_RENDERABLE_HPP

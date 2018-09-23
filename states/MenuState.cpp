@@ -121,8 +121,7 @@ int MenuState::pressEnter()
     {
         case START_TEXT:
         {
-            //return SNAKE_STATE;
-            break;
+            return SNAKE_STATE;
         }
         case OPTIONS_TEXT:
         {

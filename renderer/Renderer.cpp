@@ -1,7 +1,6 @@
 //
 // Created by Busiu on 14.09.2018.
 //
-
 #include "Renderer.hpp"
 
 Renderer::Renderer(int WINDOW_WIDTH, int WINDOW_HEIGHT)
@@ -79,5 +78,19 @@ void Renderer::setResolution(Pair* resolution)
 
 void Renderer::render(Renderable* renderable)
 {
-    renderable->render(renderer);
+    std::stack<Renderable*> renderables;
+    Renderable* rendered;
+    std::vector<Renderable*> renderableKids;
+
+    renderables.push(renderable);
+    while(!renderables.empty())
+    {
+        rendered = renderables.top();
+        renderables.pop();
+        renderableKids = rendered->render(renderer);
+        for(int j = 0; j < renderableKids.size(); j++)
+        {
+            renderables.push(renderableKids[j]);
+        }
+    }
 }
