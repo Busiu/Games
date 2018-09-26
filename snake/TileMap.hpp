@@ -22,7 +22,7 @@ namespace snake
     {
     private:
         int scale;
-        Pair* size;
+        Position<int>* size;
         bool** tileMap;
         FileTexture* obstacleTexture;
 

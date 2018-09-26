@@ -19,17 +19,17 @@ enum class Justification{
 class Text : public Renderable{
 protected:
     TextTexture* text;
-    Pair* position;
+    Position<int>* position;
     Justification justification;
 
 public:
-    Text(TextTexture* text, Pair* position, Justification justification);
+    Text(TextTexture* text, Position<int>* position, Justification justification);
     virtual ~Text();
 
-    Pair* getPosition();
+    Position<int>* getPosition();
 
-    void setPosition(Pair* position);
-    void shift(Pair& position);
+    void setPosition(Position<int>* position);
+    void shift(Position<int>* vector);
 
 protected:
     //Renderable

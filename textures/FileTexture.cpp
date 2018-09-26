@@ -30,8 +30,3 @@ FileTexture::~FileTexture()
 {
     SDL_DestroyTexture(texture);
 }
-
-void FileTexture::free()
-{
-    Texture::free();
-}

@@ -23,22 +23,22 @@ void MenuState::loadFonts()
 
 void MenuState::loadOptions()
 {
-    Pair* position = nullptr;
+    Position<int>* position = nullptr;
     TextTexture* textTexture = nullptr;
 
     //START
     textTexture = new TextTexture(renderer->getRenderer(), "START", {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, START_TEXT);
+    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, START_TEXT);
     options[START_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
     //OPTIONS
     textTexture = new TextTexture(renderer->getRenderer(), "OPTIONS", {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, OPTIONS_TEXT);
+    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, OPTIONS_TEXT);
     options[OPTIONS_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
     //EXIT
     textTexture = new TextTexture(renderer->getRenderer(), "EXIT", {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, EXIT_TEXT);
+    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, EXIT_TEXT);
     options[EXIT_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
 }

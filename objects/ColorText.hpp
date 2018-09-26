@@ -7,12 +7,11 @@
 
 #include "Text.hpp"
 
-
 class ColorText : public Text {
 private:
 
 public:
-    ColorText(TextTexture* text, Pair* position, Justification justification) :
+    ColorText(TextTexture* text, Position<int>* position, Justification justification) :
     Text(text, position, justification){};
 
     void setColor(Uint8 red, Uint8 green, Uint8 blue);

@@ -9,15 +9,16 @@
 
 #include "Complex.hpp"
 
-template <class Type> class Speed {
+template <class T> class Speed
+{
 private:
-    Complex<Type>* vector;
+    Complex<T>* vector;
 
 public:
-    Speed(Complex<Type>* vector);
+    Speed(Complex<T>* vector);
     ~Speed();
 
-    Complex<Type>* getVector();
+    Complex<T>* getVector();
 
 };
 

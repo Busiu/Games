@@ -4,7 +4,7 @@
 
 #include "StringCreator.hpp"
 
-std::string StringCreator::stringFromResolution(Pair* resolution)
+std::string StringCreator::stringFromResolution(Position<int>* resolution)
 {
     std::stringstream text;
 

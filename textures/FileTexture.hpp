@@ -17,7 +17,6 @@ public:
     FileTexture(SDL_Renderer* renderer, std::string textureText);
     ~FileTexture();
 
-    void free() override;
 };
 
 

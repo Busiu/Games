@@ -7,8 +7,6 @@
 
 #include "Renderer.hpp"
 
-#include "../util/Pair.hpp"
-
 class Renderable
 {
     friend class Renderer;

@@ -3,10 +3,10 @@
 //
 #include "Renderer.hpp"
 
-Renderer::Renderer(int WINDOW_WIDTH, int WINDOW_HEIGHT)
+Renderer::Renderer(Position<int>* windowSize)
 {
     bool success = true;
-    success &= initWindow(WINDOW_WIDTH, WINDOW_HEIGHT);
+    success &= initWindow(windowSize);
     success &= initRenderer();
 
     if(!success)
@@ -15,10 +15,10 @@ Renderer::Renderer(int WINDOW_WIDTH, int WINDOW_HEIGHT)
     }
 }
 
-bool Renderer::initWindow(int WINDOW_WIDTH, int WINDOW_HEIGHT)
+bool Renderer::initWindow(Position<int>* windowSize)
 {
     window = SDL_CreateWindow("GAMES", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                              WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+                              windowSize->getX(), windowSize->getY(), SDL_WINDOW_SHOWN);
     if(window == nullptr)
     {
         return false;
@@ -70,7 +70,7 @@ SDL_Renderer* Renderer::getRenderer()
     return renderer;
 }
 
-void Renderer::setResolution(Pair* resolution)
+void Renderer::setResolution(Position<int>* resolution)
 {
     SDL_SetWindowSize(window, resolution->getX(), resolution->getY());
     SDL_RenderSetLogicalSize(renderer, resolution->getX(), resolution->getY());

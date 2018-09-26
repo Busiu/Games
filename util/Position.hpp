@@ -10,16 +10,23 @@
 #include "Complex.hpp"
 #include "Speed.hpp"
 
-template <class Type> class Position {
+template <class T> class Position
+{
 private:
-    Complex<Type>* vector;
+    Complex<T>* vector;
 
 public:
-    Position(Complex<Type>* vector);
+    Position(Complex<T>* vector);
+    Position(T x, T y);
+    //Special constructor for Text Objects
+    Position(Position<T>* resolution, int noObjects, int index);
     ~Position();
 
-private:
-    void update(Speed<Type>* speed);
+    void update(Speed<T>* speed);
+    void shift(Position<T>* position);
+
+    T getX();
+    T getY();
 
 };
 

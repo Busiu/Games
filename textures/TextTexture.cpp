@@ -30,8 +30,3 @@ TextTexture::~TextTexture()
 {
     SDL_DestroyTexture(texture);
 }
-
-void TextTexture::free()
-{
-    Texture::free();
-}

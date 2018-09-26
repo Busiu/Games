@@ -27,7 +27,7 @@ bool StateSupervisor::initOptionContainer()
 
 bool StateSupervisor::initRenderer()
 {
-    renderer = new Renderer(optionContainer->getWindowWidth(), optionContainer->getWindowHeight());
+    renderer = new Renderer(optionContainer->getWindowResolution());
     if(renderer == nullptr)
     {
         return false;

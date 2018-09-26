@@ -24,41 +24,41 @@ void OptionState::loadFonts()
 
 void OptionState::loadOptions()
 {
-    Pair* position = nullptr;
+    Position<int>* position = nullptr;
     TextTexture* textTexture = nullptr;
 
     //RESOLUTION
     textTexture = new TextTexture(renderer->getRenderer(), "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
+    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
     options[RESOLUTION_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
     //VOLUME
     textTexture = new TextTexture(renderer->getRenderer(), "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
+    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
     options[VOLUME_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
 
 }
 
 void OptionState::loadOptionValues()
 {
-    Pair* position = nullptr;
-    Pair vector(200, 0);
+    Position<int>* position = nullptr;
+    Position<int> vector(200, 0);
     std::string value;
     TextTexture* textTexture = nullptr;
 
     //RESOLUTION
     value = StringCreator::stringFromResolution(optionContainer->getCertainResolution(currentResolution));
     textTexture = new TextTexture(renderer->getRenderer(), value, {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
+    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
     optionValues[RESOLUTION_TEXT] = new Text(textTexture, position, Justification::CENTERED);
-    optionValues[RESOLUTION_TEXT]->shift(vector);
+    optionValues[RESOLUTION_TEXT]->shift(&vector);
 
     //VOLUME
     value = "10";
     textTexture = new TextTexture(renderer->getRenderer(), value, {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
+    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
     optionValues[VOLUME_TEXT] = new Text(textTexture, position, Justification::CENTERED);
-    optionValues[VOLUME_TEXT]->shift(vector);
+    optionValues[VOLUME_TEXT]->shift(&vector);
 }
 
 void OptionState::loadBackground()
@@ -167,16 +167,16 @@ void OptionState::changeOptionResolution()
 {
     delete(optionValues[RESOLUTION_TEXT]);
 
-    Pair* position = nullptr;
-    Pair vector(200, 0);
+    Position<int>* position = nullptr;
+    Position<int> vector(200, 0);
     std::string value;
     TextTexture* textTexture = nullptr;
 
     value = StringCreator::stringFromResolution(optionContainer->getCertainResolution(currentResolution));
     textTexture = new TextTexture(renderer->getRenderer(), value, {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
+    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
     optionValues[RESOLUTION_TEXT] = new Text(textTexture, position, Justification::CENTERED);
-    optionValues[RESOLUTION_TEXT]->shift(vector);
+    optionValues[RESOLUTION_TEXT]->shift(&vector);
 }
 
 void OptionState::pressEnter()
@@ -190,11 +190,11 @@ void OptionState::pressEnter()
         //Changing position of option texts
         for(int i = 0; i < TOTAL_TEXT; i++)
         {
-            Pair shift(200, 0);
+            Position vector(200, 0);
 
-            options[i]->setPosition(new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, i));
-            optionValues[i]->setPosition(new Pair(optionContainer->getWindowResolution(), TOTAL_TEXT, i));
-            optionValues[i]->shift(shift);
+            options[i]->setPosition(new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, i));
+            optionValues[i]->setPosition(new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, i));
+            optionValues[i]->shift(&vector);
         }
     }
 }

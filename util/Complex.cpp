@@ -61,35 +61,46 @@ Complex<T> Complex<T>::operator+=(const Complex& complex)
 {
     this->x += complex.x;
     this->y += complex.y;
+
+    return *this;
 }
 template <class T>
 Complex<T> Complex<T>::operator-=(const Complex& complex)
 {
     this->x -= complex.x;
     this->y -= complex.y;
+
+    return *this;
 }
 template <class T>
 Complex<T> Complex<T>::operator*=(const Complex& complex)
 {
     this->x *= complex.x;
     this->y *= complex.y;
+
+    return *this;
 }
 template <class T>
 Complex<T> Complex<T>::operator/=(const Complex& complex)
 {
     this->x /= complex.x;
     this->y /= complex.y;
+
+    return *this;
 }
 
-template <class T>
-std::ostream& operator<<(std::ostream& os, const Complex<T>& complex)
+template <class Type>
+std::ostream& operator<<(std::ostream& os, const Complex<Type>& complex)
 {
     os << "(" << complex.x << " ," << complex.y << ")";
     return os;
 }
-template <class T>
-std::istream& operator>>(std::istream& is, Complex<T>& complex)
+template <class Type>
+std::istream& operator>>(std::istream& is, Complex<Type>& complex)
 {
     is >> complex.x >> complex.y;
     return is;
 }
+
+template class Complex<int>;
+template class Complex<double>;

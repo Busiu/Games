@@ -12,7 +12,7 @@
 
 #include "../textures/Texture.hpp"
 
-#include "../util/Pair.hpp"
+#include "../util/Position.hpp"
 #include "../util/StringCreator.hpp"
 
 #include "State.hpp"

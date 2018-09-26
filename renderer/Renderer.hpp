@@ -10,9 +10,8 @@
 
 #include "Renderable.hpp"
 
-#include "../util/Pair.hpp"
+#include "../util/Position.hpp"
 
-class Pair;
 class Renderable;
 
 class Renderer {
@@ -21,7 +20,7 @@ private:
     SDL_Renderer* renderer;
 
 public:
-    Renderer(int WINDOW_WIDTH, int WINDOW_HEIGHT);
+    Renderer(Position<int>* windowSize);
     ~Renderer();
 
     void clear();
@@ -29,13 +28,13 @@ public:
 
     SDL_Renderer* getRenderer();
 
-    void setResolution(Pair* resolution);
+    void setResolution(Position<int>* resolution);
 
     void render(Renderable* renderable);
 
 private:
     //Constructor
-    bool initWindow(int WINDOW_WIDTH, int WINDOW_HEIGHT);
+    bool initWindow(Position<int>* windowSize);
     bool initRenderer();
 
     //Destructor

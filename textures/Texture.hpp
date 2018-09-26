@@ -9,7 +9,7 @@
 
 class Texture {
 protected:
-    SDL_Texture* texture;
+    SDL_Texture* texture = nullptr;
 
     int width;
     int height;
@@ -17,7 +17,7 @@ protected:
 public:
     virtual ~Texture();
 
-    virtual void free();
+    void free();
 
     SDL_Texture* getTexture();
 

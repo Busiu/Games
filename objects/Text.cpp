@@ -4,7 +4,7 @@
 
 #include "Text.hpp"
 
-Text::Text(TextTexture* text, Pair* position, Justification justification)
+Text::Text(TextTexture* text, Position<int>* position, Justification justification)
 {
     this->text = text;
     this->position = position;
@@ -13,24 +13,24 @@ Text::Text(TextTexture* text, Pair* position, Justification justification)
 
 Text::~Text()
 {
-    free(text);
-    free(position);
+    delete(text);
+    delete(position);
 }
 
-Pair* Text::getPosition()
+Position<int>* Text::getPosition()
 {
     return position;
 }
 
-void Text::setPosition(Pair* position)
+void Text::setPosition(Position<int>* position)
 {
     delete(this->position);
     this->position = position;
 }
 
-void Text::shift(Pair& position)
+void Text::shift(Position<int>* vector)
 {
-    *this->position += position;
+    position->shift(vector);
 }
 
 std::vector<Renderable*> Text::render(SDL_Renderer* renderer)

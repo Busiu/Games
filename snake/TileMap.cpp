@@ -9,7 +9,7 @@ namespace snake
     TileMap::TileMap(int scale, SDL_Renderer* renderer, TileMapStyle tileMapStyle)
     {
         this->scale = scale;
-        this->size = new Pair(30, 20);
+        this->size = new Position<int>(30, 20);
         createMap(tileMapStyle);
         loadTextures(renderer);
     }

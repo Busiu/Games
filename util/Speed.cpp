@@ -20,3 +20,6 @@ Complex<T>* Speed<T>::getVector()
 {
     return vector;
 }
+
+template class Speed<int>;
+template class Speed<double>;

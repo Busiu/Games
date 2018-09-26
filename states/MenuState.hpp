@@ -12,6 +12,8 @@
 
 #include "../textures/Texture.hpp"
 
+#include "../util/Position.hpp"
+
 #include "State.hpp"
 #include "States.hpp"
 
