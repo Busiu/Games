@@ -4,11 +4,6 @@
 
 #include "ColorText.hpp"
 
-ColorText::~ColorText()
-{
-    free(position);
-}
-
 void ColorText::setColor(Uint8 red, Uint8 green, Uint8 blue)
 {
     SDL_SetTextureColorMod(text->getTexture(), red, green, blue);

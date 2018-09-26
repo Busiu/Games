@@ -14,7 +14,6 @@ private:
 public:
     ColorText(TextTexture* text, Pair* position, Justification justification) :
     Text(text, position, justification){};
-    ~ColorText();
 
     void setColor(Uint8 red, Uint8 green, Uint8 blue);
 };

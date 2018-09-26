@@ -7,13 +7,13 @@
 
 #include "../Libraries.hpp"
 
-class Complex {
+template <class Type> class Complex {
 private:
-    double x;
-    double y;
+    Type x;
+    Type y;
 
 public:
-    Complex(double x, double y);
+    Complex(Type x, Type y);
     Complex();
 
     Complex operator+(const Complex& complex);
@@ -21,8 +21,13 @@ public:
     Complex operator*(const Complex& complex);
     Complex operator/(const Complex& complex);
 
-    friend std::ostream& operator << (std::ostream& os, const Complex& complex);
-    friend std::istream& operator >> (std::istream& is, Complex& complex);
+    Complex operator+=(const Complex& complex);
+    Complex operator-=(const Complex& complex);
+    Complex operator*=(const Complex& complex);
+    Complex operator/=(const Complex& complex);
+
+    template<class T> friend std::ostream& operator << (std::ostream& os, const Complex<T>& complex);
+    template<class T> friend std::istream& operator >> (std::istream& is, Complex<T>& complex);
 
     Complex& operator++() = delete;
     const Complex operator++(int) = delete;
