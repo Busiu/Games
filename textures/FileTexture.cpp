@@ -5,6 +5,7 @@
 #include "FileTexture.hpp"
 
 FileTexture::FileTexture(SDL_Renderer *renderer, std::string textureText)
+: Texture()
 {
     free();
 

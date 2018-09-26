@@ -5,6 +5,7 @@
 #include "TextTexture.hpp"
 
 TextTexture::TextTexture(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, TTF_Font* textureFont)
+: Texture()
 {
     free();
 

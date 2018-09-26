@@ -4,6 +4,11 @@
 
 #include "Texture.hpp"
 
+Texture::Texture()
+{
+    texture = nullptr;
+}
+
 Texture::~Texture()
 {
     SDL_DestroyTexture(texture);
