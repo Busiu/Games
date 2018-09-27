@@ -36,9 +36,10 @@ namespace snake
 
         //Run
         int handleEvents() override;
-        void clear() override;
-        void render() override;
-        void update() override;
+        void updateObjects();
+        void clearScreen() override;
+        void renderObjects() override;
+        void updateScreen() override;
     };
 }
 

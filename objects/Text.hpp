@@ -26,8 +26,6 @@ public:
     Text(TextTexture* text, Position<int>* position, Justification justification);
     virtual ~Text();
 
-    Position<int>* getPosition();
-
     void setPosition(Position<int>* position);
     void shift(Position<int>* vector);
 

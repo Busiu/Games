@@ -9,6 +9,7 @@
 
 #include "../renderer/Renderable.hpp"
 
+#include "Snake.hpp"
 #include "TileMap.hpp"
 
 namespace snake
@@ -18,11 +19,14 @@ namespace snake
     private:
         int scale;
 
+        Snake* snake;
         TileMap* tileMap;
 
     public:
         Map(int scale, SDL_Renderer* renderer);
         ~Map();
+
+        void update();
 
     private:
         //Renderable

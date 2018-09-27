@@ -83,9 +83,9 @@ int OptionState::run()
             return NEXT_STATE;
         }
 
-        clear();
-        render();
-        update();
+        clearScreen();
+        renderObjects();
+        updateScreen();
     }
 }
 
@@ -199,12 +199,12 @@ void OptionState::pressEnter()
     }
 }
 
-void OptionState::clear()
+void OptionState::clearScreen()
 {
     renderer->clear();
 }
 
-void OptionState::render()
+void OptionState::renderObjects()
 {
     renderer->render(options[RESOLUTION_TEXT]);
     renderer->render(options[VOLUME_TEXT]);
@@ -212,7 +212,7 @@ void OptionState::render()
     renderer->render(optionValues[VOLUME_TEXT]);
 }
 
-void OptionState::update()
+void OptionState::updateScreen()
 {
     renderer->update();
 }

@@ -17,11 +17,6 @@ Text::~Text()
     delete(position);
 }
 
-Position<int>* Text::getPosition()
-{
-    return position;
-}
-
 void Text::setPosition(Position<int>* position)
 {
     delete(this->position);

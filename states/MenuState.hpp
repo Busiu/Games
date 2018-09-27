@@ -55,9 +55,9 @@ private:
     void moveDown();
     void moveUp();
     int pressEnter();
-    void clear() override;
-    void render() override;
-    void update() override;
+    void clearScreen() override;
+    void renderObjects() override;
+    void updateScreen() override;
 };
 
 

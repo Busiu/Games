@@ -28,9 +28,10 @@ namespace snake
                 return NEXT_STATE;
             }
 
-            clear();
-            render();
-            update();
+            updateObjects();
+            clearScreen();
+            renderObjects();
+            updateScreen();
         }
     }
 
@@ -56,18 +57,23 @@ namespace snake
         return CURRENT_STATE;
     }
 
-    void SnakeState::clear()
+    void SnakeState::updateObjects()
+    {
+        map->update();
+    }
+
+    void SnakeState::clearScreen()
     {
         SDL_SetRenderDrawColor(renderer->getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear(renderer->getRenderer());
     }
 
-    void SnakeState::render()
+    void SnakeState::renderObjects()
     {
         renderer->render(map);
     }
 
-    void SnakeState::update()
+    void SnakeState::updateScreen()
     {
         SDL_RenderPresent(renderer->getRenderer());
     }

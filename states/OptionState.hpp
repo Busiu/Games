@@ -61,9 +61,9 @@ private:
     void moveLeft();
     void changeOptionResolution();
     void pressEnter();
-    void clear() override;
-    void render() override;
-    void update() override;
+    void clearScreen() override;
+    void renderObjects() override;
+    void updateScreen() override;
 };
 
 

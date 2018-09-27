@@ -9,17 +9,24 @@ namespace snake
     Map::Map(int scale, SDL_Renderer* renderer)
     {
         this->scale = scale;
+        this->snake = new Snake();
         this->tileMap = new TileMap(scale, renderer);
     }
-
     Map::~Map()
     {
-        delete(this->tileMap);
+        delete(snake);
+        delete(tileMap);
+    }
+
+    void Map::update()
+    {
+        snake->update();
     }
 
     std::vector<Renderable*> Map::render(SDL_Renderer* renderer)
     {
         std::vector<Renderable*> kids;
+        kids.push_back(snake);
         kids.push_back(tileMap);
 
         return kids;

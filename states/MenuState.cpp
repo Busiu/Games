@@ -65,9 +65,9 @@ int MenuState::run()
             return NEXT_STATE;
         }
 
-        clear();
-        render();
-        update();
+        clearScreen();
+        renderObjects();
+        updateScreen();
     }
 }
 
@@ -137,19 +137,19 @@ int MenuState::pressEnter()
     return CURRENT_STATE;
 }
 
-void MenuState::clear()
+void MenuState::clearScreen()
 {
     renderer->clear();
 }
 
-void MenuState::render()
+void MenuState::renderObjects()
 {
     renderer->render(options[START_TEXT]);
     renderer->render(options[OPTIONS_TEXT]);
     renderer->render(options[EXIT_TEXT]);
 }
 
-void MenuState::update()
+void MenuState::updateScreen()
 {
     renderer->update();
 }

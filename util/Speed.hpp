@@ -16,6 +16,7 @@ private:
 
 public:
     Speed(Complex<T>* vector);
+    Speed(T x, T y);
     ~Speed();
 
     Complex<T>* getVector();

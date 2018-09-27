@@ -13,7 +13,6 @@ namespace snake
         createMap(tileMapStyle);
         loadTextures(renderer);
     }
-
     TileMap::~TileMap()
     {
         deleteMap();
@@ -32,7 +31,6 @@ namespace snake
             }
         }
     }
-
     void TileMap::createStandardMap()
     {
         int width = size->getX();
@@ -53,7 +51,6 @@ namespace snake
             tileMap[width - 1][y] = true;
         }
     }
-
     void TileMap::initMap()
     {
         int width = size->getX();
@@ -65,7 +62,6 @@ namespace snake
             tileMap[x] = new bool[height];
         }
     }
-
     void TileMap::emptyMap()
     {
         int width = size->getX();
@@ -79,7 +75,6 @@ namespace snake
             }
         }
     }
-
     void TileMap::loadTextures(SDL_Renderer* renderer)
     {
         obstacleTexture = new FileTexture(renderer, "../assets/textures/brick.png");
@@ -112,7 +107,6 @@ namespace snake
 
         return kids;
     }
-
     void TileMap::renderTile(int x, int y, int scale, SDL_Renderer* renderer)
     {
         if(tileMap[x][y])

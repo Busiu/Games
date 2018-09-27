@@ -28,9 +28,9 @@ protected:
     virtual void close() = 0;
 
     virtual int handleEvents() = 0;
-    virtual void clear() = 0;
-    virtual void render() = 0;
-    virtual void update() = 0;
+    virtual void clearScreen() = 0;
+    virtual void renderObjects() = 0;
+    virtual void updateScreen() = 0;
 };
 
 
