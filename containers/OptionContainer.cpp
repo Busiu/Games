@@ -45,6 +45,11 @@ Position<int>* OptionContainer::getWindowResolution()
     return resolutions[currentResolution];
 }
 
+int OptionContainer::getFpsCap()
+{
+    return fpsCap;
+}
+
 void OptionContainer::setCurrentResolution(int currentResolution)
 {
     this->currentResolution = currentResolution;

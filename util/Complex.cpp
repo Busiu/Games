@@ -75,16 +75,22 @@ Complex<T> Complex<T>::operator-=(const Complex& complex)
 template <class T>
 Complex<T> Complex<T>::operator*=(const Complex& complex)
 {
-    this->x *= complex.x;
-    this->y *= complex.y;
+    Complex<T> tmp;
+    tmp.x = this->x * complex.x - this->y * complex.y;
+    tmp.y = this->x * complex.y + this->y * complex.x;
+    *this = tmp;
 
     return *this;
 }
 template <class T>
 Complex<T> Complex<T>::operator/=(const Complex& complex)
 {
-    this->x /= complex.x;
-    this->y /= complex.y;
+    Complex<T> tmp;
+    tmp.x = this->x * complex.x + this->y * complex.y;
+    tmp.x /= (complex.x * complex.x + complex.y * complex.y);
+    tmp.y = this->y * complex.x - this->x * complex.y;
+    tmp.y /= (complex.x * complex.x + complex.y * complex.y);
+    *this = tmp;
 
     return *this;
 }

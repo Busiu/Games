@@ -59,6 +59,8 @@ int MenuState::run()
 {
     while(true)
     {
+        fpsCapper->start();
+
         int NEXT_STATE = handleEvents();
         if(NEXT_STATE < CURRENT_STATE)
         {
@@ -68,6 +70,9 @@ int MenuState::run()
         clearScreen();
         renderObjects();
         updateScreen();
+
+        fpsCapper->end();
+        fpsCapper->wait();
     }
 }
 

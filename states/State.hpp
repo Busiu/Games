@@ -10,15 +10,19 @@
 #include "../containers/OptionContainer.hpp"
 #include "../renderer/Renderer.hpp"
 
+#include "../util/Timer.hpp"
+
 class State {
 protected:
     SDL_Event event;
 
     OptionContainer* optionContainer;
     Renderer* renderer;
+    Timer* fpsCapper;
 
 public:
     State(OptionContainer* optionContainer, Renderer* windowContainer);
+    ~State();
 
     int start();
 

@@ -36,6 +36,10 @@ namespace snake
 
         //Run
         int handleEvents() override;
+        void pressUp();
+        void pressDown();
+        void pressRight();
+        void pressLeft();
         void updateObjects();
         void clearScreen() override;
         void renderObjects() override;

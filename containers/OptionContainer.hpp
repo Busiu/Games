@@ -14,6 +14,8 @@ private:
     const static int noResolutions = 9;
     std::array<Position<int>*, noResolutions> resolutions;
 
+    int fpsCap = 60;
+
 public:
     OptionContainer();
     ~OptionContainer();
@@ -22,6 +24,7 @@ public:
     int getCurrentResolution();
     int getNoResolutions();
     Position<int>* getWindowResolution();
+    int getFpsCap();
 
     void setCurrentResolution(int currentResolution);
 };

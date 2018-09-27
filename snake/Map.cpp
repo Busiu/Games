@@ -23,6 +23,23 @@ namespace snake
         snake->update();
     }
 
+    void Map::moveSnakeUp()
+    {
+        snake->moveUp();
+    }
+    void Map::moveSnakeDown()
+    {
+        snake->moveDown();
+    }
+    void Map::moveSnakeRight()
+    {
+        snake->moveRight();
+    }
+    void Map::moveSnakeLeft()
+    {
+        snake->moveLeft();
+    }
+
     std::vector<Renderable*> Map::render(SDL_Renderer* renderer)
     {
         std::vector<Renderable*> kids;

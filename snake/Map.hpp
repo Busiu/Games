@@ -28,6 +28,11 @@ namespace snake
 
         void update();
 
+        void moveSnakeUp();
+        void moveSnakeDown();
+        void moveSnakeRight();
+        void moveSnakeLeft();
+
     private:
         //Renderable
         std::vector<Renderable*> render(SDL_Renderer* renderer) override;

@@ -9,6 +9,14 @@
 
 #include "Complex.hpp"
 
+enum class Direction
+{
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST
+};
+
 template <class T> class Speed
 {
 private:
@@ -19,7 +27,13 @@ public:
     Speed(T x, T y);
     ~Speed();
 
+    void turnRight();
+    void turnLeft();
+
+    T getX();
+    T getY();
     Complex<T>* getVector();
+    Direction getDirection();
 
 };
 

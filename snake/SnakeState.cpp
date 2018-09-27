@@ -22,6 +22,8 @@ namespace snake
     {
         while(true)
         {
+            fpsCapper->start();
+
             int NEXT_STATE = handleEvents();
             if(NEXT_STATE != CURRENT_STATE)
             {
@@ -32,6 +34,9 @@ namespace snake
             clearScreen();
             renderObjects();
             updateScreen();
+
+            fpsCapper->end();
+            fpsCapper->wait();
         }
     }
 
@@ -47,7 +52,23 @@ namespace snake
 
             //User's keyboard requests
             const Uint8* currentKeyStates = SDL_GetKeyboardState(nullptr);
-            if(currentKeyStates[SDL_SCANCODE_ESCAPE])
+            if(currentKeyStates[SDL_SCANCODE_UP])
+            {
+                pressUp();
+            }
+            else if(currentKeyStates[SDL_SCANCODE_DOWN])
+            {
+                pressDown();
+            }
+            else if(currentKeyStates[SDL_SCANCODE_RIGHT])
+            {
+                pressRight();
+            }
+            else if(currentKeyStates[SDL_SCANCODE_LEFT])
+            {
+                pressLeft();
+            }
+            else if(currentKeyStates[SDL_SCANCODE_ESCAPE])
             {
                 return MENU_STATE;
             }
@@ -55,6 +76,26 @@ namespace snake
 
         //No state-change request
         return CURRENT_STATE;
+    }
+
+    void SnakeState::pressUp()
+    {
+        map->moveSnakeUp();
+    }
+
+    void SnakeState::pressDown()
+    {
+        map->moveSnakeDown();
+    }
+
+    void SnakeState::pressRight()
+    {
+        map->moveSnakeRight();
+    }
+
+    void SnakeState::pressLeft()
+    {
+        map->moveSnakeLeft();
     }
 
     void SnakeState::updateObjects()
