@@ -23,55 +23,11 @@ namespace snake
 
     void SnakeChunk::move()
     {
-        switch(direction)
-        {
-            case Direction::SOUTH:
-            {
-                positionB.update(speed);
-                break;
-            }
-            case Direction::WEST:
-            {
-                positionB.update(speed);
-                break;
-            }
-            case Direction::NORTH:
-            {
-                positionB.update(speed);
-                break;
-            }
-            case Direction::EAST:
-            {
-                positionB.update(speed);
-                break;
-            }
-        }
+        positionB.update(speed);
     }
     void SnakeChunk::shorten()
     {
-        switch(direction)
-        {
-            case Direction::SOUTH:
-            {
-                positionA.update(speed);
-                break;
-            }
-            case Direction::WEST:
-            {
-                positionA.update(speed);
-                break;
-            }
-            case Direction::NORTH:
-            {
-                positionA.update(speed);
-                break;
-            }
-            case Direction::EAST:
-            {
-                positionA.update(speed);
-                break;
-            }
-        }
+        positionA.update(speed);
     }
 
     Position<double> SnakeChunk::getPosA()
