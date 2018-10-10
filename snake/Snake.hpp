@@ -8,25 +8,29 @@
 #include "../Libraries.hpp"
 
 #include "../renderer/Renderable.hpp"
-
-#include "../textures/FileTexture.hpp"
+#include "../renderer/RenderAssistant.hpp"
 
 #include "../util/Position.hpp"
 #include "../util/Speed.hpp"
+
+#include "SnakeChunk.hpp"
 
 namespace snake
 {
     class Snake : public Renderable
     {
     private:
-        Position<double>* position;
-        Speed<double>* speed;
+        std::list<SnakeChunk> body;
+        Speed<double> speed;
+
+        SDL_Color color;
+        int thickness;
 
     public:
         Snake();
-        ~Snake();
 
         void update();
+        void bendTail(Direction direction);
 
         void moveUp();
         void moveDown();
@@ -34,6 +38,10 @@ namespace snake
         void moveLeft();
 
     private:
+        //Update
+        void moveHead();
+        void shortenTail();
+
         //Renderable
         std::vector<Renderable*> render(SDL_Renderer* renderer) override;
     };

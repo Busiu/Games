@@ -23,12 +23,16 @@ namespace snake
     private:
         int scale;
         Position<int>* size;
+        TileMapStyle tileMapStyle;
+
         bool** tileMap;
         FileTexture* obstacleTexture;
 
     public:
         TileMap(int scale, SDL_Renderer* renderer, TileMapStyle tileMapStyle = TileMapStyle::STANDARD_MAP);
         ~TileMap();
+
+        Position<int> getEmptyArea();
 
     private:
         //Constructor
@@ -45,6 +49,9 @@ namespace snake
         //Renderable
         std::vector<Renderable*> render(SDL_Renderer* renderer) override;
         void renderTile(int x, int y, int scale, SDL_Renderer* renderer);
+
+        //Get Empty Area
+
     };
 }
 

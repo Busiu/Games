@@ -9,7 +9,9 @@
 
 #include "../renderer/Renderable.hpp"
 
+#include "Apple.hpp"
 #include "Snake.hpp"
+#include "TextureContainer.hpp"
 #include "TileMap.hpp"
 
 namespace snake
@@ -19,11 +21,14 @@ namespace snake
     private:
         int scale;
 
+        Apple* apple;
         Snake* snake;
         TileMap* tileMap;
 
+        TextureContainer& textureContainer;
+
     public:
-        Map(int scale, SDL_Renderer* renderer);
+        Map(int scale, Renderer* renderer, TextureContainer& textureContainer);
         ~Map();
 
         void update();
@@ -36,6 +41,7 @@ namespace snake
     private:
         //Renderable
         std::vector<Renderable*> render(SDL_Renderer* renderer) override;
+
     };
 }
 

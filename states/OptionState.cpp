@@ -73,14 +73,14 @@ void OptionState::initialState()
 
 
 
-int OptionState::run()
+States OptionState::run()
 {
     while(true)
     {
         fpsCapper->start();
 
-        int NEXT_STATE = handleEvents();
-        if(NEXT_STATE < CURRENT_STATE)
+        States NEXT_STATE = handleEvents();
+        if(NEXT_STATE != States::CURRENT_STATE)
         {
             return NEXT_STATE;
         }
@@ -94,14 +94,14 @@ int OptionState::run()
     }
 }
 
-int OptionState::handleEvents()
+States OptionState::handleEvents()
 {
     while (SDL_PollEvent(&event) != 0)
     {
         //User requests quit
         if (event.type == SDL_QUIT)
         {
-            return EXIT_STATE;
+            return States::EXIT_STATE;
         }
 
         //User's keyboard requests
@@ -128,12 +128,12 @@ int OptionState::handleEvents()
         }
         else if(currentKeyStates[SDL_SCANCODE_ESCAPE])
         {
-            return MENU_STATE;
+            return States::MENU_STATE;
         }
     }
 
     //Returning something else than "EXIT_STATE"
-    return CURRENT_STATE;
+    return States::CURRENT_STATE;
 }
 
 void OptionState::moveUp()

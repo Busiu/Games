@@ -16,12 +16,11 @@ OptionContainer::OptionContainer()
     resolutions[7] = new Position<int>(1600, 900);
     resolutions[8] = new Position<int>(1920, 1080);
 }
-
 OptionContainer::~OptionContainer()
 {
     for(int i = 0; i < noResolutions; i++)
     {
-        delete resolutions[i];
+        delete(resolutions[i]);
     }
 }
 

@@ -10,11 +10,14 @@
 #include <SDL2/SDL_image.h>
 
 #include <iostream>
+#include <random>
 #include <stdio.h>
 #include <sstream>
 #include <string>
+#include <time.h>
 
 #include <array>
+#include <list>
 #include <stack>
 #include <vector>
 

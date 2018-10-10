@@ -5,47 +5,68 @@
 #include "Position.hpp"
 
 template <class T>
-Position<T>::Position(Complex<T>* vector)
+Position<T>::Position() :
+        vector(0,0)
+        {}
+template <class T>
+Position<T>::Position(Complex<T>& vector) :
+        vector(vector)
+        {}
+template <class T>
+Position<T>::Position(T x, T y) :
+        vector(x, y)
+        {}
+
+template <class T>
+Position<T>::Position(Position<T>* resolution, int noObjects, int index) :
+        vector((resolution->getX() / 2), (resolution->getY() * index / noObjects))
+        {}
+
+template <class T>
+void Position<T>::update(Speed<T>& speed)
 {
-    this->vector = vector;
+    vector += speed.getVector();
 }
 template <class T>
-Position<T>::Position(T x, T y)
+void Position<T>::shift(Position<T>& position)
 {
-    this->vector = new Complex<T>(x, y);
-}
-template <class T>
-Position<T>::Position(Position<T>* resolution, int noObjects, int index)
-{
-    this->vector = new Complex<T>((resolution->getX() / 2), (resolution->getY() * index / noObjects));
+    vector += position.vector;
 }
 
 template <class T>
-Position<T>::~Position()
+T Position<T>::getX() const
 {
-    delete(vector);
+    return vector.x;
+}
+template <class T>
+T Position<T>::getY() const
+{
+    return vector.y;
 }
 
 template <class T>
-void Position<T>::update(Speed<T>* speed)
+double Position<T>::getDistance(Position &a, Position &b)
 {
-    *vector += *speed->getVector();
+    Complex tmp = a.vector - b.vector;
+
+    return tmp.getModule();
 }
 template <class T>
-void Position<T>::shift(Position<T>* position)
+void Position<T>::sortPositions(Position& a, Position& b)
 {
-    *vector += *position->vector;
+    if(a.vector > b.vector)
+    {
+        std::swap(a, b);
+    }
 }
 
 template <class T>
-T Position<T>::getX()
+Position<T> Position<T>::operator-(const Position& position)
 {
-    return vector->x;
-}
-template <class T>
-T Position<T>::getY()
-{
-    return vector->y;
+    Complex<T> tmpVec = this->vector - position.vector;
+    Position<T> tmpPos(tmpVec);
+
+    return tmpPos;
 }
 
 template class Position<int>;

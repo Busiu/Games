@@ -5,8 +5,9 @@
 #ifndef GAMES_STATES_HPP
 #define GAMES_STATES_HPP
 
-enum States{
-    EXIT_STATE = 0,
+enum class States
+{
+    EXIT_STATE,
     MENU_STATE,
     OPTIONS_STATE,
     SNAKE_STATE,

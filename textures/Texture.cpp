@@ -6,9 +6,8 @@
 
 Texture::Texture()
 {
-    texture = nullptr;
+    this->texture = nullptr;
 }
-
 Texture::~Texture()
 {
     SDL_DestroyTexture(texture);

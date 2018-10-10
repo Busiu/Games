@@ -6,6 +6,11 @@
 
 namespace snake
 {
+    SnakeState::SnakeState(OptionContainer* optionContainer, Renderer* renderer) :
+    State(optionContainer, renderer),
+    textureContainer(renderer)
+    {}
+
     void SnakeState::load()
     {
         initMap();
@@ -13,19 +18,19 @@ namespace snake
 
     void SnakeState::initMap()
     {
-        this->map = new Map(20, renderer->getRenderer());
+        this->map = new Map(20, renderer, textureContainer);
     }
 
 
 
-    int SnakeState::run()
+    States SnakeState::run()
     {
         while(true)
         {
             fpsCapper->start();
 
-            int NEXT_STATE = handleEvents();
-            if(NEXT_STATE != CURRENT_STATE)
+            States NEXT_STATE = handleEvents();
+            if(NEXT_STATE != States::CURRENT_STATE)
             {
                 return NEXT_STATE;
             }
@@ -40,14 +45,14 @@ namespace snake
         }
     }
 
-    int SnakeState::handleEvents()
+    States SnakeState::handleEvents()
     {
         while (SDL_PollEvent(&event) != 0)
         {
             //User requests quit
             if (event.type == SDL_QUIT)
             {
-                return EXIT_STATE;
+                return States::EXIT_STATE;
             }
 
             //User's keyboard requests
@@ -70,12 +75,12 @@ namespace snake
             }
             else if(currentKeyStates[SDL_SCANCODE_ESCAPE])
             {
-                return MENU_STATE;
+                return States::MENU_STATE;
             }
         }
 
         //No state-change request
-        return CURRENT_STATE;
+        return States::CURRENT_STATE;
     }
 
     void SnakeState::pressUp()

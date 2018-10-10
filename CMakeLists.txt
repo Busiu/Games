@@ -17,8 +17,9 @@ include_directories(${SDL2TTF_INCLUDE_DIR})
 add_executable(Games main.cpp Application.cpp Exception.cpp StateSupervisor.cpp
         containers/OptionContainer.cpp
         objects/Text.cpp objects/ColorText.cpp
-        renderer/Renderer.cpp
-        snake/Map.cpp snake/Snake.cpp snake/SnakeState.cpp snake/TileMap.cpp
+        renderer/Renderer.cpp renderer/RenderAssistant.cpp
+        snake/Apple.cpp snake/Map.cpp snake/Snake.cpp snake/SnakeChunk.cpp
+        snake/SnakeState.cpp snake/TextureContainer.cpp snake/TileMap.cpp
         states/State.cpp states/MenuState.cpp states/OptionState.cpp
         textures/Texture.cpp textures/FileTexture.cpp textures/TextTexture.cpp
         util/Complex.cpp util/Position.cpp util/Speed.cpp util/StringCreator.cpp util/Timer.cpp)

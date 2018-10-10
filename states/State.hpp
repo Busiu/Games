@@ -12,6 +12,8 @@
 
 #include "../util/Timer.hpp"
 
+#include "States.hpp"
+
 class State {
 protected:
     SDL_Event event;
@@ -21,17 +23,17 @@ protected:
     Timer* fpsCapper;
 
 public:
-    State(OptionContainer* optionContainer, Renderer* windowContainer);
+    State(OptionContainer* optionContainer, Renderer* renderer);
     ~State();
 
-    int start();
+    States start();
 
 protected:
     virtual void load() = 0;
-    virtual int run() = 0;
+    virtual States run() = 0;
     virtual void close() = 0;
 
-    virtual int handleEvents() = 0;
+    virtual States handleEvents() = 0;
     virtual void clearScreen() = 0;
     virtual void renderObjects() = 0;
     virtual void updateScreen() = 0;

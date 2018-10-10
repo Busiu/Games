@@ -6,78 +6,119 @@
 
 namespace snake
 {
-    Snake::Snake()
+    Snake::Snake() :
+    speed(1, 0)
     {
-        this->position = new Position<double>(100, -100);
-        this->speed = new Speed<double>(1, 0);
-    }
-    Snake::~Snake()
-    {
-        delete(position);
-        delete(speed);
+        this->color = {0xFF, 0x00, 0x00, 0xFF};
+        this->thickness = 6;
+        Position<double> begOfSnake(100, -100);
+        Position<double> endOfSnake(10, -100);
+
+        SnakeChunk snakeChunk(endOfSnake, begOfSnake, speed, color, thickness, Direction::EAST);
+        body.push_back(snakeChunk);
     }
 
     void Snake::update()
     {
-        position->update(speed);
+        moveHead();
+        shortenTail();
+    }
+    void Snake::moveHead()
+    {
+        auto head = body.begin();
+        (*head).move();
+    }
+    void Snake::shortenTail()
+    {
+        double distanceLeft = speed.getActualSpeed();
+        for(auto tail = body.rbegin(); distanceLeft > 0; tail++)
+        {
+            double distance = (*tail).getLength();
+            if(distance > distanceLeft)
+            {
+                (*tail).shorten();
+            }
+            else
+            {
+                body.pop_back();
+            }
+
+            distanceLeft -= distance;
+        }
+    }
+
+    void Snake::bendTail(Direction direction)
+    {
+        SnakeChunk head = *body.begin();
+        SnakeChunk newHead(head.getPosB(), head.getPosB(), speed, color, thickness, direction);
+        body.push_front(newHead);
+
     }
 
     void Snake::moveUp()
     {
-        Direction direction = speed->getDirection();
+        Direction direction = speed.getDirection();
         if(direction == Direction::WEST)
         {
-            speed->turnRight();
+            speed.turnRight();
+            bendTail(Direction::NORTH);
         }
         else if(direction == Direction::EAST)
         {
-            speed->turnLeft();
+            speed.turnLeft();
+            bendTail(Direction::NORTH);
         }
     }
     void Snake::moveDown()
     {
-        Direction direction = speed->getDirection();
+        Direction direction = speed.getDirection();
         if(direction == Direction::EAST)
         {
-            speed->turnRight();
+            speed.turnRight();
+            bendTail(Direction::SOUTH);
         }
         else if(direction == Direction::WEST)
         {
-            speed->turnLeft();
+            speed.turnLeft();
+            bendTail(Direction::SOUTH);
         }
     }
     void Snake::moveRight()
     {
-        Direction direction = speed->getDirection();
+        Direction direction = speed.getDirection();
         if(direction == Direction::NORTH)
         {
-            speed->turnRight();
+            speed.turnRight();
+            bendTail(Direction::EAST);
         }
         else if(direction == Direction::SOUTH)
         {
-            speed->turnLeft();
+            speed.turnLeft();
+            bendTail(Direction::EAST);
         }
     }
     void Snake::moveLeft()
     {
-        Direction direction = speed->getDirection();
+        Direction direction = speed.getDirection();
         if(direction == Direction::SOUTH)
         {
-            speed->turnRight();
+            speed.turnRight();
+            bendTail(Direction::WEST);
         }
         else if(direction == Direction::NORTH)
         {
-            speed->turnLeft();
+            speed.turnLeft();
+            bendTail(Direction::WEST);
         }
     }
 
     std::vector<Renderable*> Snake::render(SDL_Renderer* renderer)
     {
         std::vector<Renderable*> kids;
-
-        SDL_Rect fillRect = {static_cast<int> (position->getX()), static_cast<int> (-position->getY()), 10, 10};
-        SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF);
-        SDL_RenderFillRect(renderer, &fillRect);
+        for(auto it = body.begin(); it != body.end(); it++)
+        {
+            kids.push_back(&(*it));
+        }
 
         return kids;
     }

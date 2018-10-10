@@ -14,6 +14,7 @@
 #include "../states/States.hpp"
 
 #include "Map.hpp"
+#include "TextureContainer.hpp"
 
 namespace snake
 {
@@ -22,20 +23,21 @@ namespace snake
     private:
         Map* map;
 
+        TextureContainer textureContainer;
+
     public:
-        SnakeState(OptionContainer* optionContainer, Renderer* renderer) :
-        State(optionContainer, renderer){}
+        SnakeState(OptionContainer* optionContainer, Renderer* renderer);
 
     private:
         void load() override;
-        int run() override;
+        States run() override;
         void close() override;
 
         //Load
         void initMap();
 
         //Run
-        int handleEvents() override;
+        States handleEvents() override;
         void pressUp();
         void pressDown();
         void pressRight();

@@ -55,14 +55,14 @@ void MenuState::initialState()
 
 
 
-int MenuState::run()
+States MenuState::run()
 {
     while(true)
     {
         fpsCapper->start();
 
-        int NEXT_STATE = handleEvents();
-        if(NEXT_STATE < CURRENT_STATE)
+        States NEXT_STATE = handleEvents();
+        if(NEXT_STATE != States::CURRENT_STATE)
         {
             return NEXT_STATE;
         }
@@ -76,14 +76,14 @@ int MenuState::run()
     }
 }
 
-int MenuState::handleEvents()
+States MenuState::handleEvents()
 {
     while (SDL_PollEvent(&event) != 0)
     {
         //User requests quit
         if (event.type == SDL_QUIT)
         {
-            return EXIT_STATE;
+            return States::EXIT_STATE;
         }
 
         //User's keyboard requests
@@ -103,7 +103,7 @@ int MenuState::handleEvents()
     }
 
     //If no action we back to current state
-    return CURRENT_STATE;
+    return States::CURRENT_STATE;
 }
 
 void MenuState::moveDown()
@@ -120,26 +120,26 @@ void MenuState::moveUp()
     options[highlightedText]->setColor(0xFF, 0x00, 0x00);
 }
 
-int MenuState::pressEnter()
+States MenuState::pressEnter()
 {
     switch(highlightedText)
     {
         case START_TEXT:
         {
-            return SNAKE_STATE;
+            return States::SNAKE_STATE;
         }
         case OPTIONS_TEXT:
         {
-            return OPTIONS_STATE;
+            return States::OPTIONS_STATE;
         }
         case EXIT_TEXT:
         {
-            return EXIT_STATE;
+            return States::EXIT_STATE;
         }
         default: {}
     }
 
-    return CURRENT_STATE;
+    return States::CURRENT_STATE;
 }
 
 void MenuState::clearScreen()

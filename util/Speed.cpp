@@ -5,46 +5,43 @@
 #include "Speed.hpp"
 
 template <class T>
-Speed<T>::Speed(Complex<T>* vector)
-{
-    this->vector = vector;
-}
+Speed<T>::Speed() :
+        vector(0, 0)
+        {}
 template <class T>
-Speed<T>::Speed(T x, T y)
-{
-    this->vector = new Complex<T>(x, y);
-}
+Speed<T>::Speed(Complex<T> vector) :
+        vector(vector)
+        {}
 template <class T>
-Speed<T>::~Speed()
-{
-    delete(vector);
-}
+Speed<T>::Speed(T x, T y) :
+        vector(x, y)
+        {}
 
 template <class T>
 void Speed<T>::turnRight()
 {
     Complex<T> angle(0, 1);
-    *vector /= angle;
+    vector /= angle;
 }
 template <class T>
 void Speed<T>::turnLeft()
 {
     Complex<T> angle(0, 1);
-    *vector *= angle;
+    vector *= angle;
 }
 
 template <class T>
 T Speed<T>::getX()
 {
-    return vector->x;
+    return vector.x;
 }
 template <class T>
 T Speed<T>::getY()
 {
-    return vector->y;
+    return vector.y;
 }
 template <class T>
-Complex<T>* Speed<T>::getVector()
+Complex<T> Speed<T>::getVector()
 {
     return vector;
 }
@@ -67,6 +64,11 @@ Direction Speed<T>::getDirection()
     {
         return Direction::WEST;
     }
+}
+template <class T>
+T Speed<T>::getActualSpeed()
+{
+    return vector.getModule();
 }
 
 template class Speed<int>;

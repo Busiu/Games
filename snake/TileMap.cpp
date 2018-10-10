@@ -10,6 +10,7 @@ namespace snake
     {
         this->scale = scale;
         this->size = new Position<int>(30, 20);
+        this->tileMapStyle = tileMapStyle;
         createMap(tileMapStyle);
         loadTextures(renderer);
     }
@@ -18,6 +19,44 @@ namespace snake
         deleteMap();
         delete(size);
         delete(obstacleTexture);
+    }
+
+    Position<int> TileMap::getEmptyArea()
+    {
+        int noEmptyChunks = 0;
+        std::vector <Position<int>> chunks;
+        for(int y = 0; y < size->getY(); y++)
+        {
+            for(int x = 0; x < size->getX(); x++)
+            {
+                if(!tileMap[x][y])
+                {
+                    noEmptyChunks++;
+                    Position<int> tmp(x, y);
+                    chunks.push_back(tmp);
+                }
+            }
+        }
+
+        if(noEmptyChunks == 0)
+        {
+            return Position<int>(0,0);
+        }
+
+        std::cout << noEmptyChunks << std::endl;
+
+        std::default_random_engine generator(static_cast<unsigned> (time(nullptr) * time(nullptr) * time(nullptr) * time(nullptr)));
+        std::uniform_int_distribution<int> distributionOfBlocks{1, noEmptyChunks};
+        std::uniform_int_distribution<int> distributionOfPixels{1, scale};
+        int randomBlock = distributionOfBlocks(generator);
+        int randomPixel = distributionOfPixels(generator);
+
+        std::cout << randomBlock << std::endl;
+        std::cout << randomPixel << std::endl;
+
+        Position<int> result(chunks[randomBlock].getX() * scale + randomPixel,
+                             chunks[randomBlock].getY() * scale + randomPixel);
+        return result;
     }
 
     void TileMap::createMap(TileMapStyle tileMapStyle)
@@ -115,4 +154,5 @@ namespace snake
             SDL_RenderCopy(renderer, obstacleTexture->getTexture(), nullptr, &renderQuad);
         }
     }
+
 }

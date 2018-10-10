@@ -43,7 +43,7 @@ public:
 
 private:
     void load() override;
-    int run() override;
+    States run() override;
     void close() override;
 
     //Load
@@ -54,7 +54,7 @@ private:
     void initialState();
 
     //Run
-    int handleEvents() override;
+    States handleEvents() override;
     void moveUp();
     void moveDown();
     void moveRight();

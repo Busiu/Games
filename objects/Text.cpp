@@ -25,7 +25,7 @@ void Text::setPosition(Position<int>* position)
 
 void Text::shift(Position<int>* vector)
 {
-    position->shift(vector);
+    position->shift(*vector);
 }
 
 std::vector<Renderable*> Text::render(SDL_Renderer* renderer)

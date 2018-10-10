@@ -13,21 +13,25 @@
 template <class T> class Position
 {
 private:
-    Complex<T>* vector;
+    Complex<T> vector;
 
 public:
-    Position(Complex<T>* vector);
+    Position();
+    Position(Complex<T>& vector);
     Position(T x, T y);
     //Special constructor for Text Objects
     Position(Position<T>* resolution, int noObjects, int index);
-    ~Position();
 
-    void update(Speed<T>* speed);
-    void shift(Position<T>* position);
+    void update(Speed<T>& speed);
+    void shift(Position<T>& position);
 
-    T getX();
-    T getY();
+    T getX() const;
+    T getY() const;
 
+    static double getDistance(Position& a, Position& b);
+    static void sortPositions(Position& a, Position& b);
+
+    Position operator-(const Position<T>& position);
 };
 
 

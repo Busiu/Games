@@ -95,6 +95,39 @@ Complex<T> Complex<T>::operator/=(const Complex& complex)
     return *this;
 }
 
+template <class T>
+bool Complex<T>::operator>(const Complex& complex) const
+{
+    T moduleThis = this->getModule();
+    T moduleOther = complex.getModule();
+
+    if(moduleThis > moduleOther)
+    {
+        return true;
+    }
+
+    return false;
+}
+template <class T>
+bool Complex<T>::operator<(const Complex& complex) const
+{
+    T moduleThis = this->getModule();
+    T moduleOther = complex.getModule();
+
+    if(moduleThis < moduleOther)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+template <class T>
+T Complex<T>::getModule() const
+{
+    return sqrt(x*x + y*y);
+}
+
 template <class Type>
 std::ostream& operator<<(std::ostream& os, const Complex<Type>& complex)
 {

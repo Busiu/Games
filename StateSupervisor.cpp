@@ -39,30 +39,30 @@ bool StateSupervisor::initRenderer()
 void StateSupervisor::run()
 {
     currentState = new MenuState(optionContainer, renderer);
-    int whichState = MENU_STATE;
+    States whichState = States::MENU_STATE;
 
-    while(whichState)
+    while(true)
     {
         whichState = currentState->start();
         delete currentState;
 
         switch(whichState)
         {
-            case EXIT_STATE:
+            case States::EXIT_STATE:
             {
                 break;
             }
-            case MENU_STATE:
+            case States::MENU_STATE:
             {
                 currentState = new MenuState(optionContainer, renderer);
                 break;
             }
-            case OPTIONS_STATE:
+            case States::OPTIONS_STATE:
             {
                 currentState = new OptionState(optionContainer, renderer);
                 break;
             }
-            case SNAKE_STATE:
+            case States::SNAKE_STATE:
             {
                 currentState = new snake::SnakeState(optionContainer, renderer);
                 break;

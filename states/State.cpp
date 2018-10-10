@@ -15,9 +15,9 @@ State::~State()
     delete(fpsCapper);
 }
 
-int State::start()
+States State::start()
 {
-    int nextState;
+    States nextState;
     load();
     nextState = run();
     close();

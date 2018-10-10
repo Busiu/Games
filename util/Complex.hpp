@@ -5,6 +5,8 @@
 #ifndef GAMES_COMPLEX_HPP
 #define GAMES_COMPLEX_HPP
 
+#include <math.h>
+
 #include "../Libraries.hpp"
 
 template <class T> class Complex
@@ -29,6 +31,11 @@ public:
     Complex operator-=(const Complex& complex);
     Complex operator*=(const Complex& complex);
     Complex operator/=(const Complex& complex);
+
+    bool operator>(const Complex& complex) const;
+    bool operator<(const Complex& complex) const;
+
+    T getModule() const;
 
     template<class Type> friend std::ostream& operator << (std::ostream& os, const Complex<Type>& complex);
     template<class Type> friend std::istream& operator >> (std::istream& is, Complex<Type>& complex);
