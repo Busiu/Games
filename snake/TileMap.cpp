@@ -25,9 +25,11 @@ namespace snake
     {
         int noEmptyChunks = 0;
         std::vector <Position<int>> chunks;
-        for(int y = 0; y < size->getY(); y++)
+        int Y = size->getY();
+        int X = size->getX();
+        for(int y = 0; y < Y; y++)
         {
-            for(int x = 0; x < size->getX(); x++)
+            for(int x = 0; x < X; x++)
             {
                 if(!tileMap[x][y])
                 {
@@ -45,7 +47,7 @@ namespace snake
 
         std::cout << noEmptyChunks << std::endl;
 
-        std::default_random_engine generator(static_cast<unsigned> (time(nullptr) * time(nullptr) * time(nullptr) * time(nullptr)));
+        std::default_random_engine generator(static_cast<unsigned> (time(nullptr) * clock()));
         std::uniform_int_distribution<int> distributionOfBlocks{1, noEmptyChunks};
         std::uniform_int_distribution<int> distributionOfPixels{1, scale};
         int randomBlock = distributionOfBlocks(generator);
