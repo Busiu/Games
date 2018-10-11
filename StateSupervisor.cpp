@@ -64,7 +64,7 @@ void StateSupervisor::run()
             }
             case States::SNAKE_STATE:
             {
-                currentState = new snake::SnakeState(optionContainer, renderer);
+                currentState = new SnakeState(optionContainer, renderer);
                 break;
             }
             default:

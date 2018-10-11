@@ -2,7 +2,7 @@
 // Created by Busiu on 15.09.2018.
 //
 
-#include "Map.hpp"
+#include "SNAKEmap.hpp"
 
 namespace snake
 {

@@ -15,13 +15,18 @@ find_package(SDL_TTF REQUIRED)
 include_directories(${SDL2TTF_INCLUDE_DIR})
 
 add_executable(Games main.cpp Application.cpp Exception.cpp StateSupervisor.cpp
-        containers/OptionContainer.cpp
-        objects/Text.cpp objects/ColorText.cpp
+
+        containers/OptionContainer.cpp containers/SNAKEtextureContainer.cpp
+
+        objects/ColorText.cpp objects/SNAKEapple.cpp objects/SNAKEmap.cpp objects/SNAKEsnake.cpp
+        objects/SNAKEsnakeChunk.cpp objects/SNAKEtileMap.cpp objects/Text.cpp
+
         renderer/Renderer.cpp renderer/RenderAssistant.cpp
-        snake/Apple.cpp snake/Map.cpp snake/Snake.cpp snake/SnakeChunk.cpp
-        snake/SnakeState.cpp snake/TextureContainer.cpp snake/TileMap.cpp
-        states/State.cpp states/MenuState.cpp states/OptionState.cpp
-        textures/Texture.cpp textures/FileTexture.cpp textures/TextTexture.cpp
+
+        states/MenuState.cpp states/OptionState.cpp states/SnakeState.cpp states/State.cpp
+
+        textures/FileTexture.cpp textures/TextTexture.cpp textures/Texture.cpp
+
         util/Complex.cpp util/Position.cpp util/Speed.cpp util/StringCreator.cpp util/Timer.cpp)
 
 target_link_libraries(Games ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf)

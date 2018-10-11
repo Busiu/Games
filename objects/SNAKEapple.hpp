@@ -13,8 +13,8 @@
 
 #include "../util/Position.hpp"
 
-#include "Snake.hpp"
-#include "TextureContainer.hpp"
+#include "SNAKEsnake.hpp"
+#include "../containers/SNAKEtextureContainer.hpp"
 
 namespace snake
 {

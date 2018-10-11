@@ -13,7 +13,7 @@
 #include "../util/Position.hpp"
 #include "../util/Speed.hpp"
 
-#include "SnakeChunk.hpp"
+#include "SNAKEsnakeChunk.hpp"
 
 namespace snake
 {

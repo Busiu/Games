@@ -2,7 +2,7 @@
 // Created by Busiu on 10.10.2018.
 //
 
-#include "Apple.hpp"
+#include "SNAKEapple.hpp"
 
 namespace snake
 {

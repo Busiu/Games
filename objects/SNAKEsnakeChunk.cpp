@@ -2,7 +2,7 @@
 // Created by Busiu on 05.10.2018.
 //
 
-#include "SnakeChunk.hpp"
+#include "SNAKEsnakeChunk.hpp"
 
 namespace snake
 {

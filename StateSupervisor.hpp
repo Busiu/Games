@@ -10,7 +10,7 @@
 #include "containers/OptionContainer.hpp"
 #include "renderer/Renderer.hpp"
 
-#include "snake/SnakeState.hpp"
+#include "states/SnakeState.hpp"
 #include "states/MenuState.hpp"
 #include "states/OptionState.hpp"
 #include "states/State.hpp"

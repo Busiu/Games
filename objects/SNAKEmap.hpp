@@ -9,10 +9,10 @@
 
 #include "../renderer/Renderable.hpp"
 
-#include "Apple.hpp"
-#include "Snake.hpp"
-#include "TextureContainer.hpp"
-#include "TileMap.hpp"
+#include "SNAKEapple.hpp"
+#include "SNAKEsnake.hpp"
+#include "../containers/SNAKEtextureContainer.hpp"
+#include "SNAKEtileMap.hpp"
 
 namespace snake
 {

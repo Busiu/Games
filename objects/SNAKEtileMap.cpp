@@ -2,7 +2,7 @@
 // Created by Busiu on 23.09.2018.
 //
 
-#include "TileMap.hpp"
+#include "SNAKEtileMap.hpp"
 
 namespace snake
 {

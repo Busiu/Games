@@ -2,7 +2,7 @@
 // Created by Busiu on 27.09.2018.
 //
 
-#include "Snake.hpp"
+#include "SNAKEsnake.hpp"
 
 namespace snake
 {
