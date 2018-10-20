@@ -33,6 +33,10 @@ namespace snake
         ~TileMap();
 
         Position<int> getEmptyArea();
+        Position<int> getTile(Position<double> position);
+
+        Position<int> getSize();
+        bool** getTileMap();
 
     private:
         //Constructor
@@ -49,8 +53,6 @@ namespace snake
         //Renderable
         std::vector<Renderable*> render(SDL_Renderer* renderer) override;
         void renderTile(int x, int y, int scale, SDL_Renderer* renderer);
-
-        //Get Empty Area
 
     };
 }

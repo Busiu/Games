@@ -19,16 +19,16 @@ namespace snake
     class SnakeChunk : public Renderable
     {
     private:
-        Position<double> positionA;
-        Position<double> positionB;
+        Position<double> end;
+        Position<double> beg;
         Speed<double> speed;
         SDL_Color& color;
         int& thickness;
         Direction direction;
 
     public:
-        SnakeChunk(Position<double> positionA,
-                   Position<double> positionB,
+        SnakeChunk(Position<double> end,
+                   Position<double> beg,
                    Speed<double> speed,
                    SDL_Color& color,
                    int& thickness,
@@ -37,8 +37,8 @@ namespace snake
         void move();
         void shorten();
 
-        Position<double> getPosA();
-        Position<double> getPosB();
+        Position<double> getEnd();
+        Position<double> getBeg();
         double getLength();
 
     private:

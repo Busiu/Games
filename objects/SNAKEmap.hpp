@@ -38,6 +38,10 @@ namespace snake
         void moveSnakeRight();
         void moveSnakeLeft();
 
+        Apple* getApple();
+        Snake* getSnake();
+        TileMap* getTileMap();
+
     private:
         //Renderable
         std::vector<Renderable*> render(SDL_Renderer* renderer) override;

@@ -7,6 +7,8 @@
 
 #include "../Libraries.hpp"
 
+#include "../collisions/SNAKEcollisionDetector.hpp"
+
 #include "../textures/Texture.hpp"
 #include "../textures/TextTexture.hpp"
 
@@ -16,35 +18,48 @@
 #include "../objects/SNAKEmap.hpp"
 #include "../containers/SNAKEtextureContainer.hpp"
 
-class SnakeState : public State
+namespace snake
 {
-private:
-    snake::Map* map;
+    enum class GameState
+    {
+        GAME_OVER,
+        GAME_CONTINUES
+    };
 
-    snake::TextureContainer textureContainer;
+    class SnakeState : public State
+    {
+    private:
+        Map* map;
 
-public:
-    SnakeState(OptionContainer* optionContainer, Renderer* renderer);
+        CollisionDetector collisionDetector;
+        TextureContainer textureContainer;
 
-private:
-    void load() override;
-    States run() override;
-    void close() override;
+    public:
+        SnakeState(OptionContainer* optionContainer, Renderer* renderer);
 
-    //Load
-    void initMap();
+    private:
+        void load() override;
+        States run() override;
+        void close() override;
 
-    //Run
-    States handleEvents() override;
-    void pressUp();
-    void pressDown();
-    void pressRight();
-    void pressLeft();
-    void updateObjects();
-    void clearScreen() override;
-    void renderObjects() override;
-    void updateScreen() override;
-};
+        //Load
+        void initMap();
+
+        //Run
+        States handleEvents() override;
+        void pressUp();
+        void pressDown();
+        void pressRight();
+        void pressLeft();
+        void updateObjects();
+        GameState checkCollisions();
+        void clearScreen() override;
+        void renderObjects() override;
+        void updateScreen() override;
+    };
+}
+
+
 
 
 

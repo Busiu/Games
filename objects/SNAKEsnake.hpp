@@ -37,6 +37,8 @@ namespace snake
         void moveRight();
         void moveLeft();
 
+        Position<double> getHeadPosition();
+
     private:
         //Update
         void moveHead();

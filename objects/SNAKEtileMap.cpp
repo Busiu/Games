@@ -45,20 +45,33 @@ namespace snake
             return Position<int>(0,0);
         }
 
-        std::cout << noEmptyChunks << std::endl;
-
         std::default_random_engine generator(static_cast<unsigned> (time(nullptr) * clock()));
         std::uniform_int_distribution<int> distributionOfBlocks{1, noEmptyChunks};
         std::uniform_int_distribution<int> distributionOfPixels{1, scale};
         int randomBlock = distributionOfBlocks(generator);
         int randomPixel = distributionOfPixels(generator);
 
-        std::cout << randomBlock << std::endl;
-        std::cout << randomPixel << std::endl;
-
         Position<int> result(chunks[randomBlock].getX() * scale + randomPixel,
                              chunks[randomBlock].getY() * scale + randomPixel);
         return result;
+    }
+    Position<int> TileMap::getTile(Position<double> position)
+    {
+        Position<int> tmp(
+                static_cast<int> (position.getX() / scale),
+                static_cast<int> (-position.getY() / scale)
+        );
+
+        return tmp;
+    }
+
+    Position<int> TileMap::getSize()
+    {
+        return *size;
+    }
+    bool** TileMap::getTileMap()
+    {
+        return tileMap;
     }
 
     void TileMap::createMap(TileMapStyle tileMapStyle)

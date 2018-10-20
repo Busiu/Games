@@ -44,6 +44,19 @@ namespace snake
         snake->moveLeft();
     }
 
+    Apple* Map::getApple()
+    {
+        return apple;
+    }
+    Snake* Map::getSnake()
+    {
+        return snake;
+    }
+    TileMap* Map::getTileMap()
+    {
+        return tileMap;
+    }
+
     std::vector<Renderable*> Map::render(SDL_Renderer* renderer)
     {
         std::vector<Renderable*> kids;

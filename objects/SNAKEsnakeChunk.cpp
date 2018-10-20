@@ -6,14 +6,14 @@
 
 namespace snake
 {
-    SnakeChunk::SnakeChunk(Position<double> positionA,
-                           Position<double> positionB,
+    SnakeChunk::SnakeChunk(Position<double> end,
+                           Position<double> beg,
                            Speed<double> speed,
                            SDL_Color& color,
                            int& thickness,
                            Direction direction) :
-    positionA(positionA),
-    positionB(positionB),
+    end(end),
+    beg(beg),
     speed(speed),
     color(color),
     thickness(thickness)
@@ -23,31 +23,31 @@ namespace snake
 
     void SnakeChunk::move()
     {
-        positionB.update(speed);
+        beg.update(speed);
     }
     void SnakeChunk::shorten()
     {
-        positionA.update(speed);
+        end.update(speed);
     }
 
-    Position<double> SnakeChunk::getPosA()
+    Position<double> SnakeChunk::getEnd()
     {
-        return positionA;
+        return end;
     }
-    Position<double> SnakeChunk::getPosB()
+    Position<double> SnakeChunk::getBeg()
     {
-        return positionB;
+        return beg;
     }
     double SnakeChunk::getLength()
     {
-        return Position<double>::getDistance(positionA, positionB);
+        return Position<double>::getDistance(end, beg);
     }
 
     std::vector<Renderable*> SnakeChunk::render(SDL_Renderer* renderer)
     {
         std::vector <Renderable*> kids;
-        Position tmpA(positionA);
-        Position tmpB(positionB);
+        Position tmpA(end);
+        Position tmpB(beg);
         Position<double>::sortPositions(tmpA, tmpB);
 
         SDL_Rect fillRect = RenderAssistant::getRenderRect(tmpA, tmpB, thickness);

@@ -12,7 +12,7 @@ namespace snake
         this->color = {0xFF, 0x00, 0x00, 0xFF};
         this->thickness = 6;
         Position<double> begOfSnake(100, -100);
-        Position<double> endOfSnake(10, -100);
+        Position<double> endOfSnake(50, -100);
 
         SnakeChunk snakeChunk(endOfSnake, begOfSnake, speed, color, thickness, Direction::EAST);
         body.push_back(snakeChunk);
@@ -50,7 +50,7 @@ namespace snake
     void Snake::bendTail(Direction direction)
     {
         SnakeChunk head = *body.begin();
-        SnakeChunk newHead(head.getPosB(), head.getPosB(), speed, color, thickness, direction);
+        SnakeChunk newHead(head.getBeg(), head.getBeg(), speed, color, thickness, direction);
         body.push_front(newHead);
 
     }
@@ -110,6 +110,13 @@ namespace snake
             speed.turnLeft();
             bendTail(Direction::WEST);
         }
+    }
+
+    Position<double> Snake::getHeadPosition()
+    {
+        auto head = body.begin();
+
+        return head->getBeg();
     }
 
     std::vector<Renderable*> Snake::render(SDL_Renderer* renderer)

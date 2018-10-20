@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(Games)
 
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+#set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -15,6 +15,8 @@ find_package(SDL_TTF REQUIRED)
 include_directories(${SDL2TTF_INCLUDE_DIR})
 
 add_executable(Games main.cpp Application.cpp Exception.cpp StateSupervisor.cpp
+
+        collisions/SNAKEcollisionDetector.cpp
 
         containers/OptionContainer.cpp containers/SNAKEtextureContainer.cpp
 
