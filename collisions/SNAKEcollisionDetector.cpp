@@ -32,7 +32,6 @@ namespace snake
         int mapHeight = tileMap->getSize().getY();
         int X = snakeTile.getX();
         int Y = snakeTile.getY();
-        std::cout << X << " " << Y << std::endl;
         for(int x = X - 1; x <= X + 1; x++)
         {
             for(int y = Y - 1; y <= Y + 1; y++)

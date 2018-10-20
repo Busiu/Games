@@ -10,12 +10,13 @@
 #include "../util/Position.hpp"
 
 class RenderAssistant {
+private:
+
 public:
-    static SDL_Rect getRenderRect(Position<double> positionA, Position<double> positionB, int thickness);
+    static SDL_Rect getRenderRect(Position<double> topLeft, Position<double> bottomRight, int thickness);
 
 private:
-    static SDL_Rect getVerticalRect(Position<double> positionA, Position<double> positionB, int thickness);
-    static SDL_Rect getHorizontalRect(Position<double> positionA, Position<double> positionB, int thickness);
+
 };
 
 
