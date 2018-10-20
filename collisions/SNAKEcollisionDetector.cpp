@@ -24,21 +24,21 @@ namespace snake
         return CollisionResult::NOTHING;
     }
 
-    CollisionResult CollisionDetector::checkCollisions(Snake* snake, TileMap* tileMap)
+    CollisionResult CollisionDetector::checkCollisions(Snake* snake, TileMap* _tileMap)
     {
-        Position<int> snakeTile = tileMap->getTile(snake->getHeadPosition());
-        bool** map = tileMap->getTileMap();
-        int mapWidth = tileMap->getSize().getX();
-        int mapHeight = tileMap->getSize().getY();
-        int X = snakeTile.getX();
-        int Y = snakeTile.getY();
+        Position<int> snakeHeadTile = _tileMap->getTile(snake->getHeadPosition());
+        bool** tileMap = _tileMap->getTileMap();
+        int tileMapWidth = _tileMap->getSize().getX();
+        int tileMapHeight = _tileMap->getSize().getY();
+        int X = snakeHeadTile.getX();
+        int Y = snakeHeadTile.getY();
         for(int x = X - 1; x <= X + 1; x++)
         {
             for(int y = Y - 1; y <= Y + 1; y++)
             {
-                if(x < mapWidth && y < mapHeight && x >= 0 && y >= 0)
+                if(x < tileMapWidth && y < tileMapHeight && x >= 0 && y >= 0)
                 {
-                    if(map[x][y])
+                    if(tileMap[x][y])
                     {
                         return CollisionResult::WALL_HIT;
                     }
