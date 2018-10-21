@@ -133,7 +133,6 @@ namespace snake
             {
                 return GameState::GAME_CONTINUES;
             }
-
         }
     }
 

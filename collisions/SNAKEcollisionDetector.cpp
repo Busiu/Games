@@ -26,6 +26,8 @@ namespace snake
 
     CollisionResult CollisionDetector::checkCollisions(Snake* snake, TileMap* _tileMap)
     {
+        //TODO: Implement a way better version of Snake-TileMap collision
+
         Position<int> snakeHeadTile = _tileMap->getTile(snake->getHeadPosition());
         bool** tileMap = _tileMap->getTileMap();
         int tileMapWidth = _tileMap->getSize().getX();

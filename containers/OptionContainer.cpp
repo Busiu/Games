@@ -6,25 +6,18 @@
 
 OptionContainer::OptionContainer()
 {
-    resolutions[0] = new Position<int>(320, 240);
-    resolutions[1] = new Position<int>(640, 480);
-    resolutions[2] = new Position<int>(960, 720);
-    resolutions[3] = new Position<int>(1280, 960);
-    resolutions[4] = new Position<int>(1280, 1024);
-    resolutions[5] = new Position<int>(1600, 1200);
-    resolutions[6] = new Position<int>(1280, 720);
-    resolutions[7] = new Position<int>(1600, 900);
-    resolutions[8] = new Position<int>(1920, 1080);
-}
-OptionContainer::~OptionContainer()
-{
-    for(int i = 0; i < noResolutions; i++)
-    {
-        delete(resolutions[i]);
-    }
+    resolutions[0] = Resolution(320, 240);
+    resolutions[1] = Resolution(640, 480);
+    resolutions[2] = Resolution(960, 720);
+    resolutions[3] = Resolution(1280, 960);
+    resolutions[4] = Resolution(1280, 1024);
+    resolutions[5] = Resolution(1600, 1200);
+    resolutions[6] = Resolution(1280, 720);
+    resolutions[7] = Resolution(1600, 900);
+    resolutions[8] = Resolution(1920, 1080);
 }
 
-Position<int>* OptionContainer::getCertainResolution(int index)
+Resolution OptionContainer::getCertainResolution(int index)
 {
     return resolutions[index];
 }
@@ -39,7 +32,7 @@ int OptionContainer::getNoResolutions()
     return noResolutions;
 }
 
-Position<int>* OptionContainer::getWindowResolution()
+Resolution OptionContainer::getWindowResolution()
 {
     return resolutions[currentResolution];
 }

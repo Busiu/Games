@@ -7,12 +7,12 @@
 
 #include "../Libraries.hpp"
 
-#include "Position.hpp"
+#include "Types.hpp"
 
 class StringCreator
 {
 public:
-    static std::string stringFromResolution(Position<int>* resolution);
+    static std::string stringFromResolution(Resolution resolution);
 };
 
 

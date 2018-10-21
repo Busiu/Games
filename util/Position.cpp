@@ -18,8 +18,8 @@ Position<T>::Position(T x, T y) :
         {}
 
 template <class T>
-Position<T>::Position(Position<T>* resolution, int noObjects, int index) :
-        vector((resolution->getX() / 2), (resolution->getY() * index / noObjects))
+Position<T>::Position(Resolution resolution, int noObjects, int index) :
+        vector((resolution.first / 2), (resolution.second * index / noObjects))
         {}
 
 template <class T>

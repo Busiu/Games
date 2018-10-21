@@ -10,6 +10,7 @@
 #include "../renderer/Renderable.hpp"
 
 #include "../textures/TextTexture.hpp"
+#include "../util/Position.hpp"
 
 enum class Justification{
     CENTERED,
@@ -19,15 +20,15 @@ enum class Justification{
 class Text : public Renderable{
 protected:
     TextTexture* text;
-    Position<int>* position;
+    Position<int> position;
     Justification justification;
 
 public:
-    Text(TextTexture* text, Position<int>* position, Justification justification);
+    Text(TextTexture* text, Position<int> position, Justification justification);
     virtual ~Text();
 
-    void setPosition(Position<int>* position);
-    void shift(Position<int>* vector);
+    void setPosition(Position<int> position);
+    void shift(Position<int>& vector);
 
 protected:
     //Renderable

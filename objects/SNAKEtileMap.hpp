@@ -11,6 +11,8 @@
 
 #include "../textures/FileTexture.hpp"
 
+#include "../util/Position.hpp"
+
 namespace snake
 {
     enum class TileMapStyle

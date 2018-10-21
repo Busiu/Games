@@ -10,7 +10,7 @@
 
 #include "Renderable.hpp"
 
-#include "../util/Position.hpp"
+#include "../util/Types.hpp"
 
 class Renderable;
 
@@ -20,7 +20,7 @@ private:
     SDL_Renderer* renderer;
 
 public:
-    Renderer(Position<int>* windowSize);
+    explicit Renderer(Resolution windowSize);
     ~Renderer();
 
     void clear();
@@ -28,13 +28,13 @@ public:
 
     SDL_Renderer* getRenderer();
 
-    void setResolution(Position<int>* resolution);
+    void setResolution(Resolution resolution);
 
     void render(Renderable* renderable);
 
 private:
     //Constructor
-    bool initWindow(Position<int>* windowSize);
+    bool initWindow(Resolution windowSize);
     bool initRenderer();
 
     //Destructor

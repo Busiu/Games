@@ -24,46 +24,42 @@ void OptionState::loadFonts()
 
 void OptionState::loadOptions()
 {
-    Position<int>* position = nullptr;
-    TextTexture* textTexture = nullptr;
-
     //RESOLUTION
-    textTexture = new TextTexture(renderer->getRenderer(), "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
-    options[RESOLUTION_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
+    TextTexture* resolutionTexture = new TextTexture(renderer->getRenderer(), "RESOLUTION", {0x00, 0xFF, 0x00, 0xFF}, font);
+    Position<int> resolutionPosition(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
+    options[RESOLUTION_TEXT] = new ColorText(resolutionTexture, resolutionPosition, Justification::CENTERED);
 
     //VOLUME
-    textTexture = new TextTexture(renderer->getRenderer(), "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
-    options[VOLUME_TEXT] = new ColorText(textTexture, position, Justification::CENTERED);
+    TextTexture* volumeTexture = new TextTexture(renderer->getRenderer(), "VOLUME", {0x00, 0xFF, 0x00, 0xFF}, font);
+    Position<int> volumePosition(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
+    options[VOLUME_TEXT] = new ColorText(volumeTexture, volumePosition, Justification::CENTERED);
 
 }
 
 void OptionState::loadOptionValues()
 {
-    Position<int>* position = nullptr;
-    Position<int> vector(200, 0);
     std::string value;
     TextTexture* textTexture = nullptr;
+    Position<int> vector(200, 0);
 
     //RESOLUTION
     value = StringCreator::stringFromResolution(optionContainer->getCertainResolution(currentResolution));
     textTexture = new TextTexture(renderer->getRenderer(), value, {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
-    optionValues[RESOLUTION_TEXT] = new Text(textTexture, position, Justification::CENTERED);
-    optionValues[RESOLUTION_TEXT]->shift(&vector);
+    Position<int> resolutionPosition(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
+    optionValues[RESOLUTION_TEXT] = new Text(textTexture, resolutionPosition, Justification::CENTERED);
+    optionValues[RESOLUTION_TEXT]->shift(vector);
 
     //VOLUME
     value = "10";
     textTexture = new TextTexture(renderer->getRenderer(), value, {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
-    optionValues[VOLUME_TEXT] = new Text(textTexture, position, Justification::CENTERED);
-    optionValues[VOLUME_TEXT]->shift(&vector);
+    Position<int> volumePosition(optionContainer->getWindowResolution(), TOTAL_TEXT, VOLUME_TEXT);
+    optionValues[VOLUME_TEXT] = new Text(textTexture, volumePosition, Justification::CENTERED);
+    optionValues[VOLUME_TEXT]->shift(vector);
 }
 
 void OptionState::loadBackground()
 {
-
+    //TODO: implement
 }
 
 void OptionState::initialState()
@@ -172,16 +168,15 @@ void OptionState::changeOptionResolution()
 {
     delete(optionValues[RESOLUTION_TEXT]);
 
-    Position<int>* position = nullptr;
-    Position<int> vector(200, 0);
     std::string value;
     TextTexture* textTexture = nullptr;
+    Position<int> vector(200, 0);
 
     value = StringCreator::stringFromResolution(optionContainer->getCertainResolution(currentResolution));
     textTexture = new TextTexture(renderer->getRenderer(), value, {0x00, 0xFF, 0x00, 0xFF}, font);
-    position = new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
-    optionValues[RESOLUTION_TEXT] = new Text(textTexture, position, Justification::CENTERED);
-    optionValues[RESOLUTION_TEXT]->shift(&vector);
+    Position<int> resolutionPosition(optionContainer->getWindowResolution(), TOTAL_TEXT, RESOLUTION_TEXT);
+    optionValues[RESOLUTION_TEXT] = new Text(textTexture, resolutionPosition, Justification::CENTERED);
+    optionValues[RESOLUTION_TEXT]->shift(vector);
 }
 
 void OptionState::pressEnter()
@@ -197,9 +192,9 @@ void OptionState::pressEnter()
         {
             Position vector(200, 0);
 
-            options[i]->setPosition(new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, i));
-            optionValues[i]->setPosition(new Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, i));
-            optionValues[i]->shift(&vector);
+            options[i]->setPosition(Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, i));
+            optionValues[i]->setPosition(Position<int>(optionContainer->getWindowResolution(), TOTAL_TEXT, i));
+            optionValues[i]->shift(vector);
         }
     }
 }

@@ -4,12 +4,12 @@
 
 #include "StringCreator.hpp"
 
-std::string StringCreator::stringFromResolution(Position<int>* resolution)
+std::string StringCreator::stringFromResolution(Resolution resolution)
 {
     std::stringstream text;
 
     text.str("");
-    text << resolution->getX() << "x" << resolution->getY();
+    text << resolution.first << "x" << resolution.second;
 
     return text.str();
 }

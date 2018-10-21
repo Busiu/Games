@@ -11,8 +11,7 @@ class ColorText : public Text {
 private:
 
 public:
-    ColorText(TextTexture* text, Position<int>* position, Justification justification) :
-    Text(text, position, justification){};
+    ColorText(TextTexture* text, Position<int> position, Justification justification);
 
     void setColor(Uint8 red, Uint8 green, Uint8 blue);
 };

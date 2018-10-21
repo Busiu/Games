@@ -9,6 +9,7 @@
 
 #include "Complex.hpp"
 #include "Speed.hpp"
+#include "Types.hpp"
 
 template <class T> class Position
 {
@@ -17,10 +18,10 @@ private:
 
 public:
     Position();
-    Position(Complex<T>& vector);
+    explicit Position(Complex<T>& vector);
     Position(T x, T y);
     //Special constructor for Text Objects
-    Position(Position<T>* resolution, int noObjects, int index);
+    Position(Resolution resolution, int noObjects, int index);
 
     void update(Speed<T>& speed);
     void shift(Position<T>& position);

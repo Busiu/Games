@@ -6,24 +6,23 @@
 #define GAMES_OPTIONCONTAINER_HPP
 
 #include "../Libraries.hpp"
-#include "../util/Position.hpp"
+#include "../util/Types.hpp"
 
 class OptionContainer {
 private:
     int currentResolution = 1;
     const static int noResolutions = 9;
-    std::array<Position<int>*, noResolutions> resolutions;
+    std::array<Resolution, noResolutions> resolutions;
 
     int fpsCap = 60;
 
 public:
     OptionContainer();
-    ~OptionContainer();
 
-    Position<int>* getCertainResolution(int index);
+    Resolution getCertainResolution(int index);
     int getCurrentResolution();
     int getNoResolutions();
-    Position<int>* getWindowResolution();
+    Resolution getWindowResolution();
     int getFpsCap();
 
     void setCurrentResolution(int currentResolution);
