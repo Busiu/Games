@@ -22,5 +22,5 @@ int main(int argc, char ** argv)
 
     return 0;
 
-    //TODO: add explitit prefix in constructors
+    //TODO: add explicit prefix in constructors
 }

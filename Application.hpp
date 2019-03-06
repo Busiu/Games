@@ -35,7 +35,6 @@ private:
     bool initStateSupervisor();
 
     //Close
-    void freeMemory();
     void quitModules();
 };
 

@@ -4,6 +4,11 @@
 
 #include "OptionState.hpp"
 
+OptionState::OptionState(const std::shared_ptr<OptionContainer> optionContainer,
+                         const std::shared_ptr<Renderer> renderer) :
+        State(optionContainer, renderer)
+        {}
+
 void OptionState::load()
 {
     loadFonts();
@@ -15,11 +20,7 @@ void OptionState::load()
 
 void OptionState::loadFonts()
 {
-    font = TTF_OpenFont("../assets/fonts/Racing Hoodlums.ttf", 30);
-    if(font == nullptr)
-    {
-        throw Exception("Loading font");
-    }
+    font = std::make_unique<Font>("../assets/fonts/Racing Hoodlums.ttf", 30);
 }
 
 void OptionState::loadOptions()
@@ -221,9 +222,6 @@ void OptionState::updateScreen()
 
 void OptionState::close()
 {
-    //Forgetting font
-    TTF_CloseFont(font);
-
     //Forgetting texts
     for(int i = 0; i < TOTAL_TEXT; i++)
     {

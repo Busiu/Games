@@ -81,13 +81,7 @@ void Application::run()
 
 void Application::close()
 {
-    freeMemory();
     quitModules();
-}
-
-void Application::freeMemory()
-{
-    stateSupervisor.free();
 }
 
 void Application::quitModules()

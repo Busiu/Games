@@ -6,15 +6,11 @@
 
 OptionContainer::OptionContainer()
 {
-    resolutions[0] = Resolution(320, 240);
-    resolutions[1] = Resolution(640, 480);
-    resolutions[2] = Resolution(960, 720);
-    resolutions[3] = Resolution(1280, 960);
-    resolutions[4] = Resolution(1280, 1024);
-    resolutions[5] = Resolution(1600, 1200);
-    resolutions[6] = Resolution(1280, 720);
-    resolutions[7] = Resolution(1600, 900);
-    resolutions[8] = Resolution(1920, 1080);
+    resolutions[0] = Resolution(640, 360);
+    resolutions[1] = Resolution(960, 540);
+    resolutions[2] = Resolution(1280, 720);
+    resolutions[3] = Resolution(1600, 900);
+    resolutions[4] = Resolution(1920, 1080);
 }
 
 Resolution OptionContainer::getCertainResolution(int index)

@@ -12,6 +12,7 @@
 
 #include "../textures/Texture.hpp"
 
+#include "../util/Font.hpp"
 #include "../util/Position.hpp"
 
 #include "State.hpp"
@@ -27,7 +28,7 @@ private:
     };
 
     //Font of menu captions
-    TTF_Font* font;
+    std::unique_ptr<Font> font;
 
     //Menu's texts
     std::array<ColorText*, TOTAL_TEXT> options;
@@ -36,8 +37,8 @@ private:
     int highlightedText = START_TEXT;
 
 public:
-    MenuState(OptionContainer* optionContainer, Renderer* windowContainer) :
-            State(optionContainer, windowContainer){}
+    MenuState(const std::shared_ptr<OptionContainer> optionContainer,
+              const std::shared_ptr<Renderer> renderer);
 
 private:
     void load() override;

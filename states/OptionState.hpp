@@ -12,6 +12,7 @@
 
 #include "../textures/Texture.hpp"
 
+#include "../util/Font.hpp"
 #include "../util/Position.hpp"
 #include "../util/StringCreator.hpp"
 
@@ -27,7 +28,7 @@ private:
     };
 
     //Font of option captions
-    TTF_Font* font;
+    std::unique_ptr<Font> font;
 
     //All textures of option captions
     std::array<ColorText*, TOTAL_TEXT> options;
@@ -38,8 +39,8 @@ private:
     int currentResolution = optionContainer->getCurrentResolution();
 
 public:
-    OptionState(OptionContainer* optionContainer, Renderer* renderer) :
-            State(optionContainer, renderer){}
+    OptionState(const std::shared_ptr<OptionContainer> optionContainer,
+                const std::shared_ptr<Renderer> renderer);
 
 private:
     void load() override;

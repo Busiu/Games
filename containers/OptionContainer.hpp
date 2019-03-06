@@ -11,7 +11,7 @@
 class OptionContainer {
 private:
     int currentResolution = 1;
-    const static int noResolutions = 9;
+    const static int noResolutions = 5;
     std::array<Resolution, noResolutions> resolutions;
 
     int fpsCap = 60;

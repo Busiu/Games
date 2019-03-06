@@ -8,6 +8,8 @@
 #include "../Libraries.hpp"
 #include "../Exception.hpp"
 
+#include "../util/Font.hpp"
+
 #include "Texture.hpp"
 
 
@@ -15,7 +17,7 @@ class TextTexture : public Texture {
 private:
 
 public:
-    TextTexture(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, TTF_Font* textureFont);
+    TextTexture(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, std::unique_ptr<Font>& textureFont);
     ~TextTexture();
 
 };

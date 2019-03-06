@@ -20,7 +20,7 @@ namespace snake
         FileTexture* appleSuper;
 
     public:
-        TextureContainer(Renderer* renderer);
+        TextureContainer(const std::shared_ptr<Renderer> renderer);
         ~TextureContainer();
 
         FileTexture* getAppleTexture();

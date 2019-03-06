@@ -10,6 +10,7 @@
 #include <SDL2/SDL_image.h>
 
 #include <iostream>
+#include <memory>
 #include <random>
 #include <stdio.h>
 #include <sstream>

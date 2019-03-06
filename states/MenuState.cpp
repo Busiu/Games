@@ -4,6 +4,11 @@
 
 #include "MenuState.hpp"
 
+MenuState::MenuState(const std::shared_ptr<OptionContainer> optionContainer,
+                     const std::shared_ptr<Renderer> renderer) :
+        State(optionContainer, renderer)
+        {}
+
 void MenuState::load()
 {
     loadFonts();
@@ -14,11 +19,7 @@ void MenuState::load()
 
 void MenuState::loadFonts()
 {
-    font = TTF_OpenFont("../assets/fonts/Racing Hoodlums.ttf", 30);
-    if(font == nullptr)
-    {
-        throw Exception("Loading font");
-    }
+    font = std::make_unique<Font>("../assets/fonts/Racing Hoodlums.ttf", 30);
 }
 
 void MenuState::loadOptions()
@@ -160,9 +161,6 @@ void MenuState::updateScreen()
 
 void MenuState::close()
 {
-    //Forgetting font
-    TTF_CloseFont(font);
-
     //Forgetting texts
     for(int i = 0; i < TOTAL_TEXT; i++)
     {

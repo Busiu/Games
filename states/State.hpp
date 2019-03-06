@@ -18,13 +18,14 @@ class State {
 protected:
     SDL_Event event;
 
-    OptionContainer* optionContainer;
-    Renderer* renderer;
-    Timer* fpsCapper;
+    std::shared_ptr<OptionContainer> optionContainer;
+    std::shared_ptr<Renderer> renderer;
+    std::unique_ptr<Timer> fpsCapper;
 
 public:
-    State(OptionContainer* optionContainer, Renderer* renderer);
-    ~State();
+    State(const std::shared_ptr<OptionContainer> optionContainer,
+          const std::shared_ptr<Renderer> renderer);
+    ~State() = default;
 
     States start();
 

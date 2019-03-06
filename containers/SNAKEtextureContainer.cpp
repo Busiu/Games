@@ -6,7 +6,7 @@
 
 namespace snake
 {
-    TextureContainer::TextureContainer(Renderer *renderer)
+    TextureContainer::TextureContainer(const std::shared_ptr<Renderer> renderer)
     {
         apple = new FileTexture(renderer->getRenderer(), "../assets/textures/apple.png");
         appleSuper = new FileTexture(renderer->getRenderer(), "../assets/textures/appleSuper.png");

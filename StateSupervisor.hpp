@@ -18,24 +18,20 @@
 
 class StateSupervisor {
 private:
-    State* currentState;
+    std::unique_ptr<State> currentState;
 
-    OptionContainer* optionContainer;
-    Renderer* renderer;
+    std::shared_ptr<OptionContainer> optionContainer;
+    std::shared_ptr<Renderer> renderer;
 
 public:
     bool init();
     void run();
-    void free();
 
 private:
     //Init
     bool initOptionContainer();
     bool initRenderer();
 
-    //Free
-    void destroyOptionContainer();
-    void destroyRenderer();
 };
 
 

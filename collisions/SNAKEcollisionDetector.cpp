@@ -6,7 +6,7 @@
 
 namespace snake
 {
-    CollisionResult CollisionDetector::checkCollisions(Map* map)
+    CollisionResult CollisionDetector::checkCollisions(std::shared_ptr<Map> map)
     {
         CollisionResult result;
 
@@ -24,7 +24,7 @@ namespace snake
         return CollisionResult::NOTHING;
     }
 
-    CollisionResult CollisionDetector::checkCollisions(Snake* snake, TileMap* _tileMap)
+    CollisionResult CollisionDetector::checkCollisions(std::shared_ptr<Snake> snake, std::shared_ptr<TileMap> _tileMap)
     {
         //TODO: Implement a way better version of Snake-TileMap collision
 
@@ -50,7 +50,7 @@ namespace snake
 
         return CollisionResult::NOTHING;
     }
-    CollisionResult CollisionDetector::checkCollisions(Snake* snake, Apple* apple)
+    CollisionResult CollisionDetector::checkCollisions(std::shared_ptr<Snake> snake, std::shared_ptr<Apple> apple)
     {
         //TODO: Snake-Apple collision
         return CollisionResult::NOTHING;

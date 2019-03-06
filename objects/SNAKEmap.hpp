@@ -21,15 +21,15 @@ namespace snake
     private:
         int scale;
 
-        Apple* apple;
-        Snake* snake;
-        TileMap* tileMap;
+        std::shared_ptr<Apple> apple;
+        std::shared_ptr<Snake> snake;
+        std::shared_ptr<TileMap> tileMap;
 
         TextureContainer& textureContainer;
 
     public:
-        Map(int scale, Renderer* renderer, TextureContainer& textureContainer);
-        ~Map();
+        Map(int scale, std::shared_ptr<Renderer> renderer, TextureContainer& textureContainer);
+        ~Map() = default;
 
         void update();
 
@@ -38,9 +38,9 @@ namespace snake
         void moveSnakeRight();
         void moveSnakeLeft();
 
-        Apple* getApple();
-        Snake* getSnake();
-        TileMap* getTileMap();
+        std::shared_ptr<Apple> getApple();
+        std::shared_ptr<Snake> getSnake();
+        std::shared_ptr<TileMap> getTileMap();
 
     private:
         //Renderable

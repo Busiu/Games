@@ -16,7 +16,7 @@ bool StateSupervisor::init()
 
 bool StateSupervisor::initOptionContainer()
 {
-    optionContainer = new OptionContainer();
+    optionContainer = std::make_shared<OptionContainer>();
     if(optionContainer == nullptr)
     {
         return false;
@@ -27,7 +27,7 @@ bool StateSupervisor::initOptionContainer()
 
 bool StateSupervisor::initRenderer()
 {
-    renderer = new Renderer(optionContainer->getWindowResolution());
+    renderer = std::make_shared<Renderer>(optionContainer->getWindowResolution());
     if(renderer == nullptr)
     {
         return false;
@@ -38,33 +38,34 @@ bool StateSupervisor::initRenderer()
 
 void StateSupervisor::run()
 {
-    currentState = new MenuState(optionContainer, renderer);
-    States whichState = States::MENU_STATE;
+    bool quit = false;
+    currentState = std::make_unique<MenuState>(optionContainer, renderer);
+    States whichState;
 
-    while(true)
+    while(!quit)
     {
         whichState = currentState->start();
-        delete currentState;
 
         switch(whichState)
         {
             case States::EXIT_STATE:
             {
+                quit = true;
                 break;
             }
             case States::MENU_STATE:
             {
-                currentState = new MenuState(optionContainer, renderer);
+                currentState.reset(new MenuState(optionContainer, renderer));
                 break;
             }
             case States::OPTIONS_STATE:
             {
-                currentState = new OptionState(optionContainer, renderer);
+                currentState.reset(new OptionState(optionContainer, renderer));
                 break;
             }
             case States::SNAKE_STATE:
             {
-                currentState = new snake::SnakeState(optionContainer, renderer);
+                currentState.reset(new snake::SnakeState(optionContainer, renderer));
                 break;
             }
             default:
@@ -73,22 +74,4 @@ void StateSupervisor::run()
             }
         }
     }
-}
-
-
-
-void StateSupervisor::free()
-{
-    destroyRenderer();
-    destroyOptionContainer();
-}
-
-void StateSupervisor::destroyRenderer()
-{
-    delete renderer;
-}
-
-void StateSupervisor::destroyOptionContainer()
-{
-    delete optionContainer;
 }

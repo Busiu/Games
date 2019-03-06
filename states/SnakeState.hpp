@@ -29,13 +29,14 @@ namespace snake
     class SnakeState : public State
     {
     private:
-        Map* map;
+        std::shared_ptr<Map> map;
 
         CollisionDetector collisionDetector;
         TextureContainer textureContainer;
 
     public:
-        SnakeState(OptionContainer* optionContainer, Renderer* renderer);
+        SnakeState(const std::shared_ptr<OptionContainer> optionContainer,
+                   const std::shared_ptr<Renderer> renderer);
 
     private:
         void load() override;

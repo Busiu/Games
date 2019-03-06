@@ -4,15 +4,12 @@
 
 #include "State.hpp"
 
-State::State(OptionContainer* optionContainer, Renderer* renderer)
+State::State(const std::shared_ptr<OptionContainer> optionContainer,
+             const std::shared_ptr<Renderer> renderer)
 {
     this->optionContainer = optionContainer;
     this->renderer = renderer;
-    this->fpsCapper = new Timer(optionContainer->getFpsCap());
-}
-State::~State()
-{
-    delete(fpsCapper);
+    this->fpsCapper = std::make_unique<Timer>(optionContainer->getFpsCap());
 }
 
 States State::start()

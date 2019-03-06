@@ -4,12 +4,12 @@
 
 #include "TextTexture.hpp"
 
-TextTexture::TextTexture(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, TTF_Font* textureFont)
+TextTexture::TextTexture(SDL_Renderer* renderer, std::string textureText, SDL_Color textureColor, std::unique_ptr<Font>& textureFont)
 : Texture()
 {
     free();
 
-    SDL_Surface* textSurface = TTF_RenderText_Solid(textureFont, textureText.c_str(), textureColor);
+    SDL_Surface* textSurface = TTF_RenderText_Solid(textureFont->getFont(), textureText.c_str(), textureColor);
     if(textSurface == nullptr)
     {
         throw Exception("Loading Texture");

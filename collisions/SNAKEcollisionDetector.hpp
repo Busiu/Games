@@ -22,11 +22,13 @@ namespace snake
     private:
 
     public:
-        CollisionResult checkCollisions(Map* map);
+        CollisionResult checkCollisions(std::shared_ptr<Map> map);
 
     private:
-        CollisionResult checkCollisions(Snake* snake, TileMap* tileMap);
-        CollisionResult checkCollisions(Snake* snake, Apple* apple);
+        CollisionResult checkCollisions(std::shared_ptr<Snake> snake,
+                                        std::shared_ptr<TileMap> tileMap);
+        CollisionResult checkCollisions(std::shared_ptr<Snake> snake,
+                                        std::shared_ptr<Apple> apple);
     };
 }
 

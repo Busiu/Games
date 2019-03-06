@@ -27,6 +27,6 @@ add_executable(Games main.cpp Application.cpp Exception.cpp StateSupervisor.cpp
 
         textures/FileTexture.cpp textures/TextTexture.cpp textures/Texture.cpp
 
-        util/Complex.cpp util/Position.cpp util/Speed.cpp util/StringCreator.cpp util/Timer.cpp)
+        util/Complex.cpp util/Font.cpp util/Position.cpp util/Speed.cpp util/StringCreator.cpp util/Timer.cpp)
 
 target_link_libraries(Games ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf)

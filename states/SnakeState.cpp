@@ -6,7 +6,8 @@
 
 namespace snake
 {
-    SnakeState::SnakeState(OptionContainer* optionContainer, Renderer* renderer) :
+    SnakeState::SnakeState(const std::shared_ptr<OptionContainer> optionContainer,
+                           const std::shared_ptr<Renderer> renderer) :
             State(optionContainer, renderer),
             collisionDetector(),
             textureContainer(renderer)
@@ -19,7 +20,7 @@ namespace snake
 
     void SnakeState::initMap()
     {
-        this->map = new snake::Map(20, renderer, textureContainer);
+        this->map = std::make_shared<Map>(20, renderer, textureContainer);
     }
 
 
@@ -144,7 +145,7 @@ namespace snake
 
     void SnakeState::renderObjects()
     {
-        renderer->render(map);
+        renderer->render(map.get());
     }
 
     void SnakeState::updateScreen()
@@ -154,10 +155,7 @@ namespace snake
 
 
 
-    void SnakeState::close()
-    {
-        delete(map);
-    }
+    void SnakeState::close() {}
 }
 
 
